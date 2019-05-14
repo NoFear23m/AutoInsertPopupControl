@@ -1,0 +1,42 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestApp"
+        xmlns:AutoInsertTextBox="clr-namespace:AutoInsertTextBox;assembly=AutoInsertTextBox" xmlns:AutoInsertPopup="clr-namespace:AutoInsertPopup;assembly=AutoInsertPopup"
+    xmlns:system="clr-namespace:System;assembly=mscorlib" x:Class="MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <TextBox x:Name="txtTest" Width="300" VerticalAlignment="Top" GotFocus="TxtTest_GotFocus" />
+        
+
+        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest}" HorizontalAlignment="Left"
+                                                Margin="85,170,0,0" VerticalAlignment="Top"
+                                                x:Name="pop" AutoInsertList="{Binding TestList}" Background="Green" FocusKey="Down" OpenPopupTriggerChar="@">
+            
+            <!--<AutoInsertPopup:AutoInsertPopupControl.ListItemTemplate>
+                <DataTemplate>
+                    <ContentControl DataContext="{TemplateBinding Content}">
+                        <Button Content="Hallo"/>
+                    </ContentControl>
+                </DataTemplate>
+            </AutoInsertPopup:AutoInsertPopupControl.ListItemTemplate>-->
+        </AutoInsertPopup:AutoInsertPopupControl>
+
+
+        <ListBox x:Name="list" Margin="271,213,430,106">
+            <system:String>Test1</system:String>
+            <system:String>Test2</system:String>
+            <system:String>Test3</system:String>
+            <system:String>Test4</system:String>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{TemplateBinding Content}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>

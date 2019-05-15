@@ -69,6 +69,7 @@ Public Class AutoInsertPopupControl
             tb.Tag = d
             AddHandler tb.PreviewKeyDown, AddressOf TargetControlProperty_KeyDown
             AddHandler tb.PreviewKeyUp, AddressOf TargetControlProperty_KeyUp
+            Dim ctl = DirectCast(d, AutoInsertPopupControl)
         End If
     End Sub
 
@@ -285,7 +286,7 @@ Public Class AutoInsertPopupControl
             ctl.CaretIndex = autoInsertControl.recordStartPosition + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
 
             autoInsertControl.SetValue(SelectedInsertListItemProperty, Nothing)
-            autoInsertControl.SetValue(IsPopUpOpenProperty, False)
+            If Not Boolean.Parse(autoInsertControl.GetValue(StaysOpenProperty).ToString) Then autoInsertControl.SetValue(IsPopUpOpenProperty, False)
             ctl.Focus()
         End If
     End Sub
@@ -391,7 +392,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(PopupAnimation.Slide))
 
 
-    <Description("Bestimmt ob das Popup nach erfolgreichem einfügen offen bleiben soll bzw. legt den Wert fest"), Category("Popup-Options")>
+    <Description("gibt zurück ob das Popup nach erfolgreichem einfügen offen bleiben soll bzw. legt den Wert fest"), Category("Popup-Options")>
     Public Property StaysOpen As Boolean
         Get
             Return CBool(GetValue(StaysOpenProperty))
@@ -406,6 +407,58 @@ Public Class AutoInsertPopupControl
                            DependencyProperty.Register("StaysOpen",
                            GetType(Boolean), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(False))
+
+
+    <Description("Gibt zurück ob der Rahmen des Popups sichbar sein soll bzw. legt den Wert fest"), Category("Popup-Options")>
+    Public Property PopupBorderVisibility As Visibility
+        Get
+            Return CType(GetValue(PopupBorderVisibilityProperty), Visibility)
+        End Get
+
+        Set(ByVal value As Visibility)
+            SetValue(PopupBorderVisibilityProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly PopupBorderVisibilityProperty As DependencyProperty =
+                           DependencyProperty.Register("PopupBorderVisibility",
+                           GetType(Visibility), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(Visibility.Visible))
+
+    <Description("Gibt die breite des Popuprahmens zurück bzw. legt die breite fest"), Category("Popup-Options")>
+    Public Property PopupBorderThickness As Thickness
+        Get
+            Return CType(GetValue(PopupBorderThicknessProperty), Thickness)
+        End Get
+
+        Set(ByVal value As Thickness)
+            SetValue(PopupBorderThicknessProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly PopupBorderThicknessProperty As DependencyProperty =
+                           DependencyProperty.Register("PopupBorderThickness",
+                           GetType(Thickness), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(New Thickness(1)))
+
+
+    <Description("Gibt den Brush für den Popuprahmen zurück bzw. legt den Wert fest"), Category("Popup-Options")>
+    Public Property PopupBorderBrush As Brush
+        Get
+            Return CType(GetValue(PopupBorderBrushProperty), Brush)
+        End Get
+
+        Set(ByVal value As Brush)
+            SetValue(PopupBorderBrushProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly PopupBorderBrushProperty As DependencyProperty =
+                           DependencyProperty.Register("PopupBorderBrush",
+                           GetType(Brush), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(New SolidColorBrush(Colors.Black)))
+
+
 
 
     <Description("Ruft das Template des ListItems ab bzw. legt dieses fest"), Category("Popup-Options")>
@@ -425,6 +478,26 @@ Public Class AutoInsertPopupControl
     Private Shared Sub ListItemTemplateProperty_Changed(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
 
     End Sub
+
+
+
+    Public Property ListBoxItemsPanelTemplate As ItemsPanelTemplate
+        Get
+            Return CType(GetValue(ListBoxItemsPanelTemplateProperty), ItemsPanelTemplate)
+        End Get
+
+        Set(ByVal value As ItemsPanelTemplate)
+            SetValue(ListBoxItemsPanelTemplateProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly ListBoxItemsPanelTemplateProperty As DependencyProperty =
+                           DependencyProperty.Register("ListBoxItemsPanelTemplate",
+                           GetType(ItemsPanelTemplate), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(Nothing))
+
+
+
 
     <Description("Ruft das Template des Headers (Kopf) ab bzw. legt dieses fest"), Category("Popup-Options")>
     Public Property HeaderTemplate As ControlTemplate
@@ -493,6 +566,23 @@ Public Class AutoInsertPopupControl
                            GetType(Object), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Nothing))
 
+
+
+
+    Public Property NoFilterResultsContentTemplate As ControlTemplate
+        Get
+            Return CType(GetValue(NoFilterResultsContentTemplateProperty), ControlTemplate)
+        End Get
+
+        Set(ByVal value As ControlTemplate)
+            SetValue(NoFilterResultsContentTemplateProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly NoFilterResultsContentTemplateProperty As DependencyProperty =
+                           DependencyProperty.Register("NoFilterResultsContentTemplate",
+                           GetType(ControlTemplate), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(Nothing))
 
 
 #End Region

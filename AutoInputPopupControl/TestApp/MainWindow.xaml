@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestApp"
-        xmlns:AutoInsertTextBox="clr-namespace:AutoInsertTextBox;assembly=AutoInsertTextBox" xmlns:AutoInsertPopup="clr-namespace:AutoInsertPopup;assembly=AutoInsertPopup"
+        xmlns:AutoInsertPopup="clr-namespace:AutoInsertPopup;assembly=AutoInsertPopup"
     xmlns:system="clr-namespace:System;assembly=mscorlib" x:Class="MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -14,10 +14,15 @@
 
         
 
-        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest}" HorizontalAlignment="Left"
+        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
                                                  VerticalAlignment="Top" ItemSelected="Pop_ItemSelected" ItemSelectedCommand="{Binding SelectItemCommand}"
-                                                x:Name="pop" AutoInsertList="{Binding TestList}" IsPopUpOpen="True" Popupanimation="Fade" ReplaceTriggerChar="False" FocusKey="Down" OpenPopupTriggerChar="@">
-            
+                                                x:Name="pop" AutoInsertList="{Binding TestList}" Popupanimation="Fade" FocusKey="Down" OpenPopupTriggerChar="@" ReplaceTriggerChar="False"
+                                                StaysOpen="True" BorderBrush="Black" BorderThickness="1">
+            <AutoInsertPopup:AutoInsertPopupControl.ListBoxItemsPanelTemplate>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                </ItemsPanelTemplate>
+            </AutoInsertPopup:AutoInsertPopupControl.ListBoxItemsPanelTemplate>
             <!--<AutoInsertPopup:AutoInsertPopupControl.ListItemTemplate>
                 <DataTemplate>
                     <ContentControl DataContext="{TemplateBinding Content}">

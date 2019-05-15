@@ -1,4 +1,6 @@
 ﻿Class MainWindow
+
+
     Private Sub TxtTest_GotFocus(sender As Object, e As RoutedEventArgs)
 
     End Sub
@@ -20,7 +22,7 @@
     End Sub
 
     Private Sub Pop_ItemSelected(sender As Object, e As RoutedEventArgs)
-        Console.WriteLine("Selected")
+        'Console.WriteLine("Selected")
     End Sub
 
     Private _selectItemCommand As ICommand

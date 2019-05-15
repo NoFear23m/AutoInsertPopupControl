@@ -6,6 +6,32 @@
 
     <Style TargetType="{x:Type local:AutoInsertPopupControl}">
         <Style.Resources>
+            <ItemsPanelTemplate x:Key="DefaultListBoxItemsPanelTemplate">
+                <VirtualizingStackPanel IsItemsHost="True"/>
+
+                <!--<ListBox x:Name="PART_ListBox" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= VisibleItems}" 
+                                         ItemTemplate="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= ListItemTemplate}"
+                         Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= Background}"
+                                         IsSynchronizedWithCurrentItem="True">
+                    <ListBox.Style>
+                        <Style TargetType="ListBox">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=VisibleItems.Count}"
+                                                         Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.Style>
+                    <ListBox.InputBindings>
+                        <KeyBinding Key="Enter" 
+                                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=SelectItemCommand}"
+                                                    CommandParameter="{Binding ElementName=PART_ListBox, Path=SelectedItem}"/>
+                    </ListBox.InputBindings>
+                </ListBox>-->
+            </ItemsPanelTemplate>
             <DataTemplate x:Key="DefaultListItemTemplate">
                 <ContentControl DataContext="{TemplateBinding Content}" Background="Transparent">
                     <TextBlock Text="{Binding ViewContent}" Background="Transparent">
@@ -13,7 +39,7 @@
                             <MouseBinding MouseAction="LeftDoubleClick"
                                           Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=SelectItemCommand}"
                                           CommandParameter="{Binding ElementName=PART_ListBox, Path=SelectedItem}"/>
-                            </TextBlock.InputBindings>
+                        </TextBlock.InputBindings>
                     </TextBlock>
                 </ContentControl>
             </DataTemplate>
@@ -45,11 +71,27 @@
                     </Label.Style>
                 </Label>
             </DataTemplate>
+            <DataTemplate x:Key="NOFILTERRESULTS_ControlTemplate">
+                <TextBlock Text="Keine Ergebnisse gefunden" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= Background}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=VisibleItems.Count}"
+                                                         Value="0">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </DataTemplate>
         </Style.Resources>
         <Setter Property="HeaderTemplate" Value="{DynamicResource HEADER_ControlTemplate}"/>
+        <Setter Property="ListBoxItemsPanelTemplate" Value="{DynamicResource DefaultListBoxItemsPanelTemplate}"/>
         <Setter Property="ListItemTemplate" Value="{DynamicResource DefaultListItemTemplate}"/>
         <Setter Property="FooterTemplate" Value="{DynamicResource FOOTER_ControlTemplate}"/>
-
+        <Setter Property="NoFilterResultsContentTemplate" Value="{DynamicResource NOFILTERRESULTS_ControlTemplate}"/>
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="IsHitTestVisible" Value="False"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -57,20 +99,27 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AutoInsertPopupControl}">
-                    <DockPanel LastChildFill="True">
-                        <Popup x:Name="PART_Popup" PlacementTarget="{TemplateBinding TargetControl}" IsOpen="{TemplateBinding IsPopUpOpen}" Placement="{TemplateBinding Placement}"
+                    <Popup x:Name="PART_Popup" PlacementTarget="{TemplateBinding TargetControl}" IsOpen="{TemplateBinding IsPopUpOpen}" Placement="{TemplateBinding Placement}"
                                HorizontalOffset="{TemplateBinding HorizontalOffset}" VerticalOffset="{TemplateBinding VerticalOffset}" Focusable="True" PlacementRectangle="{TemplateBinding PlacementRectangle}"
                                PopupAnimation="{TemplateBinding Popupanimation}" AllowsTransparency="True">
+                        <Grid ShowGridLines="False">
                             <StackPanel Background="{TemplateBinding Background}">
                                 <ContentPresenter DockPanel.Dock="Top"  Content="{TemplateBinding Header}" 
                                           ContentTemplate="{TemplateBinding HeaderTemplate}"/>
 
-                                <ListBox x:Name="PART_ListBox" ItemsSource="{TemplateBinding VisibleItems}" 
-                                         ItemTemplate="{TemplateBinding ListItemTemplate}" Background="{TemplateBinding Background}"
-                                         IsSynchronizedWithCurrentItem="True">
+                                <ListBox x:Name="PART_ListBox" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= VisibleItems}" 
+                                         ItemTemplate="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= ListItemTemplate}"
+                                         Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= Background}"
+                                         IsSynchronizedWithCurrentItem="True" ItemsPanel="{TemplateBinding ListBoxItemsPanelTemplate}" >
+                                    <!--<ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>-->
                                     <ListBox.Style>
                                         <Style TargetType="ListBox">
                                             <Setter Property="Visibility" Value="Visible"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=VisibleItems.Count}"
                                                          Value="0">
@@ -85,25 +134,22 @@
                                                     CommandParameter="{Binding ElementName=PART_ListBox, Path=SelectedItem}"/>
                                     </ListBox.InputBindings>
                                 </ListBox>
-                                <TextBlock Text="Keine Ergebnisse gefunden" Background="{TemplateBinding Background}">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=VisibleItems.Count}"
-                                                         Value="0">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                                <!--<ContentPresenter DockPanel.Dock="Top"
+                                          ContentTemplate="{TemplateBinding ListControlTemplate}"/>-->
+
+                                <ContentPresenter DockPanel.Dock="Top"
+                                          ContentTemplate="{TemplateBinding NoFilterResultsContentTemplate}"/>
+
 
                                 <ContentPresenter DockPanel.Dock="Top"  Content="{TemplateBinding Footer}" 
                                           ContentTemplate="{TemplateBinding FooterTemplate}"/>
                             </StackPanel>
-                        </Popup>
-                    </DockPanel>
+                            <Border x:Name="PART_PopupBorder" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    Visibility="{TemplateBinding PopupBorderVisibility}"/>
+                        </Grid>
+                    </Popup>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

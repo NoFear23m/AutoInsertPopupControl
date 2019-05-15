@@ -11,7 +11,7 @@
                     <TextBlock Text="{Binding ViewContent}" Background="Transparent">
                         <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftDoubleClick"
-                                          Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=SeletItemCommand}"
+                                          Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=SelectItemCommand}"
                                           CommandParameter="{Binding ElementName=PART_ListBox, Path=SelectedItem}"/>
                             </TextBlock.InputBindings>
                     </TextBlock>
@@ -81,7 +81,7 @@
                                     </ListBox.Style>
                                     <ListBox.InputBindings>
                                         <KeyBinding Key="Enter" 
-                                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=SeletItemCommand}"
+                                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=SelectItemCommand}"
                                                     CommandParameter="{Binding ElementName=PART_ListBox, Path=SelectedItem}"/>
                                     </ListBox.InputBindings>
                                 </ListBox>

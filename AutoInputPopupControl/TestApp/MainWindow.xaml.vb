@@ -1,15 +1,5 @@
 ﻿Class MainWindow
     Private Sub TxtTest_GotFocus(sender As Object, e As RoutedEventArgs)
-        'pop.IsPopUpOpen = True
-        'Keyboard.Focus(pop)
-        'DirectCast(pop.Child, ListBox).Focus()
-
-
-        'list.SelectedItem = "Test1"
-        'list.Focus()
-
-
-
 
     End Sub
 
@@ -31,5 +21,24 @@
 
     Private Sub Pop_ItemSelected(sender As Object, e As RoutedEventArgs)
         Console.WriteLine("Selected")
+    End Sub
+
+    Private _selectItemCommand As ICommand
+    Public Property SelectItemCommand() As ICommand
+        Get
+            If _selectItemCommand Is Nothing Then _selectItemCommand = New AutoInsertPopup.RelayCommand(AddressOf Test)
+            Return _selectItemCommand
+        End Get
+        Set(ByVal value As ICommand)
+            _selectItemCommand = value
+        End Set
+    End Property
+
+
+
+
+
+    Private Sub Test(obj As Object)
+        MessageBox.Show("Huhu")
     End Sub
 End Class

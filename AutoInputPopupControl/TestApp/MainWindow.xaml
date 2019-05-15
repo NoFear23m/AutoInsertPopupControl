@@ -15,8 +15,8 @@
         
 
         <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest}" HorizontalAlignment="Left"
-                                                 VerticalAlignment="Top" Height="30" Width="30" ItemSelected="Pop_ItemSelected"
-                                                x:Name="pop" AutoInsertList="{Binding TestList}" Popupanimation="Fade" ReplaceTriggerChar="False" FocusKey="Down" OpenPopupTriggerChar="@">
+                                                 VerticalAlignment="Top" ItemSelected="Pop_ItemSelected" ItemSelectedCommand="{Binding SelectItemCommand}"
+                                                x:Name="pop" AutoInsertList="{Binding TestList}" IsPopUpOpen="True" Popupanimation="Fade" ReplaceTriggerChar="False" FocusKey="Down" OpenPopupTriggerChar="@">
             
             <!--<AutoInsertPopup:AutoInsertPopupControl.ListItemTemplate>
                 <DataTemplate>

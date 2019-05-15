@@ -1,5 +1,6 @@
 ﻿
 Imports System.Collections.ObjectModel
+Imports System.ComponentModel
 Imports System.Windows.Controls.Primitives
 
 <TemplatePart(Name:="PART_ListBox", Type:=GetType(ListBox))>
@@ -46,26 +47,28 @@ Public Class AutoInsertPopupControl
 
 #Region "Properties"
 
-    Public Property TargetControl As FrameworkElement
+    <Description("Ruft die TextBox ab auf welche das Popup angewendet werden soll bzw. legt diese fest"), Category("Popup-Options")>
+    Public Property TargetControl As TextBox
         Get
-            Return CType(GetValue(TargetControlProperty), FrameworkElement)
+            Return CType(GetValue(TargetControlProperty), TextBox)
         End Get
 
-        Set(ByVal value As FrameworkElement)
+        Set(ByVal value As TextBox)
             SetValue(TargetControlProperty, value)
         End Set
     End Property
 
     Public Shared ReadOnly TargetControlProperty As DependencyProperty =
                            DependencyProperty.Register("TargetControl",
-                           GetType(FrameworkElement), GetType(AutoInsertPopupControl),
+                           GetType(TextBox), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Nothing, AddressOf TargetControlProperty_Changed))
 
     Private Shared Sub TargetControlProperty_Changed(d As DependencyObject, e As DependencyPropertyChangedEventArgs)
         If e.NewValue IsNot Nothing Then
-            DirectCast(e.NewValue, TextBoxBase).Tag = d
-            AddHandler DirectCast(e.NewValue, TextBoxBase).PreviewKeyDown, AddressOf TargetControlProperty_KeyDown
-            AddHandler DirectCast(e.NewValue, TextBoxBase).PreviewKeyUp, AddressOf TargetControlProperty_KeyUp
+            Dim tb = DirectCast(e.NewValue, TextBox)
+            tb.Tag = d
+            AddHandler tb.PreviewKeyDown, AddressOf TargetControlProperty_KeyDown
+            AddHandler tb.PreviewKeyUp, AddressOf TargetControlProperty_KeyUp
         End If
     End Sub
 
@@ -80,7 +83,7 @@ Public Class AutoInsertPopupControl
         End If
     End Sub
     Private Shared Sub TargetControlProperty_KeyUp(ByVal sender As Object, ByVal e As KeyEventArgs)
-        Dim lb = TryCast(DirectCast(sender, TextBoxBase).Tag, AutoInsertPopupControl)
+        Dim lb = TryCast(DirectCast(sender, TextBox).Tag, AutoInsertPopupControl)
         If lb Is Nothing OrElse DirectCast(lb.GetValue(OpenPopupTriggerCharProperty), Char) = Char.MinValue Then Exit Sub
 
         Dim lastChar As Char
@@ -141,7 +144,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(New SolidColorBrush(Colors.White)))
 
 
-
+    <Description("Ruft das Zeichen ab welches getippt werden muss um das Popup zu öffnen bzw. legt das Zeichen fest"), Category("Popup-Options")>
     Public Property OpenPopupTriggerChar As Char
         Get
             Return CChar(GetValue(OpenPopupTriggerCharProperty))
@@ -157,7 +160,7 @@ Public Class AutoInsertPopupControl
                            GetType(Char), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Nothing))
 
-
+    <Description("Ruft ab ob das auslösezeichen (PopupTriggerchar) nach dem einfügen entfernt werden soll bzw. legt diese fest"), Category("Popup-Options")>
     Public Property ReplaceTriggerChar As Boolean
         Get
             Return CBool(GetValue(ReplaceTriggerCharProperty))
@@ -174,7 +177,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(True))
 
 
-
+    <Description("Ruft den Key ab mit welchem der Focus auf das Popup gesetzt wird bzw. legt diesen fest"), Category("Popup-Options")>
     Public Property FocusKey As Key
         Get
             Return CType(GetValue(FocusKeyProperty), Key)
@@ -191,7 +194,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(Key.Down))
 
 
-
+    <Description("Ruft ab ob das Popup aktuell geöffnet ist bzw. legt den Wert fest"), Category("Popup-Options")>
     Public Property IsPopUpOpen As Boolean
         Get
             Return CBool(GetValue(IsPopUpOpenProperty))
@@ -218,6 +221,7 @@ Public Class AutoInsertPopupControl
         Keyboard.Focus(lb)
     End Sub
 
+    <Description("Ruft die Liste der verfügbaren Einträge ab bzw. legt diese fest"), Category("Einträge")>
     Public Property AutoInsertList As IEnumerable
         Get
             Return CType(GetValue(AutoInsertListProperty), IEnumerable)
@@ -249,7 +253,7 @@ Public Class AutoInsertPopupControl
     End Sub
 
 
-
+    <Description("Ruft das in der Liste dr Einträge selektierte Item ab bzw. legt dieses fest"), Category("Einträge")>
     Public Property SelectedInsertListItem As IAutoInsertItem
         Get
             Return CType(GetValue(SelectedInsertListItemProperty), IAutoInsertItem)
@@ -287,7 +291,7 @@ Public Class AutoInsertPopupControl
     End Sub
 
 
-
+    <Description("Ruft die aktuell sichbaren (gefiltert) Einträge der Auflistung ab"), Category("Einträge")>
     Public ReadOnly Property VisibleItems As IEnumerable(Of IAutoInsertItem)
         Get
             Return CType(GetValue(VisibleItemsProperty), IEnumerable(Of IAutoInsertItem))
@@ -304,7 +308,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(Nothing))
 
 
-
+    <Description("Ruft die TextBox ab auf welche das Popup angewendet werden soll bzw. legt diese fest"), Category("Popup-Options")>
     Public Property Placement As PlacementMode
         Get
             Return CType(GetValue(PlacementProperty), PlacementMode)
@@ -321,7 +325,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(PlacementMode.Relative))
 
 
-
+    <Description("Ruft den Bereich in welchem sich das Popup befinden soll ab bzw. legt diesen fest"), Category("Popup-Options")>
     Public Property PlacementRectangle As Rect
         Get
             Return CType(GetValue(PlacementRectangleProperty), Rect)
@@ -337,7 +341,7 @@ Public Class AutoInsertPopupControl
                            GetType(Rect), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Nothing))
 
-
+    <Description("Ruft den Horizontalen Offset ab bzw. legt diesen fest"), Category("Popup-Options")>
     Public Property HorizontalOffset As Double
         Get
             Return CDbl(GetValue(HorizontalOffsetProperty))
@@ -353,7 +357,7 @@ Public Class AutoInsertPopupControl
                            GetType(Double), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Double.Parse("0")))
 
-
+    <Description("Ruft den vertikalen Offset ab bzw. legt diesen fest"), Category("Popup-Options")>
     Public Property VerticalOffset As Double
         Get
             Return CDbl(GetValue(VerticalOffsetProperty))
@@ -370,7 +374,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(Double.Parse("20")))
 
 
-
+    <Description("Ruft ab wie das Popup beim einblenden Animiert werden soll bzw. legt die Animationart fest"), Category("Popup-Options")>
     Public Property Popupanimation As PopupAnimation
         Get
             Return CType(GetValue(PopupanimationProperty), PopupAnimation)
@@ -387,7 +391,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(PopupAnimation.Slide))
 
 
-
+    <Description("Bestimmt ob das Popup nach erfolgreichem einfügen offen bleiben soll bzw. legt den Wert fest"), Category("Popup-Options")>
     Public Property StaysOpen As Boolean
         Get
             Return CBool(GetValue(StaysOpenProperty))
@@ -404,7 +408,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(False))
 
 
-
+    <Description("Ruft das Template des ListItems ab bzw. legt dieses fest"), Category("Popup-Options")>
     Public Property ListItemTemplate As DataTemplate
         Get
             Return CType(GetValue(ListItemTemplateProperty), DataTemplate)
@@ -422,7 +426,7 @@ Public Class AutoInsertPopupControl
 
     End Sub
 
-
+    <Description("Ruft das Template des Headers (Kopf) ab bzw. legt dieses fest"), Category("Popup-Options")>
     Public Property HeaderTemplate As ControlTemplate
         Get
             Return CType(GetValue(HeaderTemplateProperty), ControlTemplate)
@@ -440,7 +444,7 @@ Public Class AutoInsertPopupControl
 
 
 
-
+    <Description("Ruft den Inhalt des Headers (Kopf) ab bzw. legt diesen fest"), Category("Popup-Options")>
     Public Property Header As Object
         Get
             Return GetValue(HeaderProperty)
@@ -457,7 +461,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(Nothing))
 
 
-
+    <Description("Ruft das Template des Fußes ab bzw. legt dieses fest"), Category("Popup-Options")>
     Public Property FooterTemplate As ControlTemplate
         Get
             Return CType(GetValue(FooterTemplateProperty), ControlTemplate)
@@ -473,7 +477,7 @@ Public Class AutoInsertPopupControl
                            GetType(ControlTemplate), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Nothing))
 
-
+    <Description("Ruft den Inhalt des Foters (Fußes) ab bzw. legt diesen fest"), Category("Popup-Options")>
     Public Property Footer As Object
         Get
             Return GetValue(FooterProperty)
@@ -494,26 +498,49 @@ Public Class AutoInsertPopupControl
 #End Region
 
 
-    Private _seletItemCommand As ICommand
-    Public Property SeletItemCommand() As ICommand
+    Private _selectItemCommand As ICommand
+    <Browsable(False), EditorBrowsable(EditorBrowsableState.Never)>
+    Public Property SelectItemCommand() As ICommand
         Get
-            If _seletItemCommand Is Nothing Then _seletItemCommand = New RelayCommand(AddressOf ChooseContentCommand_Execute, AddressOf ChooseContentCommand_CanExecute)
-            Return _seletItemCommand
+            If _selectItemCommand Is Nothing Then _selectItemCommand = New RelayCommand(AddressOf ChooseContentCommand_Execute, AddressOf ChooseContentCommand_CanExecute)
+            Return _selectItemCommand
         End Get
         Set(ByVal value As ICommand)
-            _seletItemCommand = value
+            _selectItemCommand = value
         End Set
     End Property
+
+
 
     Private Sub ChooseContentCommand_Execute(obj As Object)
         SetValue(SelectedInsertListItemProperty, obj)
         Dim seletedEvent As New RoutedEventArgs(AutoInsertPopupControl.ItemSelectedEvent)
         MyBase.RaiseEvent(seletedEvent)
+        ItemSelectedCommand?.Execute(obj)
     End Sub
 
     Private Function ChooseContentCommand_CanExecute(obj As Object) As Boolean
         Return obj IsNot Nothing
     End Function
+
+
+
+    <Description("Ruft den Command ab welche ausgelöst wird wenn ein Item selektiert (in die Textbox eingefügt) wurde bzw. legt diesen fest"), Category("Popup-Options")>
+    Public Property ItemSelectedCommand As ICommand
+        Get
+            Return CType(GetValue(ItemSelectedCommandProperty), ICommand)
+        End Get
+
+        Set(ByVal value As ICommand)
+            SetValue(ItemSelectedCommandProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly ItemSelectedCommandProperty As DependencyProperty =
+                           DependencyProperty.Register("ItemSelectedCommand",
+                           GetType(ICommand), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(Nothing))
+
 
 
 

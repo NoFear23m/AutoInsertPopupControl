@@ -30,18 +30,16 @@ Public Class AutoInsertPopupControl
 
     End Sub
 
-    Private Shared ReadOnly ItemSelectedHandlers As New ArrayList()
-    Public Shared Custom Event NavigationItemsCollectionChanged As EventHandler
-        AddHandler(value As EventHandler)
-            ItemSelectedHandlers.Add(value)
+
+    Public Custom Event ItemSelected As RoutedEventHandler
+        AddHandler(value As RoutedEventHandler)
+            Me.AddHandler(ItemSelectedEvent, value)
         End AddHandler
-        RemoveHandler(value As EventHandler)
-            ItemSelectedHandlers.Remove(value)
+        RemoveHandler(value As RoutedEventHandler)
+            Me.RemoveHandler(ItemSelectedEvent, value)
         End RemoveHandler
-        RaiseEvent(sender As Object, e As EventArgs)
-            For Each h As EventHandler In ItemSelectedHandlers
-                h.Invoke(sender, e)
-            Next
+        RaiseEvent(sender As Object, e As RoutedEventArgs)
+            Me.RaiseEvent(e)
         End RaiseEvent
     End Event
 
@@ -160,6 +158,22 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(Nothing))
 
 
+    Public Property ReplaceTriggerChar As Boolean
+        Get
+            Return CBool(GetValue(ReplaceTriggerCharProperty))
+        End Get
+
+        Set(ByVal value As Boolean)
+            SetValue(ReplaceTriggerCharProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly ReplaceTriggerCharProperty As DependencyProperty =
+                           DependencyProperty.Register("ReplaceTriggerChar",
+                           GetType(Boolean), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(True))
+
+
 
     Public Property FocusKey As Key
         Get
@@ -256,7 +270,14 @@ Public Class AutoInsertPopupControl
         Dim ctl As TextBox = CType(autoInsertControl.GetValue(TargetControlProperty), TextBox)
         If e.NewValue IsNot Nothing Then
             Dim triggerChar = CChar(autoInsertControl.GetValue(OpenPopupTriggerCharProperty))
-            ctl.Text = ctl.Text.Replace(triggerChar.ToString & autoInsertControl.currentFilterString, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
+            Dim replaceTriggerChar As Boolean = CBool(autoInsertControl.GetValue(ReplaceTriggerCharProperty))
+            Dim replaceString = If(replaceTriggerChar, triggerChar.ToString, "") & autoInsertControl.currentFilterString
+            If replaceString.Length = 0 Then
+                ctl.Text = ctl.Text.Insert(autoInsertControl.recordStartPosition, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
+            Else
+                ctl.Text = ctl.Text.Replace(replaceString, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
+            End If
+
             ctl.CaretIndex = autoInsertControl.recordStartPosition + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
 
             autoInsertControl.SetValue(SelectedInsertListItemProperty, Nothing)
@@ -346,7 +367,7 @@ Public Class AutoInsertPopupControl
     Public Shared ReadOnly VerticalOffsetProperty As DependencyProperty =
                            DependencyProperty.Register("VerticalOffset",
                            GetType(Double), GetType(AutoInsertPopupControl),
-                           New PropertyMetadata(Double.Parse("0")))
+                           New PropertyMetadata(Double.Parse("20")))
 
 
 
@@ -402,6 +423,74 @@ Public Class AutoInsertPopupControl
     End Sub
 
 
+    Public Property HeaderTemplate As ControlTemplate
+        Get
+            Return CType(GetValue(HeaderTemplateProperty), ControlTemplate)
+        End Get
+
+        Set(ByVal value As ControlTemplate)
+            SetValue(HeaderTemplateProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly HeaderTemplateProperty As DependencyProperty =
+                           DependencyProperty.Register("HeaderTemplate",
+                           GetType(ControlTemplate), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(Nothing))
+
+
+
+
+    Public Property Header As Object
+        Get
+            Return GetValue(HeaderProperty)
+        End Get
+
+        Set(ByVal value As Object)
+            SetValue(HeaderProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly HeaderProperty As DependencyProperty =
+                           DependencyProperty.Register("Header",
+                           GetType(Object), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(Nothing))
+
+
+
+    Public Property FooterTemplate As ControlTemplate
+        Get
+            Return CType(GetValue(FooterTemplateProperty), ControlTemplate)
+        End Get
+
+        Set(ByVal value As ControlTemplate)
+            SetValue(FooterTemplateProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly FooterTemplateProperty As DependencyProperty =
+                           DependencyProperty.Register("FooterTemplate",
+                           GetType(ControlTemplate), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(Nothing))
+
+
+    Public Property Footer As Object
+        Get
+            Return GetValue(FooterProperty)
+        End Get
+
+        Set(ByVal value As Object)
+            SetValue(FooterProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly FooterProperty As DependencyProperty =
+                           DependencyProperty.Register("Footer",
+                           GetType(Object), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(Nothing))
+
+
+
 #End Region
 
 
@@ -418,6 +507,8 @@ Public Class AutoInsertPopupControl
 
     Private Sub ChooseContentCommand_Execute(obj As Object)
         SetValue(SelectedInsertListItemProperty, obj)
+        Dim seletedEvent As New RoutedEventArgs(AutoInsertPopupControl.ItemSelectedEvent)
+        MyBase.RaiseEvent(seletedEvent)
     End Sub
 
     Private Function ChooseContentCommand_CanExecute(obj As Object) As Boolean

@@ -28,4 +28,8 @@
             'pop.FocusListbox()
         End If
     End Sub
+
+    Private Sub Pop_ItemSelected(sender As Object, e As RoutedEventArgs)
+        Console.WriteLine("Selected")
+    End Sub
 End Class

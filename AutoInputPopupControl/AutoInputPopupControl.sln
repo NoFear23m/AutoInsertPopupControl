@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TestApp", "TestApp\TestApp.vbproj", "{3BF5E2FD-158B-435B-8117-212E9CBB1B3D}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AutoInsertTextBox", "AutoInsertTextBox\AutoInsertTextBox.vbproj", "{5CEEC1F4-79C5-4CFB-8D50-075626718A72}"
-EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AutoInsertPopup", "AutoInsertPopup\AutoInsertPopup.vbproj", "{B5DBA462-1C20-4B27-A824-5592313C7301}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{3BF5E2FD-158B-435B-8117-212E9CBB1B3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BF5E2FD-158B-435B-8117-212E9CBB1B3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BF5E2FD-158B-435B-8117-212E9CBB1B3D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5CEEC1F4-79C5-4CFB-8D50-075626718A72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CEEC1F4-79C5-4CFB-8D50-075626718A72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CEEC1F4-79C5-4CFB-8D50-075626718A72}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CEEC1F4-79C5-4CFB-8D50-075626718A72}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B5DBA462-1C20-4B27-A824-5592313C7301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B5DBA462-1C20-4B27-A824-5592313C7301}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5DBA462-1C20-4B27-A824-5592313C7301}.Release|Any CPU.ActiveCfg = Release|Any CPU

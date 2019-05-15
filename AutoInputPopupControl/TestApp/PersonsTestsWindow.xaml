@@ -1,0 +1,142 @@
+﻿<Window x:Class="PersonsTestsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestApp"
+        xmlns:AutoInsertPopup="clr-namespace:AutoInsertPopup;assembly=AutoInsertPopup"
+        mc:Ignorable="d"
+        Title="PersonsTestsWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="PersonListItemTemplate">
+            <Grid DataContext="{Binding ViewContent}" Width="300">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image Source="{Binding PersonImage}" Grid.RowSpan="2" Height="50" Width="50"/>
+                <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow" FontWeight="Bold">
+                            <Run Text="{Binding FirstName}"/>
+                            <Run Text="{Binding LastName}"/>
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Mailaddress}" TextWrapping="WrapWithOverflow"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Left">
+            <StackPanel>
+                <TextBlock TextWrapping="Wrap">
+                    <Run Text="Normale Personenliste&#x0a;" FontWeight="Bold"/>
+                    <Run Text=" Suchstring ist der Name&#x0a;"/>
+                    <Run Text=" Einfügetext ist der Name"/>
+                </TextBlock>
+                <TextBox x:Name="txtTest1" Width="300"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock TextWrapping="Wrap">
+                    <Run Text="Erweiterte Personenliste&#x0a;" FontWeight="Bold"/>
+                    <Run Text=" Suchstring ist die Personalnummer (z.b. 001,002,003,...) &#x0a;"/>
+                    <Run Text=" Einfügetext ist die Mailadresse&#x0a;"/>
+                    <Run Text=" ListboxItemsPanelTemplate explizit gesetzt auf ein WrapPanel&#x0a;"/>
+                    <Run Text=" Triggerzeichen wird NICHT übernommen"/>
+                </TextBlock>
+                <TextBox x:Name="txtTest2" Width="300"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock TextWrapping="Wrap">
+                    <Run Text="Erweiterte Personenliste&#x0a;" FontWeight="Bold"/>
+                    <Run Text=" Suchstring ist die Personalnummer (z.b. 001,002,003,...) &#x0a;"/>
+                    <Run Text=" Einfügetext ist die Mailadresse&#x0a;"/>
+                    <Run Text=" ListboxItemsPanelTemplate explizit gesetzt auf ein WrapPanel&#x0a;"/>
+                    <Run Text=" Triggerzeichen wird NICHT übernommen&#x0a;"/>
+                    <Run Text=" Mit Header und Footer im DefaultTemplate"/>
+                </TextBlock>
+                <TextBox x:Name="txtTest3" Width="300"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock TextWrapping="Wrap">
+                    <Run Text="Erweiterte Personenliste&#x0a;" FontWeight="Bold"/>
+                    <Run Text=" Suchstring ist die Personalnummer (z.b. 001,002,003,...) &#x0a;"/>
+                    <Run Text=" Einfügetext ist die Mailadresse&#x0a;"/>
+                    <Run Text=" ListboxItemsPanelTemplate explizit gesetzt auf ein WrapPanel&#x0a;"/>
+                    <Run Text=" Triggerzeichen wird NICHT übernommen&#x0a;"/>
+                    <Run Text=" Mit Header im eigenen Template"/>
+                </TextBlock>
+                <TextBox x:Name="txtTest4" Width="300"/>
+            </StackPanel>
+
+        </StackPanel>
+        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest1}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
+                                                 VerticalAlignment="Top" ItemSelected="Pop_ItemSelected"
+                                                x:Name="pop" AutoInsertList="{Binding TestList}" Popupanimation="Fade" FocusKey="Down" OpenPopupTriggerChar="@" ReplaceTriggerChar="False"
+                                                StaysOpen="False" BorderBrush="Black" BorderThickness="1" MaxHeight="150" ListItemTemplate="{StaticResource PersonListItemTemplate}">
+        </AutoInsertPopup:AutoInsertPopupControl>
+
+        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest2}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
+                                                 VerticalAlignment="Top" 
+                                                x:Name="pop1" AutoInsertList="{Binding TestList1}" Popupanimation="Fade" FocusKey="Down" OpenPopupTriggerChar="@" ReplaceTriggerChar="True"
+                                                StaysOpen="False" BorderBrush="Black" BorderThickness="1" Background="AliceBlue" Height="200" Width="630" ListItemTemplate="{StaticResource PersonListItemTemplate}">
+            <AutoInsertPopup:AutoInsertPopupControl.ListBoxItemsPanelTemplate>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True"/>
+                </ItemsPanelTemplate>
+            </AutoInsertPopup:AutoInsertPopupControl.ListBoxItemsPanelTemplate>
+        </AutoInsertPopup:AutoInsertPopupControl>
+
+        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest3}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
+                                                 VerticalAlignment="Top" 
+                                                x:Name="pop2" AutoInsertList="{Binding TestList1}" Popupanimation="Fade" FocusKey="Down" OpenPopupTriggerChar="@" ReplaceTriggerChar="True"
+                                                StaysOpen="False" BorderBrush="Black" BorderThickness="1" Background="AliceBlue" Height="200" Width="630" ListItemTemplate="{StaticResource PersonListItemTemplate}"
+                                                Header="Wähle eine Person aus von welcher du die Mailadresse einfügen willst..." Footer="Das ist der Footer, falls du ihn brauchst">
+            <AutoInsertPopup:AutoInsertPopupControl.ListBoxItemsPanelTemplate>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True"/>
+                </ItemsPanelTemplate>
+            </AutoInsertPopup:AutoInsertPopupControl.ListBoxItemsPanelTemplate>
+        </AutoInsertPopup:AutoInsertPopupControl>
+
+        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest4}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
+                                                 VerticalAlignment="Top" 
+                                                x:Name="pop3" AutoInsertList="{Binding TestList1}" Popupanimation="Slide" FocusKey="Down" OpenPopupTriggerChar="@" ReplaceTriggerChar="True"
+                                                StaysOpen="False" BorderBrush="Black" BorderThickness="1" Background="AliceBlue" Height="200" Width="630" ListItemTemplate="{StaticResource PersonListItemTemplate}"
+                                                Header="Bitte die Person auswählen" HeaderTemplate="{DynamicResource ControlTemplate1}">
+            <AutoInsertPopup:AutoInsertPopupControl.Resources>
+                <DataTemplate x:Key="ControlTemplate1">
+                    <Border Background="LightGreen">
+                        <DockPanel LastChildFill="True" Background="LightGreen">
+                            <Viewbox Width="30" Height="30" Margin="7,2">
+                                <Path Data="M22,4H14V7H10V4H2A2,2 0 0,0 0,6V20A2,2 0 0,0 2,22H22A2,2 0 0,0 24,20V6A2,2 0 0,0 22,4M8,9A2,2 0 0,1 10,11A2,2 0 0,1 8,13A2,2 0 0,1 6,11A2,2 0 0,1 8,9M12,17H4V16C4,14.67 6.67,14 8,14C9.33,14 12,14.67 12,16V17M20,18H14V16H20V18M20,14H14V12H20V14M20,10H14V8H20V10M13,6H11V2H13V6Z" Fill="Black" />
+                            </Viewbox>
+                            <Label FontWeight="Bold" Content="{Binding}" VerticalAlignment="Center" FontSize="16"/>
+                        </DockPanel>
+                    </Border>
+                </DataTemplate>
+                
+            </AutoInsertPopup:AutoInsertPopupControl.Resources>
+
+            <AutoInsertPopup:AutoInsertPopupControl.ListBoxItemsPanelTemplate>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True"/>
+                </ItemsPanelTemplate>
+            </AutoInsertPopup:AutoInsertPopupControl.ListBoxItemsPanelTemplate>
+        </AutoInsertPopup:AutoInsertPopupControl>
+
+
+        <DockPanel LastChildFill="True" Grid.Column="1">
+            <Label HorizontalAlignment="Center" Content="Markierte Personen von erster Liste" DockPanel.Dock="Top"/>
+            <ListBox ItemsSource="{Binding MarkedPersons}" DisplayMemberPath="FullName"/>
+        </DockPanel>
+    </Grid>
+</Window>

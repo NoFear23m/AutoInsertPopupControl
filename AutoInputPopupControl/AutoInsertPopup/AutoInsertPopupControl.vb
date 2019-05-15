@@ -12,9 +12,9 @@ Public Class AutoInsertPopupControl
 
     Public Shared ReadOnly ItemSelectedEvent As RoutedEvent
 
-    Private _popupBorder As Border
+
     Private _listBox As ListBox
-    Private _popUp As Popup
+
 
     Private isRecording As Boolean
     Private recordStartPosition As Integer
@@ -87,11 +87,13 @@ Public Class AutoInsertPopupControl
         Dim lb = TryCast(DirectCast(sender, TextBox).Tag, AutoInsertPopupControl)
         If lb Is Nothing OrElse DirectCast(lb.GetValue(OpenPopupTriggerCharProperty), Char) = Char.MinValue Then Exit Sub
 
-        Dim lastChar As Char
-        If DirectCast(sender, TextBox).CaretIndex = 0 Then Exit Sub
-        lastChar = CChar(DirectCast(sender, TextBox).Text.Substring(DirectCast(sender, TextBox).CaretIndex - 1, 1))
+        If DirectCast(sender, TextBox).CaretIndex = 0 OrElse e.Key = DirectCast(lb.GetValue(ClosePopupKeyProperty), Key) Then
+            lb.isRecording = False : lb.recordStartPosition = 0
+            lb.SetValue(IsPopUpOpenProperty, False)
+            Exit Sub
+        End If
 
-
+        Dim lastChar As Char = CChar(DirectCast(sender, TextBox).Text.Substring(DirectCast(sender, TextBox).CaretIndex - 1, 1))
         If lastChar = DirectCast(lb.GetValue(OpenPopupTriggerCharProperty), Char) Then
             lb.SetValue(IsPopUpOpenProperty, True)
             lb.isRecording = True
@@ -109,7 +111,9 @@ Public Class AutoInsertPopupControl
                 Dim fullList = DirectCast(lb.GetValue(AutoInsertListProperty), IEnumerable)
                 If TryCast(fullList, IEnumerable(Of IAutoInsertItem)) IsNot Nothing Then
                     lb.SetValue(VisibleItemsProperty, DirectCast(lb.GetValue(AutoInsertListProperty),
-                            IEnumerable(Of IAutoInsertItem)).Where(Function(x) x.SearchStringContent.ToLower.Contains(lb.currentFilterString.ToLower)))
+                            IEnumerable(Of IAutoInsertItem)).OrderBy(Function(o) o.SortingIndex).ThenBy(Function(oo) oo.SearchStringContent) _
+                            .Where(Function(x) x.SearchStringContent.ToLower.Contains(lb.currentFilterString.ToLower))
+                            )
                 Else
                     If TryCast(fullList, List(Of String)) Is Nothing Then
                         Throw New Exception("The collection must be an IAutoInsertItem-Collection or a collection of string")
@@ -117,7 +121,9 @@ Public Class AutoInsertPopupControl
 
                     Dim list = New List(Of IAutoInsertItem)
                     DirectCast(fullList, IEnumerable(Of String)).ToList.ForEach(Sub(x) list.Add(New AutoInsertItem(x)))
-                    lb.SetValue(VisibleItemsProperty, list.Where(Function(x) x.SearchStringContent.ToLower.Contains(lb.currentFilterString.ToLower)))
+                    lb.SetValue(VisibleItemsProperty, list.OrderBy(Function(o) o.SortingIndex).ThenBy(Function(oo) oo.SearchStringContent) _
+                                .Where(Function(x) x.SearchStringContent.ToLower.Contains(lb.currentFilterString.ToLower))
+                                )
                 End If
 
             End If
@@ -193,6 +199,23 @@ Public Class AutoInsertPopupControl
                            DependencyProperty.Register("FocusKey",
                            GetType(Key), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Key.Down))
+
+
+    Public Property ClosePopupKey As Key
+        Get
+            Return CType(GetValue(ClosePopupKeyProperty), Key)
+        End Get
+
+        Set(ByVal value As Key)
+            SetValue(ClosePopupKeyProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly ClosePopupKeyProperty As DependencyProperty =
+                           DependencyProperty.Register("ClosePopupKey",
+                           GetType(Key), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(Key.Escape))
+
 
 
     <Description("Ruft ab ob das Popup aktuell geöffnet ist bzw. legt den Wert fest"), Category("Popup-Options")>
@@ -277,15 +300,28 @@ Public Class AutoInsertPopupControl
             Dim triggerChar = CChar(autoInsertControl.GetValue(OpenPopupTriggerCharProperty))
             Dim replaceTriggerChar As Boolean = CBool(autoInsertControl.GetValue(ReplaceTriggerCharProperty))
             Dim replaceString = If(replaceTriggerChar, triggerChar.ToString, "") & autoInsertControl.currentFilterString
+
             If replaceString.Length = 0 Then
-                ctl.Text = ctl.Text.Insert(autoInsertControl.recordStartPosition, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
+                If autoInsertControl.isRecording Then
+                    ctl.Text = ctl.Text.Insert(autoInsertControl.recordStartPosition, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
+                Else
+                    ctl.Text = ctl.Text.Insert(ctl.CaretIndex, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
+                End If
+                ctl.CaretIndex = autoInsertControl.recordStartPosition + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
             Else
-                ctl.Text = ctl.Text.Replace(replaceString, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
+                If autoInsertControl.isRecording Then
+                    ctl.Text = ctl.Text.Replace(replaceString, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
+                    ctl.CaretIndex = autoInsertControl.recordStartPosition + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
+                Else
+                    Dim lastCaretIndex = ctl.CaretIndex
+                    ctl.Text = ctl.Text.Insert(lastCaretIndex, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
+                    ctl.CaretIndex = lastCaretIndex + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
+                End If
             End If
 
-            ctl.CaretIndex = autoInsertControl.recordStartPosition + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
+            autoInsertControl.isRecording = False
+            autoInsertControl.currentFilterString = ""
 
-            autoInsertControl.SetValue(SelectedInsertListItemProperty, Nothing)
             If Not Boolean.Parse(autoInsertControl.GetValue(StaysOpenProperty).ToString) Then autoInsertControl.SetValue(IsPopUpOpenProperty, False)
             ctl.Focus()
         End If
@@ -500,19 +536,19 @@ Public Class AutoInsertPopupControl
 
 
     <Description("Ruft das Template des Headers (Kopf) ab bzw. legt dieses fest"), Category("Popup-Options")>
-    Public Property HeaderTemplate As ControlTemplate
+    Public Property HeaderTemplate As DataTemplate
         Get
-            Return CType(GetValue(HeaderTemplateProperty), ControlTemplate)
+            Return CType(GetValue(HeaderTemplateProperty), DataTemplate)
         End Get
 
-        Set(ByVal value As ControlTemplate)
+        Set(ByVal value As DataTemplate)
             SetValue(HeaderTemplateProperty, value)
         End Set
     End Property
 
     Public Shared ReadOnly HeaderTemplateProperty As DependencyProperty =
                            DependencyProperty.Register("HeaderTemplate",
-                           GetType(ControlTemplate), GetType(AutoInsertPopupControl),
+                           GetType(DataTemplate), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Nothing))
 
 
@@ -535,19 +571,19 @@ Public Class AutoInsertPopupControl
 
 
     <Description("Ruft das Template des Fußes ab bzw. legt dieses fest"), Category("Popup-Options")>
-    Public Property FooterTemplate As ControlTemplate
+    Public Property FooterTemplate As DataTemplate
         Get
-            Return CType(GetValue(FooterTemplateProperty), ControlTemplate)
+            Return CType(GetValue(FooterTemplateProperty), DataTemplate)
         End Get
 
-        Set(ByVal value As ControlTemplate)
+        Set(ByVal value As DataTemplate)
             SetValue(FooterTemplateProperty, value)
         End Set
     End Property
 
     Public Shared ReadOnly FooterTemplateProperty As DependencyProperty =
                            DependencyProperty.Register("FooterTemplate",
-                           GetType(ControlTemplate), GetType(AutoInsertPopupControl),
+                           GetType(DataTemplate), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Nothing))
 
     <Description("Ruft den Inhalt des Foters (Fußes) ab bzw. legt diesen fest"), Category("Popup-Options")>
@@ -569,19 +605,19 @@ Public Class AutoInsertPopupControl
 
 
 
-    Public Property NoFilterResultsContentTemplate As ControlTemplate
+    Public Property NoFilterResultsContentTemplate As DataTemplate
         Get
-            Return CType(GetValue(NoFilterResultsContentTemplateProperty), ControlTemplate)
+            Return CType(GetValue(NoFilterResultsContentTemplateProperty), DataTemplate)
         End Get
 
-        Set(ByVal value As ControlTemplate)
+        Set(ByVal value As DataTemplate)
             SetValue(NoFilterResultsContentTemplateProperty, value)
         End Set
     End Property
 
     Public Shared ReadOnly NoFilterResultsContentTemplateProperty As DependencyProperty =
                            DependencyProperty.Register("NoFilterResultsContentTemplate",
-                           GetType(ControlTemplate), GetType(AutoInsertPopupControl),
+                           GetType(DataTemplate), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Nothing))
 
 
@@ -607,6 +643,7 @@ Public Class AutoInsertPopupControl
         Dim seletedEvent As New RoutedEventArgs(AutoInsertPopupControl.ItemSelectedEvent)
         MyBase.RaiseEvent(seletedEvent)
         ItemSelectedCommand?.Execute(obj)
+        SetValue(SelectedInsertListItemProperty, Nothing)
     End Sub
 
     Private Function ChooseContentCommand_CanExecute(obj As Object) As Boolean
@@ -637,9 +674,9 @@ Public Class AutoInsertPopupControl
     Public Overrides Sub OnApplyTemplate()
         MyBase.OnApplyTemplate()
 
-        _popupBorder = CType(Template.FindName("PART_PopupBorder", Me), Border)
+        '_popupBorder = CType(Template.FindName("PART_PopupBorder", Me), Border)
         _listBox = CType(Template.FindName("PART_ListBox", Me), ListBox)
-        _popUp = CType(Template.FindName("PART_Popup", Me), Popup)
+        '_popUp = CType(Template.FindName("PART_Popup", Me), Popup)
 
         'ListItemTemplate = CType(FindResource("DefaultListItemTemplate"), DataTemplate)
 

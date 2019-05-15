@@ -8,29 +8,6 @@
         <Style.Resources>
             <ItemsPanelTemplate x:Key="DefaultListBoxItemsPanelTemplate">
                 <VirtualizingStackPanel IsItemsHost="True"/>
-
-                <!--<ListBox x:Name="PART_ListBox" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= VisibleItems}" 
-                                         ItemTemplate="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= ListItemTemplate}"
-                         Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= Background}"
-                                         IsSynchronizedWithCurrentItem="True">
-                    <ListBox.Style>
-                        <Style TargetType="ListBox">
-                            <Setter Property="Visibility" Value="Visible"/>
-                            <Setter Property="BorderThickness" Value="0"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=VisibleItems.Count}"
-                                                         Value="0">
-                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ListBox.Style>
-                    <ListBox.InputBindings>
-                        <KeyBinding Key="Enter" 
-                                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=SelectItemCommand}"
-                                                    CommandParameter="{Binding ElementName=PART_ListBox, Path=SelectedItem}"/>
-                    </ListBox.InputBindings>
-                </ListBox>-->
             </ItemsPanelTemplate>
             <DataTemplate x:Key="DefaultListItemTemplate">
                 <ContentControl DataContext="{TemplateBinding Content}" Background="Transparent">
@@ -44,7 +21,7 @@
                 </ContentControl>
             </DataTemplate>
             <DataTemplate x:Key="HEADER_ControlTemplate">
-                <Label Content="{Binding}">
+                <Label Content="{Binding}" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= Background}">
                     <Label.Style>
                         <Style TargetType="{x:Type Label}">
                             <Setter Property="Visibility" Value="Visible"/>
@@ -58,7 +35,7 @@
                 </Label>
             </DataTemplate>
             <DataTemplate x:Key="FOOTER_ControlTemplate">
-                <Label Content="{Binding}">
+                <Label Content="{Binding}" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= Background}">
                     <Label.Style>
                         <Style TargetType="{x:Type Label}">
                             <Setter Property="Visibility" Value="Visible"/>
@@ -96,26 +73,44 @@
         <Setter Property="IsHitTestVisible" Value="False"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="FocusManager.IsFocusScope" Value="True"/>
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AutoInsertPopupControl}">
-                    <Popup x:Name="PART_Popup" PlacementTarget="{TemplateBinding TargetControl}" IsOpen="{TemplateBinding IsPopUpOpen}" Placement="{TemplateBinding Placement}"
-                               HorizontalOffset="{TemplateBinding HorizontalOffset}" VerticalOffset="{TemplateBinding VerticalOffset}" Focusable="True" PlacementRectangle="{TemplateBinding PlacementRectangle}"
-                               PopupAnimation="{TemplateBinding Popupanimation}" AllowsTransparency="True">
-                        <Grid ShowGridLines="False">
-                            <StackPanel Background="{TemplateBinding Background}">
-                                <ContentPresenter DockPanel.Dock="Top"  Content="{TemplateBinding Header}" 
-                                          ContentTemplate="{TemplateBinding HeaderTemplate}"/>
+                    <Popup x:Name="PART_Popup" 
+                           PlacementTarget="{TemplateBinding TargetControl}" 
+                           IsOpen="{TemplateBinding IsPopUpOpen}" 
+                           Placement="{TemplateBinding Placement}"
+                           HorizontalOffset="{TemplateBinding HorizontalOffset}" 
+                           VerticalOffset="{TemplateBinding VerticalOffset}" 
+                           Focusable="True" 
+                           PlacementRectangle="{TemplateBinding PlacementRectangle}"
+                           PopupAnimation="{TemplateBinding Popupanimation}" 
+                           AllowsTransparency="True" 
+                           MaxHeight="{TemplateBinding MaxHeight}" 
+                           MaxWidth="{TemplateBinding MaxWidth}"
+                           Height="{TemplateBinding Height}" 
+                           Width="{TemplateBinding Width}">
+                        <Grid ShowGridLines="False" Width="{TemplateBinding Width}" MaxWidth="{TemplateBinding MaxWidth}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <!--<StackPanel Background="{TemplateBinding Background}">-->
+                                <ContentPresenter 
+                                    Grid.Row="0"
+                                    DockPanel.Dock="Top"  
+                                    Content="{TemplateBinding Header}" 
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"/>
 
-                                <ListBox x:Name="PART_ListBox" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= VisibleItems}" 
+                                <ListBox x:Name="PART_ListBox" 
+                                         Grid.Row="1"
+                                         ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= VisibleItems}" 
                                          ItemTemplate="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= ListItemTemplate}"
                                          Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= Background}"
-                                         IsSynchronizedWithCurrentItem="True" ItemsPanel="{TemplateBinding ListBoxItemsPanelTemplate}" >
-                                    <!--<ListBox.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel/>
-                                        </ItemsPanelTemplate>
-                                    </ListBox.ItemsPanel>-->
+                                         IsSynchronizedWithCurrentItem="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                         ItemsPanel="{TemplateBinding ListBoxItemsPanelTemplate}" >
                                     <ListBox.Style>
                                         <Style TargetType="ListBox">
                                             <Setter Property="Visibility" Value="Visible"/>
@@ -134,17 +129,16 @@
                                                     CommandParameter="{Binding ElementName=PART_ListBox, Path=SelectedItem}"/>
                                     </ListBox.InputBindings>
                                 </ListBox>
-                                <!--<ContentPresenter DockPanel.Dock="Top"
-                                          ContentTemplate="{TemplateBinding ListControlTemplate}"/>-->
 
-                                <ContentPresenter DockPanel.Dock="Top"
-                                          ContentTemplate="{TemplateBinding NoFilterResultsContentTemplate}"/>
+                                <ContentPresenter Grid.Row="1" DockPanel.Dock="Top" ContentTemplate="{TemplateBinding NoFilterResultsContentTemplate}"/>
 
-
-                                <ContentPresenter DockPanel.Dock="Top"  Content="{TemplateBinding Footer}" 
-                                          ContentTemplate="{TemplateBinding FooterTemplate}"/>
-                            </StackPanel>
-                            <Border x:Name="PART_PopupBorder" 
+                                <ContentPresenter DockPanel.Dock="Top"  
+                                                  Grid.Row="2"
+                                                  Content="{TemplateBinding Footer}" 
+                                                  ContentTemplate="{TemplateBinding FooterTemplate}"/>
+                            <!--</StackPanel>-->
+                            <Border x:Name="PART_PopupBorder"
+                                    Grid.RowSpan="3"
                                     BorderBrush="{TemplateBinding BorderBrush}" 
                                     BorderThickness="{TemplateBinding BorderThickness}" 
                                     Visibility="{TemplateBinding PopupBorderVisibility}"/>

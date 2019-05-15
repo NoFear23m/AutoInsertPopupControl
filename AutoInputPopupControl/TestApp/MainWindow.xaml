@@ -9,40 +9,46 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <TextBox x:Name="txtTest" Width="300" VerticalAlignment="Top" GotFocus="TxtTest_GotFocus" />
+        <TextBox x:Name="txtTest" Width="300" VerticalAlignment="Top" GotFocus="TxtTest_GotFocus" Margin="119,42,175,0" />
+        <TextBox x:Name="txtTest1" Width="300" VerticalAlignment="Top" GotFocus="TxtTest_GotFocus" Margin="120,80,174,0" />
 
-        
 
         <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
                                                  VerticalAlignment="Top" ItemSelected="Pop_ItemSelected" ItemSelectedCommand="{Binding SelectItemCommand}"
                                                 x:Name="pop" AutoInsertList="{Binding TestList}" Popupanimation="Fade" FocusKey="Down" OpenPopupTriggerChar="@" ReplaceTriggerChar="False"
                                                 StaysOpen="True" BorderBrush="Black" BorderThickness="1">
-            <AutoInsertPopup:AutoInsertPopupControl.ListBoxItemsPanelTemplate>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Horizontal" IsItemsHost="True"/>
-                </ItemsPanelTemplate>
-            </AutoInsertPopup:AutoInsertPopupControl.ListBoxItemsPanelTemplate>
-            <!--<AutoInsertPopup:AutoInsertPopupControl.ListItemTemplate>
+            <AutoInsertPopup:AutoInsertPopupControl.ListItemTemplate>
                 <DataTemplate>
-                    <ContentControl DataContext="{TemplateBinding Content}">
-                        <Button Content="Hallo"/>
-                    </ContentControl>
+                    <Grid DataContext="{Binding ViewContent}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Source="{Binding PersonImage}" Grid.RowSpan="2" Height="50" Width="50"/>
+                        <TextBlock Grid.Column="1">
+                            <Run Text="{Binding FirstName}"/>
+                            <Run Text="{Binding LastName}"/>
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Mailaddress}"/>
+                    </Grid>
                 </DataTemplate>
-            </AutoInsertPopup:AutoInsertPopupControl.ListItemTemplate>-->
+            </AutoInsertPopup:AutoInsertPopupControl.ListItemTemplate>
+           
         </AutoInsertPopup:AutoInsertPopupControl>
+        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest1}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
+                                                 VerticalAlignment="Top" ItemSelected="Pop_ItemSelected" ItemSelectedCommand="{Binding SelectItemCommand}"
+                                                x:Name="pop1" AutoInsertList="{Binding TestList1}" Popupanimation="Fade" FocusKey="Down" OpenPopupTriggerChar="!" ReplaceTriggerChar="True"
+                                                StaysOpen="True" BorderBrush="Black" BorderThickness="1"/>
 
 
-        <ListBox x:Name="list" Margin="271,213,430,106">
-            <system:String>Test1</system:String>
-            <system:String>Test2</system:String>
-            <system:String>Test3</system:String>
-            <system:String>Test4</system:String>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{TemplateBinding Content}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
     </Grid>
 </Window>

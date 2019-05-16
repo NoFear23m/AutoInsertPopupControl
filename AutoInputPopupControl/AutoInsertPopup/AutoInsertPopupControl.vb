@@ -85,7 +85,7 @@ Public Class AutoInsertPopupControl
     End Sub
     Private Shared Sub TargetControlProperty_KeyUp(ByVal sender As Object, ByVal e As KeyEventArgs)
         Dim lb = TryCast(DirectCast(sender, TextBox).Tag, AutoInsertPopupControl)
-        If lb Is Nothing OrElse DirectCast(lb.GetValue(OpenPopupTriggerCharProperty), Char) = Char.MinValue Then Exit Sub
+        If lb Is Nothing OrElse lb.GetValue(OpenPopupTriggerCharProperty) Is Nothing Then Exit Sub
 
         If DirectCast(sender, TextBox).CaretIndex = 0 OrElse e.Key = DirectCast(lb.GetValue(ClosePopupKeyProperty), Key) Then
             lb.isRecording = False : lb.recordStartPosition = 0
@@ -94,7 +94,7 @@ Public Class AutoInsertPopupControl
         End If
 
         Dim lastChar As Char = CChar(DirectCast(sender, TextBox).Text.Substring(DirectCast(sender, TextBox).CaretIndex - 1, 1))
-        If lastChar = DirectCast(lb.GetValue(OpenPopupTriggerCharProperty), Char) Then
+        If lb.GetValue(OpenPopupTriggerCharProperty).ToString().Contains(lastChar) Then
             lb.SetValue(IsPopUpOpenProperty, True)
             lb.isRecording = True
             lb.recordStartPosition = DirectCast(sender, TextBox).CaretIndex
@@ -152,19 +152,19 @@ Public Class AutoInsertPopupControl
 
 
     <Description("Ruft das Zeichen ab welches getippt werden muss um das Popup zu öffnen bzw. legt das Zeichen fest"), Category("Popup-Options")>
-    Public Property OpenPopupTriggerChar As Char
+    Public Property OpenPopupTriggerChar As String
         Get
-            Return CChar(GetValue(OpenPopupTriggerCharProperty))
+            Return CType(GetValue(OpenPopupTriggerCharProperty), String)
         End Get
 
-        Set(ByVal value As Char)
+        Set(ByVal value As String)
             SetValue(OpenPopupTriggerCharProperty, value)
         End Set
     End Property
 
     Public Shared ReadOnly OpenPopupTriggerCharProperty As DependencyProperty =
                            DependencyProperty.Register("OpenPopupTriggerChar",
-                           GetType(Char), GetType(AutoInsertPopupControl),
+                           GetType(String), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Nothing))
 
     <Description("Ruft ab ob das auslösezeichen (PopupTriggerchar) nach dem einfügen entfernt werden soll bzw. legt diese fest"), Category("Popup-Options")>
@@ -297,9 +297,14 @@ Public Class AutoInsertPopupControl
         Dim autoInsertControl = DirectCast(d, AutoInsertPopupControl)
         Dim ctl As TextBox = CType(autoInsertControl.GetValue(TargetControlProperty), TextBox)
         If e.NewValue IsNot Nothing Then
-            Dim triggerChar = CChar(autoInsertControl.GetValue(OpenPopupTriggerCharProperty))
+            'Dim triggerChar = CChar(autoInsertControl.GetValue(OpenPopupTriggerCharProperty))
             Dim replaceTriggerChar As Boolean = CBool(autoInsertControl.GetValue(ReplaceTriggerCharProperty))
-            Dim replaceString = If(replaceTriggerChar, triggerChar.ToString, "") & autoInsertControl.currentFilterString
+
+            Dim replaceTriggerString As String = ""
+            If autoInsertControl.recordStartPosition < ctl.Text.Length Then
+                replaceTriggerString = ctl.Text.Substring(autoInsertControl.recordStartPosition, 1)
+            End If
+            Dim replaceString = If(replaceTriggerChar, replaceTriggerString, "") & autoInsertControl.currentFilterString
 
             If replaceString.Length = 0 Then
                 If autoInsertControl.isRecording Then

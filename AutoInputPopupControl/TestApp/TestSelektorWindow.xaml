@@ -25,6 +25,6 @@
         </WrapPanel.Resources>
         <Button Content="Tests mit Standard Templates" Click="NormalTests_Click"/>
         <Button Content="Tests für Personenanreden inkl. Custom DataTemplate für ListBoxItem" Click="PersonsTests_Click"/>
-        <Button Content="coming soon"/>
+        <Button Content="Test als IntelliSense" Click="IntelliSense_Click"/>
     </WrapPanel>
 </Window>

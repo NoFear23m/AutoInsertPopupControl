@@ -12,4 +12,9 @@
         Dim win As New PersonsTestsWindow
         win.ShowDialog()
     End Sub
+
+    Private Sub IntelliSense_Click(sender As Object, e As RoutedEventArgs)
+        Dim win As New IntelliSenseTestwindow
+        win.ShowDialog()
+    End Sub
 End Class

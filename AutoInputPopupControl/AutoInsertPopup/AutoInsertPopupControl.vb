@@ -101,6 +101,7 @@ Public Class AutoInsertPopupControl
             Debug.WriteLine("Set recoding to True")
         End If
         If lb.isRecording Then
+
             If DirectCast(sender, TextBox).CaretIndex < lb.recordStartPosition Then
                 lb.isRecording = False : lb.recordStartPosition = 0
                 lb.SetValue(IsPopUpOpenProperty, False)
@@ -127,7 +128,9 @@ Public Class AutoInsertPopupControl
                 End If
 
             End If
-
+            If e.Key = Key.Tab AndAlso Boolean.Parse(lb.GetValue(InsertFirstListItemWithTabProperty).ToString()) Then
+                lb.ChooseContentCommand_Execute(DirectCast(lb.GetValue(VisibleItemsProperty), IEnumerable(Of IAutoInsertItem)).FirstOrDefault)
+            End If
         End If
 
         'Debug.WriteLine(e.Key.ToString())
@@ -184,6 +187,23 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(True))
 
 
+    <Description("Ruft ab ob das erste Item der Ergebnisliste direkt mit TAB übernomen werden kann bzw. legt den Wert fest"), Category("Popup-Options")>
+    Public Property InsertFirstListItemWithTab As Boolean
+        Get
+            Return CBool(GetValue(InsertFirstListItemWithTabProperty))
+        End Get
+
+        Set(ByVal value As Boolean)
+            SetValue(InsertFirstListItemWithTabProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly InsertFirstListItemWithTabProperty As DependencyProperty =
+                           DependencyProperty.Register("InsertFirstListItemWithTab",
+                           GetType(Boolean), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(True))
+
+
     <Description("Ruft den Key ab mit welchem der Focus auf das Popup gesetzt wird bzw. legt diesen fest"), Category("Popup-Options")>
     Public Property FocusKey As Key
         Get
@@ -201,6 +221,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(Key.Down))
 
 
+    <Description("Ruft den Key ab mit welchem das Popup geschlossen werden kann bzw. legt diesen fest"), Category("Popup-Options")>
     Public Property ClosePopupKey As Key
         Get
             Return CType(GetValue(ClosePopupKeyProperty), Key)
@@ -521,7 +542,7 @@ Public Class AutoInsertPopupControl
     End Sub
 
 
-
+    <Description("Ruft das Template des ListBoxItemsPanel ab bzw. legt dieses fest"), Category("Popup-Options")>
     Public Property ListBoxItemsPanelTemplate As ItemsPanelTemplate
         Get
             Return CType(GetValue(ListBoxItemsPanelTemplateProperty), ItemsPanelTemplate)
@@ -609,7 +630,7 @@ Public Class AutoInsertPopupControl
 
 
 
-
+    <Description("Ruft das Template des Bereichs ab der angezeigt wird wenn es keine Ergebnisse in der Auflistung gibt bzw. legt dieses fest"), Category("Popup-Options")>
     Public Property NoFilterResultsContentTemplate As DataTemplate
         Get
             Return CType(GetValue(NoFilterResultsContentTemplateProperty), DataTemplate)

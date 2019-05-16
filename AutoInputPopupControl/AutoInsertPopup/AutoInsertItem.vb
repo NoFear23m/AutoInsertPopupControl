@@ -11,6 +11,11 @@ Public Class AutoInsertItem
         Me.New(content, content.ToString, content.ToString)
     End Sub
 
+    Public Sub New(item As IAutoInsertItem)
+        Me.New(item.ViewContent, item.SearchStringContent, item.TextBoxInsertString)
+        Me.SortingIndex = item.SortingIndex
+    End Sub
+
     Public Sub New(content As Object, stringContent As String)
         Me.New(content, stringContent, stringContent)
     End Sub

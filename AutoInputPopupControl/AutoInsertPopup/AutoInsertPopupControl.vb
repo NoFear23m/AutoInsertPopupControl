@@ -108,25 +108,32 @@ Public Class AutoInsertPopupControl
             Else
                 lb.currentFilterString = DirectCast(sender, TextBox).Text.Substring(lb.recordStartPosition, DirectCast(sender, TextBox).CaretIndex - lb.recordStartPosition)
                 Debug.WriteLine("Recorded Filter: " & lb.currentFilterString)
+
                 'Filtern
                 Dim fullList = DirectCast(lb.GetValue(AutoInsertListProperty), IEnumerable)
+                Dim list = New List(Of IAutoInsertItem)
                 If TryCast(fullList, IEnumerable(Of IAutoInsertItem)) IsNot Nothing Then
-                    lb.SetValue(VisibleItemsProperty, DirectCast(lb.GetValue(AutoInsertListProperty),
-                            IEnumerable(Of IAutoInsertItem)).OrderBy(Function(o) o.SortingIndex).ThenBy(Function(oo) oo.SearchStringContent) _
-                            .Where(Function(x) x.SearchStringContent.ToLower.Contains(lb.currentFilterString.ToLower))
-                            )
+                    'lb.SetValue(VisibleItemsProperty, DirectCast(lb.GetValue(AutoInsertListProperty),
+                    '        IEnumerable(Of IAutoInsertItem)).OrderBy(Function(o) o.SortingIndex).ThenBy(Function(oo) oo.SearchStringContent) _
+                    '        .Where(Function(x) x.SearchStringContent.ToLower.Contains(lb.currentFilterString.ToLower)))
+                    DirectCast(fullList, IEnumerable(Of IAutoInsertItem)).ToList.ForEach(Sub(x) list.Add(New AutoInsertItem(item:=x)))
                 Else
                     If TryCast(fullList, List(Of String)) Is Nothing Then
                         Throw New Exception("The collection must be an IAutoInsertItem-Collection or a collection of string")
                     End If
-
-                    Dim list = New List(Of IAutoInsertItem)
                     DirectCast(fullList, IEnumerable(Of String)).ToList.ForEach(Sub(x) list.Add(New AutoInsertItem(x)))
-                    lb.SetValue(VisibleItemsProperty, list.OrderBy(Function(o) o.SortingIndex).ThenBy(Function(oo) oo.SearchStringContent) _
-                                .Where(Function(x) x.SearchStringContent.ToLower.Contains(lb.currentFilterString.ToLower))
-                                )
                 End If
-
+                Dim listQueriable = List.AsQueryable
+                Select Case DirectCast(lb.GetValue(FilterStrategyProperty), FilterMethod)
+                    Case FilterMethod.Contains
+                        listQueriable = listQueriable.Where(Function(x) x.SearchStringContent.ToLower.Contains(lb.currentFilterString.ToLower))
+                    Case FilterMethod.StartsWith
+                        listQueriable = listQueriable.Where(Function(x) x.SearchStringContent.ToLower.StartsWith(lb.currentFilterString.ToLower))
+                    Case Else
+                        Throw New Exception("Unknown filterstrategy")
+                End Select
+                listQueriable = listQueriable.OrderBy(Function(o) o.SortingIndex).ThenBy(Function(oo) oo.SearchStringContent)
+                lb.SetValue(VisibleItemsProperty, listQueriable)
             End If
             If e.Key = Key.Tab AndAlso Boolean.Parse(lb.GetValue(InsertFirstListItemWithTabProperty).ToString()) Then
                 lb.ChooseContentCommand_Execute(DirectCast(lb.GetValue(VisibleItemsProperty), IEnumerable(Of IAutoInsertItem)).FirstOrDefault)
@@ -236,6 +243,23 @@ Public Class AutoInsertPopupControl
                            DependencyProperty.Register("ClosePopupKey",
                            GetType(Key), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Key.Escape))
+
+
+
+    Public Property FilterStrategy As FilterMethod
+        Get
+            Return CType(GetValue(FilterStrategyProperty), FilterMethod)
+        End Get
+
+        Set(ByVal value As FilterMethod)
+            SetValue(FilterStrategyProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly FilterStrategyProperty As DependencyProperty =
+                           DependencyProperty.Register("FilterStrategy",
+                           GetType(FilterMethod), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(FilterMethod.Contains))
 
 
 
@@ -711,3 +735,8 @@ Public Class AutoInsertPopupControl
 
 
 End Class
+
+Public Enum FilterMethod
+    Contains
+    StartsWith
+End Enum

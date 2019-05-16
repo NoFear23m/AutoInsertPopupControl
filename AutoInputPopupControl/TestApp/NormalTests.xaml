@@ -8,12 +8,40 @@
         mc:Ignorable="d"
         Title="NormalTests" Height="450" Width="800">
     <Grid Margin="10">
-        <StackPanel HorizontalAlignment="Left">
-            <TextBox x:Name="txtTest1" Width="300"/>
+        <StackPanel>
+        <StackPanel>
+            <TextBlock TextWrapping="Wrap">
+                    <Run Text="&#x0a;Normaler Test" FontWeight="Bold"/>
+            </TextBlock>
+            <TextBox x:Name="txtTest1" Width="300" HorizontalAlignment="Left"/>
         </StackPanel>
+        <StackPanel>
+            <TextBlock TextWrapping="Wrap">
+                <Run Text="&#x0a;T4 Autovervollständigungstest" FontWeight="Bold"/>
+                
+            </TextBlock>
+            <TextBox x:Name="txtTest2" Width="300" HorizontalAlignment="Left"/>
+        </StackPanel>
+        </StackPanel>
+        
+        
+        
         <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest1}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
                                                  VerticalAlignment="Top" ItemSelectedCommand="{Binding SelectItemCommand}"
                                                 x:Name="pop1" AutoInsertList="{Binding TestList}" Popupanimation="Fade" FocusKey="Down" OpenPopupTriggerChar="!@.Z " ReplaceTriggerChar="False"
                                                 StaysOpen="False" BorderBrush="Black" BorderThickness="1"/>
+
+        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest2}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
+                                                 VerticalAlignment="Top" 
+                                                x:Name="pop2" AutoInsertList="{Binding T4List}" Popupanimation="None" FocusKey="Down" OpenPopupTriggerChar=" " ReplaceTriggerChar="False"
+                                                StaysOpen="False" BorderBrush="Black" BorderThickness="1" Width="{Binding ElementName=txtTest2, Path=ActualWidth}" Height="20"
+                                                IsPopUpOpen="{Binding ElementName=txtTest2, Path=IsFocused}" InsertFirstListItemWithTab="True" FilterStrategy="StartsWith" MaximumFilterResults="10">
+            <AutoInsertPopup:AutoInsertPopupControl.ListBoxItemsPanelTemplate>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                </ItemsPanelTemplate>
+            </AutoInsertPopup:AutoInsertPopupControl.ListBoxItemsPanelTemplate>
+        </AutoInsertPopup:AutoInsertPopupControl>
+        
     </Grid>
 </Window>

@@ -110,6 +110,7 @@ Public Class AutoInsertPopupControl
                 Debug.WriteLine("Recorded Filter: " & lb.currentFilterString)
 
                 'Filtern
+                Dim maxResults As Integer = CInt(lb.GetValue(MaximumFilterResultsProperty))
                 Dim fullList = DirectCast(lb.GetValue(AutoInsertListProperty), IEnumerable)
                 Dim list = New List(Of IAutoInsertItem)
                 If TryCast(fullList, IEnumerable(Of IAutoInsertItem)) IsNot Nothing Then
@@ -132,7 +133,8 @@ Public Class AutoInsertPopupControl
                     Case Else
                         Throw New Exception("Unknown filterstrategy")
                 End Select
-                listQueriable = listQueriable.OrderBy(Function(o) o.SortingIndex).ThenBy(Function(oo) oo.SearchStringContent)
+
+                listQueriable = listQueriable.Take(maxResults).OrderBy(Function(o) o.SortingIndex).ThenBy(Function(oo) oo.SearchStringContent)
                 lb.SetValue(VisibleItemsProperty, listQueriable)
             End If
             If e.Key = Key.Tab AndAlso Boolean.Parse(lb.GetValue(InsertFirstListItemWithTabProperty).ToString()) Then
@@ -315,7 +317,7 @@ Public Class AutoInsertPopupControl
 
             Dim list = New List(Of IAutoInsertItem)
             DirectCast(e.NewValue, IEnumerable(Of String)).ToList.ForEach(Sub(x) list.Add(New AutoInsertItem(x)))
-            autoInserCtl.SetValue(VisibleItemsProperty, New List(Of IAutoInsertItem))
+            autoInserCtl.SetValue(VisibleItemsProperty, list)
         End If
 
 
@@ -493,6 +495,23 @@ Public Class AutoInsertPopupControl
                            DependencyProperty.Register("StaysOpen",
                            GetType(Boolean), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(False))
+
+
+    Public Property MaximumFilterResults As Integer
+        Get
+            Return CInt(GetValue(MaximumFilterResultsProperty))
+        End Get
+
+        Set(ByVal value As Integer)
+            SetValue(MaximumFilterResultsProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly MaximumFilterResultsProperty As DependencyProperty =
+                           DependencyProperty.Register("MaximumFilterResults",
+                           GetType(Integer), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(Integer.MaxValue))
+
 
 
     <Description("Gibt zurück ob der Rahmen des Popups sichbar sein soll bzw. legt den Wert fest"), Category("Popup-Options")>

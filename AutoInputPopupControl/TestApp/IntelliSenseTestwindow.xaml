@@ -9,10 +9,10 @@
         Title="IntelliSenseTestwindow" Height="450" Width="800">
     <Grid Margin="10">
         <StackPanel HorizontalAlignment="Left">
-            <TextBox x:Name="txtTest1" Width="300" PreviewKeyDown="TxtTest1_PreviewKeyDown"/>
+            <TextBox x:Name="txtTest1" Width="300"/>
         </StackPanel>
         <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest1}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
-                                                 VerticalAlignment="Top" ItemSelectedCommand="{Binding SelectItemCommand}"
+                                                 VerticalAlignment="Top" ItemSelectedCommand="{Binding SelectItemCommand}" OpenOnTargetFocused="True"
                                                 x:Name="pop1" AutoInsertList="{Binding TestList}" Popupanimation="Fade" FocusKey="Down" OpenPopupTriggerChar=". (" ReplaceTriggerChar="False"
                                                 StaysOpen="False" BorderBrush="Black" BorderThickness="1" FilterStrategy="StartsWith" MaxHeight="80"
                                                 OverridePlacementWithCursorPosition="True"/>

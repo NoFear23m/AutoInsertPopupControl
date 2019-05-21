@@ -75,7 +75,18 @@ Public Class AutoInsertPopupControl
             tb.Tag = d
             AddHandler tb.PreviewKeyDown, AddressOf TargetControlProperty_KeyDown
             AddHandler tb.PreviewKeyUp, AddressOf TargetControlProperty_KeyUp
-            Dim ctl = DirectCast(d, AutoInsertPopupControl)
+            AddHandler tb.GotFocus, AddressOf TargetControlProperty_GetFocus
+        End If
+    End Sub
+
+    Private Shared Sub TargetControlProperty_GetFocus(sender As Object, e As RoutedEventArgs)
+        Dim lb = TryCast(DirectCast(sender, TextBoxBase).Tag, AutoInsertPopupControl)
+        If lb Is Nothing Then Exit Sub
+
+        If CBool(lb.GetValue(OpenOnTargetFocusedProperty)) = True Then
+            lb.SetValue(IsPopUpOpenProperty, True)
+            lb.IsRecording = True
+            lb.recordStartPosition = DirectCast(sender, TextBox).CaretIndex
         End If
     End Sub
 
@@ -89,7 +100,7 @@ Public Class AutoInsertPopupControl
             Keyboard.Focus(lb._listBox)
             e.Handled = True
         End If
-        If e.Key = Key.Tab AndAlso Boolean.Parse(lb.GetValue(InsertFirstListItemWithTabProperty).ToString()) Then
+        If e.Key = Key.Tab AndAlso Boolean.Parse(lb.GetValue(InsertFirstListItemWithTabProperty).ToString()) AndAlso CBool(lb.GetValue(IsPopUpOpenProperty)) = True Then
             lb.ChooseContentCommand_Execute(DirectCast(lb.GetValue(VisibleItemsProperty), IEnumerable(Of IAutoInsertItem)).FirstOrDefault)
             e.Handled = True
         End If
@@ -155,6 +166,22 @@ Public Class AutoInsertPopupControl
 
     End Sub
 
+
+
+    Public Property OpenOnTargetFocused As Boolean
+        Get
+            Return CBool(GetValue(OpenOnTargetFocusedProperty))
+        End Get
+
+        Set(ByVal value As Boolean)
+            SetValue(OpenOnTargetFocusedProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly OpenOnTargetFocusedProperty As DependencyProperty =
+                           DependencyProperty.Register("OpenOnTargetFocused",
+                           GetType(Boolean), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(False))
 
 
     Public Overloads Property Background As Brush
@@ -495,7 +522,7 @@ Public Class AutoInsertPopupControl
 
     Public Shared Sub SetRectangle(aip As AutoInsertPopupControl)
         Dim txb = DirectCast(aip.TargetControl, TextBox)
-        aip.SetValue(PlacementRectangleProperty, txb.GetRectFromCharacterIndex(txb.CaretIndex))
+        If txb IsNot Nothing Then aip.SetValue(PlacementRectangleProperty, txb.GetRectFromCharacterIndex(txb.CaretIndex))
     End Sub
 
     <Description("Ruft ab wie das Popup beim einblenden Animiert werden soll bzw. legt die Animationart fest"), Category("Popup-Options")>

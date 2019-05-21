@@ -30,8 +30,8 @@
 
 
         <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest1}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
-                                                 VerticalAlignment="Top" ItemSelectedCommand="{Binding SelectItemCommand}"
-                                                x:Name="pop1" AutoInsertList="{Binding TestList}" Popupanimation="Fade" FocusKey="Down" OpenPopupTriggerChar="!@.Z " ReplaceTriggerChar="False"
+                                                 VerticalAlignment="Top" ItemSelectedCommand="{Binding SelectItemCommand}" OpenOnTargetFocused="True"
+                                                x:Name="pop1" AutoInsertList="{Binding TestList}" Popupanimation="Fade" FocusKey="Down" OpenPopupTriggerChar="#" ReplaceTriggerChar="False"
                                                 StaysOpen="False" BorderBrush="Black" BorderThickness="1" VerticalOffset="{Binding ElementName=txtTest1, Path=ActualHeight}"/>
 
         <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest2}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"

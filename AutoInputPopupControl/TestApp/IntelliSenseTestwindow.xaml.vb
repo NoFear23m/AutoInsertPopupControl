@@ -33,8 +33,5 @@
 
     Public Property TestList As IEnumerable(Of AutoInsertPopup.IAutoInsertItem)
 
-    Private Sub TxtTest1_PreviewKeyDown(sender As Object, e As KeyEventArgs)
-        Dim txb = DirectCast(sender, TextBox)
-        pop1.PlacementRectangle = txb.GetRectFromCharacterIndex(txb.Text.Length)
-    End Sub
+
 End Class

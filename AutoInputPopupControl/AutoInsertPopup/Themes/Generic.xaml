@@ -90,7 +90,10 @@
                            MaxHeight="{TemplateBinding MaxHeight}" 
                            MaxWidth="{TemplateBinding MaxWidth}"
                            Height="{TemplateBinding Height}" 
-                           Width="{TemplateBinding Width}">
+                           Width="{TemplateBinding Width}"
+                           MinWidth="{TemplateBinding MinWidth}"
+                           MinHeight="{TemplateBinding MinHeight}">
+                           
                         <Grid ShowGridLines="False" Width="{TemplateBinding Width}" MaxWidth="{TemplateBinding MaxWidth}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -106,11 +109,12 @@
 
                                 <ListBox x:Name="PART_ListBox" 
                                          Grid.Row="1"
-                                         ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= VisibleItems}" 
-                                         ItemTemplate="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= ListItemTemplate}"
-                                         Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= Background}"
+                                         ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=VisibleItems}" 
+                                         HorizontalContentAlignment="Stretch"
+                                         ItemTemplate="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=ListItemTemplate}"
+                                         Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=Background}"
                                          IsSynchronizedWithCurrentItem="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                         ItemsPanel="{TemplateBinding ListBoxItemsPanelTemplate}" >
+                                         ItemsPanel="{TemplateBinding ListBoxItemsPanelTemplate}">
                                     <ListBox.Style>
                                         <Style TargetType="ListBox">
                                             <Setter Property="Visibility" Value="Visible"/>

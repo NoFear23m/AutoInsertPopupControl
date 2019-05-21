@@ -12,10 +12,10 @@ Imports System.Windows
 ' Werte der Assemblyattribute überprüfen
 
 <Assembly: AssemblyTitle("AutoInsertPopup")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("POCSO")>
+<Assembly: AssemblyDescription("A WPF Popup Control than can used for Instellisense, Autocorrection Popup, Combobox replacement and many more.")>
+<Assembly: AssemblyCompany("SPS")>
 <Assembly: AssemblyProduct("AutoInsertPopup")>
-<Assembly: AssemblyCopyright("Copyright @ POCSO 2019")>
+<Assembly: AssemblyCopyright("Copyright @ Sascha Patschka 2019")>
 <Assembly: AssemblyTrademark("")>
 <Assembly: ComVisible(false)>
 

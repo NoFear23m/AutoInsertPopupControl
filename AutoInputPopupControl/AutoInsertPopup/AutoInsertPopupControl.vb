@@ -11,12 +11,19 @@ Public Class AutoInsertPopupControl
 
 
     Public Shared ReadOnly ItemSelectedEvent As RoutedEvent
-
-
     Private _listBox As ListBox
 
+    Dim _isRecording As Boolean
+    Private Property IsRecording As Boolean
+        Get
+            Return _isRecording
+        End Get
+        Set
+            _isRecording = Value
+            If _isRecording = False Then recordStartPosition = 0 : currentFilterString = ""
+        End Set
+    End Property
 
-    Private isRecording As Boolean
     Private recordStartPosition As Integer
     Private currentFilterString As String
 
@@ -28,7 +35,6 @@ Public Class AutoInsertPopupControl
         DefaultStyleKeyProperty.OverrideMetadata(GetType(AutoInsertPopupControl), New FrameworkPropertyMetadata(GetType(AutoInsertPopupControl)))
 
         ItemSelectedEvent = EventManager.RegisterRoutedEvent("ItemSelected", RoutingStrategy.Bubble, GetType(RoutedEventArgs), GetType(AutoInsertPopupControl))
-
     End Sub
 
 
@@ -76,19 +82,28 @@ Public Class AutoInsertPopupControl
     Private Shared Sub TargetControlProperty_KeyDown(sender As Object, e As KeyEventArgs)
         Dim lb = TryCast(DirectCast(sender, TextBoxBase).Tag, AutoInsertPopupControl)
         If lb Is Nothing Then Exit Sub
-
-        If e.Key = CType(lb.GetValue(FocusKeyProperty), Key) Then
+        'Debug.WriteLine("KeyDown " & e.Key.ToString() & " on Textbox with Name: " & DirectCast(sender, TextBox).Name)
+        If e.Key = CType(lb.GetValue(FocusKeyProperty), Key) AndAlso CBool(lb.GetValue(IsPopUpOpenProperty)) = True Then
             lb._listBox.UpdateLayout()
             lb._listBox.Focus()
             Keyboard.Focus(lb._listBox)
+            e.Handled = True
+        End If
+        If e.Key = Key.Tab AndAlso Boolean.Parse(lb.GetValue(InsertFirstListItemWithTabProperty).ToString()) Then
+            lb.ChooseContentCommand_Execute(DirectCast(lb.GetValue(VisibleItemsProperty), IEnumerable(Of IAutoInsertItem)).FirstOrDefault)
+            e.Handled = True
+        End If
+        If CBool(lb.GetValue(IsPopUpOpenProperty)) AndAlso CBool(lb.GetValue(OverridePlacementWithCursorPositionProperty)) Then
+            SetRectangle(lb)
         End If
     End Sub
     Private Shared Sub TargetControlProperty_KeyUp(ByVal sender As Object, ByVal e As KeyEventArgs)
+        'Debug.WriteLine("KeyUp " & e.Key.ToString() & " on Textbox with Name: " & DirectCast(sender, TextBox).Name)
         Dim lb = TryCast(DirectCast(sender, TextBox).Tag, AutoInsertPopupControl)
         If lb Is Nothing OrElse lb.GetValue(OpenPopupTriggerCharProperty) Is Nothing Then Exit Sub
 
         If DirectCast(sender, TextBox).CaretIndex = 0 OrElse e.Key = DirectCast(lb.GetValue(ClosePopupKeyProperty), Key) Then
-            lb.isRecording = False : lb.recordStartPosition = 0
+            lb.IsRecording = False
             lb.SetValue(IsPopUpOpenProperty, False)
             Exit Sub
         End If
@@ -96,14 +111,14 @@ Public Class AutoInsertPopupControl
         Dim lastChar As Char = CChar(DirectCast(sender, TextBox).Text.Substring(DirectCast(sender, TextBox).CaretIndex - 1, 1))
         If lb.GetValue(OpenPopupTriggerCharProperty).ToString().Contains(lastChar) Then
             lb.SetValue(IsPopUpOpenProperty, True)
-            lb.isRecording = True
+            lb.IsRecording = True
             lb.recordStartPosition = DirectCast(sender, TextBox).CaretIndex
             Debug.WriteLine("Set recoding to True")
         End If
-        If lb.isRecording Then
+        If lb.IsRecording Then
 
             If DirectCast(sender, TextBox).CaretIndex < lb.recordStartPosition Then
-                lb.isRecording = False : lb.recordStartPosition = 0
+                lb.IsRecording = False
                 lb.SetValue(IsPopUpOpenProperty, False)
             Else
                 lb.currentFilterString = DirectCast(sender, TextBox).Text.Substring(lb.recordStartPosition, DirectCast(sender, TextBox).CaretIndex - lb.recordStartPosition)
@@ -114,9 +129,6 @@ Public Class AutoInsertPopupControl
                 Dim fullList = DirectCast(lb.GetValue(AutoInsertListProperty), IEnumerable)
                 Dim list = New List(Of IAutoInsertItem)
                 If TryCast(fullList, IEnumerable(Of IAutoInsertItem)) IsNot Nothing Then
-                    'lb.SetValue(VisibleItemsProperty, DirectCast(lb.GetValue(AutoInsertListProperty),
-                    '        IEnumerable(Of IAutoInsertItem)).OrderBy(Function(o) o.SortingIndex).ThenBy(Function(oo) oo.SearchStringContent) _
-                    '        .Where(Function(x) x.SearchStringContent.ToLower.Contains(lb.currentFilterString.ToLower)))
                     DirectCast(fullList, IEnumerable(Of IAutoInsertItem)).ToList.ForEach(Sub(x) list.Add(New AutoInsertItem(item:=x)))
                 Else
                     If TryCast(fullList, List(Of String)) Is Nothing Then
@@ -124,7 +136,7 @@ Public Class AutoInsertPopupControl
                     End If
                     DirectCast(fullList, IEnumerable(Of String)).ToList.ForEach(Sub(x) list.Add(New AutoInsertItem(x)))
                 End If
-                Dim listQueriable = List.AsQueryable
+                Dim listQueriable = list.AsQueryable
                 Select Case DirectCast(lb.GetValue(FilterStrategyProperty), FilterMethod)
                     Case FilterMethod.Contains
                         listQueriable = listQueriable.Where(Function(x) x.SearchStringContent.ToLower.Contains(lb.currentFilterString.ToLower))
@@ -137,12 +149,10 @@ Public Class AutoInsertPopupControl
                 listQueriable = listQueriable.Take(maxResults).OrderBy(Function(o) o.SortingIndex).ThenBy(Function(oo) oo.SearchStringContent)
                 lb.SetValue(VisibleItemsProperty, listQueriable)
             End If
-            If e.Key = Key.Tab AndAlso Boolean.Parse(lb.GetValue(InsertFirstListItemWithTabProperty).ToString()) Then
-                lb.ChooseContentCommand_Execute(DirectCast(lb.GetValue(VisibleItemsProperty), IEnumerable(Of IAutoInsertItem)).FirstOrDefault)
-            End If
+
         End If
 
-        'Debug.WriteLine(e.Key.ToString())
+
     End Sub
 
 
@@ -344,7 +354,6 @@ Public Class AutoInsertPopupControl
         Dim autoInsertControl = DirectCast(d, AutoInsertPopupControl)
         Dim ctl As TextBox = CType(autoInsertControl.GetValue(TargetControlProperty), TextBox)
         If e.NewValue IsNot Nothing Then
-            'Dim triggerChar = CChar(autoInsertControl.GetValue(OpenPopupTriggerCharProperty))
             Dim replaceTriggerChar As Boolean = CBool(autoInsertControl.GetValue(ReplaceTriggerCharProperty))
 
             Dim replaceTriggerString As String = ""
@@ -354,25 +363,25 @@ Public Class AutoInsertPopupControl
             Dim replaceString = If(replaceTriggerChar, replaceTriggerString, "") & autoInsertControl.currentFilterString
 
             If replaceString.Length = 0 Then
-                If autoInsertControl.isRecording Then
+                If autoInsertControl.IsRecording Then
                     ctl.Text = ctl.Text.Insert(autoInsertControl.recordStartPosition, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
                 Else
                     ctl.Text = ctl.Text.Insert(ctl.CaretIndex, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
                 End If
                 ctl.CaretIndex = autoInsertControl.recordStartPosition + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
             Else
-                If autoInsertControl.isRecording Then
-                    ctl.Text = ctl.Text.Replace(replaceString, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
+
+                If autoInsertControl.IsRecording Then
+                    ctl.Text = ctl.Text.Substring(0, autoInsertControl.recordStartPosition) & DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString
                     ctl.CaretIndex = autoInsertControl.recordStartPosition + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
                 Else
                     Dim lastCaretIndex = ctl.CaretIndex
-                    ctl.Text = ctl.Text.Insert(lastCaretIndex, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
                     ctl.CaretIndex = lastCaretIndex + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
                 End If
             End If
 
-            autoInsertControl.isRecording = False
-            autoInsertControl.currentFilterString = ""
+            autoInsertControl.IsRecording = False
+            autoInsertControl.recordStartPosition = 0
 
             If Not Boolean.Parse(autoInsertControl.GetValue(StaysOpenProperty).ToString) Then autoInsertControl.SetValue(IsPopUpOpenProperty, False)
             ctl.Focus()
@@ -385,10 +394,6 @@ Public Class AutoInsertPopupControl
         Get
             Return CType(GetValue(VisibleItemsProperty), IEnumerable(Of IAutoInsertItem))
         End Get
-
-        'Set(ByVal value As IEnumerable)
-        '    SetValue(VisibleItemsProperty, value)
-        'End Set
     End Property
 
     Public Shared ReadOnly VisibleItemsProperty As DependencyProperty =
@@ -462,6 +467,36 @@ Public Class AutoInsertPopupControl
                            GetType(Double), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Double.Parse("20")))
 
+
+
+    Public Property OverridePlacementWithCursorPosition As Boolean
+        Get
+            Return CBool(GetValue(OverridePlacementWithCursorPositionProperty))
+        End Get
+
+        Set(ByVal value As Boolean)
+            SetValue(OverridePlacementWithCursorPositionProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly OverridePlacementWithCursorPositionProperty As DependencyProperty =
+                           DependencyProperty.Register("OverridePlacementWithCursorPosition",
+                           GetType(Boolean), GetType(AutoInsertPopupControl),
+                           New PropertyMetadata(False, AddressOf OverridePlacementWithCursorPositionProperty_Changed))
+    Private Shared Sub OverridePlacementWithCursorPositionProperty_Changed(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        Dim autoInsertControl = DirectCast(d, AutoInsertPopupControl)
+        Dim val = CBool(e.NewValue)
+        If val Then
+            SetRectangle(autoInsertControl)
+        Else
+            autoInsertControl.SetValue(PlacementRectangleProperty, New Rect(0, 0, 0, 0))
+        End If
+    End Sub
+
+    Public Shared Sub SetRectangle(aip As AutoInsertPopupControl)
+        Dim txb = DirectCast(aip.TargetControl, TextBox)
+        aip.SetValue(PlacementRectangleProperty, txb.GetRectFromCharacterIndex(txb.CaretIndex))
+    End Sub
 
     <Description("Ruft ab wie das Popup beim einblenden Animiert werden soll bzw. legt die Animationart fest"), Category("Popup-Options")>
     Public Property Popupanimation As PopupAnimation
@@ -708,11 +743,14 @@ Public Class AutoInsertPopupControl
 
 
     Private Sub ChooseContentCommand_Execute(obj As Object)
+        Debug.WriteLine("ChooseContentCommand")
         SetValue(SelectedInsertListItemProperty, obj)
         Dim seletedEvent As New RoutedEventArgs(AutoInsertPopupControl.ItemSelectedEvent)
         MyBase.RaiseEvent(seletedEvent)
         ItemSelectedCommand?.Execute(obj)
         SetValue(SelectedInsertListItemProperty, Nothing)
+
+
     End Sub
 
     Private Function ChooseContentCommand_CanExecute(obj As Object) As Boolean
@@ -742,13 +780,7 @@ Public Class AutoInsertPopupControl
 
     Public Overrides Sub OnApplyTemplate()
         MyBase.OnApplyTemplate()
-
-        '_popupBorder = CType(Template.FindName("PART_PopupBorder", Me), Border)
         _listBox = CType(Template.FindName("PART_ListBox", Me), ListBox)
-        '_popUp = CType(Template.FindName("PART_Popup", Me), Popup)
-
-        'ListItemTemplate = CType(FindResource("DefaultListItemTemplate"), DataTemplate)
-
     End Sub
 
 

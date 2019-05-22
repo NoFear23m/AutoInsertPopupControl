@@ -15,13 +15,15 @@ Public Class AutoInsertItem
         Me.New(item.ViewContent, item.SearchStringContent, item.TextBoxInsertString)
         Me.SortingIndex = item.SortingIndex
     End Sub
-
-    Public Sub New(content As Object, stringContent As String)
-        Me.New(content, stringContent, stringContent)
+    Public Sub New(contentString As String, searchString As String)
+        Me.New(contentString, searchString, contentString)
+    End Sub
+    Public Sub New(content As Object, searchString As String)
+        Me.New(content, searchString, searchString)
     End Sub
 
-    Public Sub New(content As Object, stringContent As String, insertString As String)
-        Me.ViewContent = content : SearchStringContent = stringContent : TextBoxInsertString = insertString
+    Public Sub New(content As Object, searchString As String, insertString As String)
+        Me.ViewContent = content : SearchStringContent = searchString : TextBoxInsertString = insertString
     End Sub
 
     Public Property ViewContent As Object Implements IAutoInsertItem.ViewContent

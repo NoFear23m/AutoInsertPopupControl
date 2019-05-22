@@ -17,7 +17,7 @@ Imports System.Windows
 <Assembly: AssemblyProduct("AutoInsertPopup")>
 <Assembly: AssemblyCopyright("Copyright @ Sascha Patschka 2019")>
 <Assembly: AssemblyTrademark("")>
-<Assembly: ComVisible(false)>
+<Assembly: ComVisible(False)>
 
 'Um mit dem Erstellen lokalisierbarer Anwendungen zu beginnen, legen Sie
 '<UICulture>ImCodeVerwendeteKultur</UICulture> in der VBPROJ-Datei
@@ -55,5 +55,5 @@ Imports System.Windows
 ' indem Sie "*" wie unten gezeigt eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("1.0.1.0")>
+<Assembly: AssemblyFileVersion("1.0.1.0")>

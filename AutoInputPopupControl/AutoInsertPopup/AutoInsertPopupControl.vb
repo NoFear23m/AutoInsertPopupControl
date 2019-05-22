@@ -27,13 +27,8 @@ Public Class AutoInsertPopupControl
     Private recordStartPosition As Integer
     Private currentFilterString As String
 
-
-
     Shared Sub New()
-        'Mit dem OverrideMetadata-Aufruf wird dem System mitgeteilt, dass das Element einen Stil bereitstellen möchte, der sich von seiner Basisklasse unterscheidet.
-        'Dieser Stil ist unter "Themes\Generic.xaml" definiert.
         DefaultStyleKeyProperty.OverrideMetadata(GetType(AutoInsertPopupControl), New FrameworkPropertyMetadata(GetType(AutoInsertPopupControl)))
-
         ItemSelectedEvent = EventManager.RegisterRoutedEvent("ItemSelected", RoutingStrategy.Bubble, GetType(RoutedEventArgs), GetType(AutoInsertPopupControl))
     End Sub
 
@@ -124,7 +119,7 @@ Public Class AutoInsertPopupControl
             lb.SetValue(IsPopUpOpenProperty, True)
             lb.IsRecording = True
             lb.recordStartPosition = DirectCast(sender, TextBox).CaretIndex
-            Debug.WriteLine("Set recoding to True")
+            'Debug.WriteLine("Set recoding to True")
         End If
         If lb.IsRecording Then
 
@@ -133,7 +128,7 @@ Public Class AutoInsertPopupControl
                 lb.SetValue(IsPopUpOpenProperty, False)
             Else
                 lb.currentFilterString = DirectCast(sender, TextBox).Text.Substring(lb.recordStartPosition, DirectCast(sender, TextBox).CaretIndex - lb.recordStartPosition)
-                Debug.WriteLine("Recorded Filter: " & lb.currentFilterString)
+                'Debug.WriteLine("Recorded Filter: " & lb.currentFilterString)
 
                 'Filtern
                 Dim maxResults As Integer = CInt(lb.GetValue(MaximumFilterResultsProperty))
@@ -781,8 +776,6 @@ Public Class AutoInsertPopupControl
         MyBase.RaiseEvent(seletedEvent)
         ItemSelectedCommand?.Execute(obj)
         SetValue(SelectedInsertListItemProperty, Nothing)
-
-
     End Sub
 
     Private Function ChooseContentCommand_CanExecute(obj As Object) As Boolean
@@ -808,14 +801,10 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(Nothing))
 
 
-
-
     Public Overrides Sub OnApplyTemplate()
         MyBase.OnApplyTemplate()
         _listBox = CType(Template.FindName("PART_ListBox", Me), ListBox)
     End Sub
-
-
 
 End Class
 

@@ -66,8 +66,7 @@ Public Class AutoInsertPopupControl
 
     Private Shared Sub TargetControlProperty_Changed(d As DependencyObject, e As DependencyPropertyChangedEventArgs)
         If e.NewValue IsNot Nothing Then
-            Dim tb = DirectCast(e.NewValue, TextBox)
-            tb.Tag = d
+            Dim tb = DirectCast(e.NewValue, TextBox) : tb.Tag = d
             AddHandler tb.PreviewKeyDown, AddressOf TargetControlProperty_KeyDown
             AddHandler tb.PreviewKeyUp, AddressOf TargetControlProperty_KeyUp
             AddHandler tb.GotFocus, AddressOf TargetControlProperty_GetFocus
@@ -78,10 +77,8 @@ Public Class AutoInsertPopupControl
         Dim lb = TryCast(DirectCast(sender, TextBoxBase).Tag, AutoInsertPopupControl)
         If lb Is Nothing Then Exit Sub
 
-        If CBool(lb.GetValue(OpenOnTargetFocusedProperty)) = True Then
+        If CBool(lb.GetValue(OpenOnTargetFocusedProperty)) Then
             lb.SetValue(IsPopUpOpenProperty, True)
-            lb.IsRecording = True
-            lb.recordStartPosition = DirectCast(sender, TextBox).CaretIndex
         End If
     End Sub
 
@@ -109,7 +106,6 @@ Public Class AutoInsertPopupControl
         If lb Is Nothing OrElse lb.GetValue(OpenPopupTriggerCharProperty) Is Nothing Then Exit Sub
 
         If DirectCast(sender, TextBox).CaretIndex = 0 OrElse e.Key = DirectCast(lb.GetValue(ClosePopupKeyProperty), Key) Then
-            lb.IsRecording = False
             lb.SetValue(IsPopUpOpenProperty, False)
             Exit Sub
         End If
@@ -117,14 +113,11 @@ Public Class AutoInsertPopupControl
         Dim lastChar As Char = CChar(DirectCast(sender, TextBox).Text.Substring(DirectCast(sender, TextBox).CaretIndex - 1, 1))
         If lb.GetValue(OpenPopupTriggerCharProperty).ToString().Contains(lastChar) Then
             lb.SetValue(IsPopUpOpenProperty, True)
-            lb.IsRecording = True
-            lb.recordStartPosition = DirectCast(sender, TextBox).CaretIndex
             'Debug.WriteLine("Set recoding to True")
         End If
         If lb.IsRecording Then
 
             If DirectCast(sender, TextBox).CaretIndex < lb.recordStartPosition Then
-                lb.IsRecording = False
                 lb.SetValue(IsPopUpOpenProperty, False)
             Else
                 lb.currentFilterString = DirectCast(sender, TextBox).Text.Substring(lb.recordStartPosition, DirectCast(sender, TextBox).CaretIndex - lb.recordStartPosition)
@@ -314,7 +307,15 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(False, AddressOf IsPopUpOpenProperty_Changed))
 
     Private Shared Sub IsPopUpOpenProperty_Changed(d As DependencyObject, e As DependencyPropertyChangedEventArgs)
-
+        Dim autoInserCtl = TryCast(d, AutoInsertPopupControl)
+        If autoInserCtl Is Nothing Then Throw New NullReferenceException("Failed to cast the dependency object to AutoInsertPopupControl. This is unexpected!")
+        If CBool(e.NewValue) Then
+            autoInserCtl.IsRecording = True
+            autoInserCtl.recordStartPosition = DirectCast(autoInserCtl.Tag, TextBox).CaretIndex
+        Else
+            autoInserCtl.IsRecording = False
+            autoInserCtl.recordStartPosition = 0
+        End If
     End Sub
 
     Public Sub FocusListbox()
@@ -406,6 +407,7 @@ Public Class AutoInsertPopupControl
                     ctl.CaretIndex = lastCaretIndex + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
                 End If
             End If
+
 
             autoInsertControl.IsRecording = False
             autoInsertControl.recordStartPosition = 0
@@ -591,40 +593,6 @@ Public Class AutoInsertPopupControl
                            DependencyProperty.Register("PopupBorderVisibility",
                            GetType(Visibility), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Visibility.Visible))
-
-    <Description("Gibt die breite des Popuprahmens zurück bzw. legt die breite fest"), Category("Popup-Options")>
-    Public Property PopupBorderThickness As Thickness
-        Get
-            Return CType(GetValue(PopupBorderThicknessProperty), Thickness)
-        End Get
-
-        Set(ByVal value As Thickness)
-            SetValue(PopupBorderThicknessProperty, value)
-        End Set
-    End Property
-
-    Public Shared ReadOnly PopupBorderThicknessProperty As DependencyProperty =
-                           DependencyProperty.Register("PopupBorderThickness",
-                           GetType(Thickness), GetType(AutoInsertPopupControl),
-                           New PropertyMetadata(New Thickness(1)))
-
-
-    <Description("Gibt den Brush für den Popuprahmen zurück bzw. legt den Wert fest"), Category("Popup-Options")>
-    Public Property PopupBorderBrush As Brush
-        Get
-            Return CType(GetValue(PopupBorderBrushProperty), Brush)
-        End Get
-
-        Set(ByVal value As Brush)
-            SetValue(PopupBorderBrushProperty, value)
-        End Set
-    End Property
-
-    Public Shared ReadOnly PopupBorderBrushProperty As DependencyProperty =
-                           DependencyProperty.Register("PopupBorderBrush",
-                           GetType(Brush), GetType(AutoInsertPopupControl),
-                           New PropertyMetadata(New SolidColorBrush(Colors.Black)))
-
 
 
 

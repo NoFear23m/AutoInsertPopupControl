@@ -126,12 +126,13 @@ Public Class AutoInsertPopupControl
                 'Filtern
                 Dim maxResults As Integer = CInt(lb.GetValue(MaximumFilterResultsProperty))
                 Dim fullList = DirectCast(lb.GetValue(AutoInsertListProperty), IEnumerable)
+                If fullList Is Nothing Then Exit Sub
                 Dim list = New List(Of IAutoInsertItem)
                 If TryCast(fullList, IEnumerable(Of IAutoInsertItem)) IsNot Nothing Then
                     DirectCast(fullList, IEnumerable(Of IAutoInsertItem)).ToList.ForEach(Sub(x) list.Add(New AutoInsertItem(item:=x)))
                 Else
                     If TryCast(fullList, List(Of String)) Is Nothing Then
-                        Throw New Exception("The collection must be an IAutoInsertItem-Collection or a collection of string")
+                        Throw New Exception("The collection must be an IAutoInsertItem-Collection or a collection of string. Curent type " & fullList.GetType.ToString())
                     End If
                     DirectCast(fullList, IEnumerable(Of String)).ToList.ForEach(Sub(x) list.Add(New AutoInsertItem(x)))
                 End If

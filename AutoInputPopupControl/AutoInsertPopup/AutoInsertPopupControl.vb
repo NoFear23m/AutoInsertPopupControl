@@ -131,9 +131,7 @@ Public Class AutoInsertPopupControl
                 If TryCast(fullList, IEnumerable(Of IAutoInsertItem)) IsNot Nothing Then
                     DirectCast(fullList, IEnumerable(Of IAutoInsertItem)).ToList.ForEach(Sub(x) list.Add(New AutoInsertItem(item:=x)))
                 Else
-                    If TryCast(fullList, List(Of String)) Is Nothing Then
-                        Throw New Exception("The collection must be an IAutoInsertItem-Collection or a collection of string. Curent type " & fullList.GetType.ToString())
-                    End If
+                    If TryCast(fullList, List(Of String)) Is Nothing Then Throw New Exception("The collection must be an IAutoInsertItem-Collection or a collection of string. Curent type " & fullList.GetType.ToString())
                     DirectCast(fullList, IEnumerable(Of String)).ToList.ForEach(Sub(x) list.Add(New AutoInsertItem(x)))
                 End If
                 Dim listQueriable = list.AsQueryable
@@ -312,7 +310,7 @@ Public Class AutoInsertPopupControl
         If autoInserCtl Is Nothing Then Throw New NullReferenceException("Failed to cast the dependency object to AutoInsertPopupControl. This is unexpected!")
         If CBool(e.NewValue) Then
             autoInserCtl.IsRecording = True
-            autoInserCtl.recordStartPosition = DirectCast(autoInserCtl.Tag, TextBox).CaretIndex
+            autoInserCtl.recordStartPosition = DirectCast(autoInserCtl.TargetControl, TextBox).CaretIndex
         Else
             autoInserCtl.IsRecording = False
             autoInserCtl.recordStartPosition = 0
@@ -392,14 +390,12 @@ Public Class AutoInsertPopupControl
                         autoInsertControl.recordStartPosition -= 1
                         If autoInsertControl.recordStartPosition < 0 Then autoInsertControl.recordStartPosition = 0
                     End If
-                    'ctl.Text = ctl.Text.Insert(autoInsertControl.recordStartPosition, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
                     ctl.Text = ctl.Text.Substring(0, autoInsertControl.recordStartPosition) & DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString
                 Else
                     ctl.Text = ctl.Text.Insert(ctl.CaretIndex, DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString)
                 End If
                 ctl.CaretIndex = autoInsertControl.recordStartPosition + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
             Else
-
                 If autoInsertControl.IsRecording Then
                     ctl.Text = ctl.Text.Substring(0, autoInsertControl.recordStartPosition - 1) & DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString
                     ctl.CaretIndex = autoInsertControl.recordStartPosition + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length

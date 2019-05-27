@@ -8,10 +8,14 @@
         mc:Ignorable="d"
         Title="NormalTests" Height="450" Width="800">
     <Window.Resources>
-        
+
     </Window.Resources>
     <Grid Margin="10">
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="555*"/>
+            <ColumnDefinition Width="218*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.ColumnSpan="2">
             <StackPanel>
                 <TextBlock TextWrapping="Wrap">
                     <Run Text="&#x0a;Normaler Test" FontWeight="Bold"/>
@@ -26,15 +30,22 @@
                 </TextBlock>
                 <TextBox x:Name="txtTest2" Width="300" HorizontalAlignment="Left"/>
             </StackPanel>
+            <StackPanel>
+                <TextBlock TextWrapping="Wrap">
+                <Run Text="&#x0a;Normaler Test mit Items über XAML" FontWeight="Bold"/>
+
+                </TextBlock>
+                <TextBox x:Name="txtTest3" Width="300" HorizontalAlignment="Left"/>
+            </StackPanel>
         </StackPanel>
 
 
 
         <AutoInsertPopup:AutoInsertPopupControl x:Name="pop1" TargetControl="{Binding ElementName=txtTest1}" OpenOnTargetFocused="True"
                                                 AutoInsertList="{Binding TestList}" OpenPopupTriggerChar="#" ReplaceTriggerChar="True"
-                                                VerticalOffset="{Binding ElementName=txtTest1, Path=ActualHeight}"/>
+                                                VerticalOffset="{Binding ElementName=txtTest1, Path=ActualHeight}" Grid.ColumnSpan="2"/>
 
-        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest2}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
+        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest2}" HorizontalAlignment="Left"
                                                  VerticalAlignment="Top" 
                                                 x:Name="pop2" AutoInsertList="{Binding T4List}" Popupanimation="None" FocusKey="Down" OpenPopupTriggerChar=" " ReplaceTriggerChar="False"
                                                 StaysOpen="False" BorderBrush="Black" BorderThickness="1" Width="{Binding ElementName=txtTest2, Path=ActualWidth}" Height="20"
@@ -45,6 +56,19 @@
                 </ItemsPanelTemplate>
             </AutoInsertPopup:AutoInsertPopupControl.ListBoxItemsPanelTemplate>
         </AutoInsertPopup:AutoInsertPopupControl>
+        <AutoInsertPopup:AutoInsertPopupControl x:Name="pop3" TargetControl="{Binding ElementName=txtTest3}" OpenOnTargetFocused="True"
+                                                OpenPopupTriggerChar="#" ReplaceTriggerChar="True"
+                                                VerticalOffset="{Binding ElementName=txtTest1, Path=ActualHeight}" Grid.ColumnSpan="2">
+            <AutoInsertPopup:AutoInsertPopupControl.AutoInsertList>
+                <x:Array Type="{x:Type AutoInsertPopup:AutoInsertItem}">
+                    <AutoInsertPopup:AutoInsertItem ViewContent="Hallo"/>
+                    <AutoInsertPopup:AutoInsertItem ViewContent="Du" SearchStringContent="du" TextBoxInsertString="Du!"/>
+                </x:Array>
 
+
+            </AutoInsertPopup:AutoInsertPopupControl.AutoInsertList>
+        </AutoInsertPopup:AutoInsertPopupControl>
+
+        <local:uclPopupPropertyManager Grid.Column="1" TargetPopupControl="{Binding ElementName=pop1}"/>
     </Grid>
 </Window>

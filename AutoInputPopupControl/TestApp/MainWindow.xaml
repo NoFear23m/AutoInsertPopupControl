@@ -18,7 +18,7 @@
         <TextBox x:Name="txtTest1" Width="300" VerticalAlignment="Top" GotFocus="TxtTest_GotFocus" Margin="120,80,174,0" />
 
 
-        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
+        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest}" HorizontalAlignment="Left"
                                                  VerticalAlignment="Top" ItemSelected="Pop_ItemSelected" ItemSelectedCommand="{Binding SelectItemCommand}"
                                                 x:Name="pop" AutoInsertList="{Binding TestList}" Popupanimation="Fade" FocusKey="Down" OpenPopupTriggerChar="@" ReplaceTriggerChar="False"
                                                 StaysOpen="True" BorderBrush="Black" BorderThickness="1">
@@ -44,7 +44,7 @@
             </AutoInsertPopup:AutoInsertPopupControl.ListItemTemplate>
            
         </AutoInsertPopup:AutoInsertPopupControl>
-        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest1}" HorizontalAlignment="Left" PopupBorderVisibility="Visible"
+        <AutoInsertPopup:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest1}" HorizontalAlignment="Left"
                                                  VerticalAlignment="Top" ItemSelected="Pop_ItemSelected" ItemSelectedCommand="{Binding SelectItemCommand}"
                                                 x:Name="pop1" AutoInsertList="{Binding TestList1}" Popupanimation="Fade" FocusKey="Down" OpenPopupTriggerChar="!" ReplaceTriggerChar="True"
                                                 StaysOpen="True" BorderBrush="Black" BorderThickness="1"/>

@@ -131,7 +131,9 @@ Public Class AutoInsertPopupControl
                 If TryCast(fullList, IEnumerable(Of IAutoInsertItem)) IsNot Nothing Then
                     DirectCast(fullList, IEnumerable(Of IAutoInsertItem)).ToList.ForEach(Sub(x) list.Add(New AutoInsertItem(item:=x)))
                 Else
-                    If TryCast(fullList, List(Of String)) Is Nothing Then Throw New Exception("The collection must be an IAutoInsertItem-Collection or a collection of string. Curent type " & fullList.GetType.ToString())
+                    If fullList Is Nothing OrElse TryCast(fullList, List(Of String)) Is Nothing Then
+                        Throw New Exception("The collection must be an IAutoInsertItem-Collection or a collection of string. Curent type " & fullList.GetType.ToString())
+                    End If
                     DirectCast(fullList, IEnumerable(Of String)).ToList.ForEach(Sub(x) list.Add(New AutoInsertItem(x)))
                 End If
                 Dim listQueriable = list.AsQueryable
@@ -154,7 +156,7 @@ Public Class AutoInsertPopupControl
     End Sub
 
 
-
+    <Description("Bestimmt ob das Popup sich öffnen soll sobald die Textbox den Focus erhält oder gibt den Wert zurück"), Category("Popup-Options")>
     Public Property OpenOnTargetFocused As Boolean
         Get
             Return CBool(GetValue(OpenOnTargetFocusedProperty))
@@ -271,7 +273,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(Key.Escape))
 
 
-
+    <Description("Bestimmt die Vergleichsstrategie - ob der komplette String mit Contains oder nur der Anfang mit StartWith durchsucht werden soll oder gibt den Wert zurück"), Category("Popup-Options")>
     Public Property FilterStrategy As FilterMethod
         Get
             Return CType(GetValue(FilterStrategyProperty), FilterMethod)
@@ -310,7 +312,7 @@ Public Class AutoInsertPopupControl
         If autoInserCtl Is Nothing Then Throw New NullReferenceException("Failed to cast the dependency object to AutoInsertPopupControl. This is unexpected!")
         If CBool(e.NewValue) Then
             autoInserCtl.IsRecording = True
-            autoInserCtl.recordStartPosition = DirectCast(autoInserCtl.TargetControl, TextBox).CaretIndex
+            If autoInserCtl.TargetControl IsNot Nothing Then autoInserCtl.recordStartPosition = DirectCast(autoInserCtl.TargetControl, TextBox).CaretIndex
         Else
             autoInserCtl.IsRecording = False
             autoInserCtl.recordStartPosition = 0
@@ -325,26 +327,27 @@ Public Class AutoInsertPopupControl
     End Sub
 
     <Description("Ruft die Liste der verfügbaren Einträge ab bzw. legt diese fest"), Category("Einträge")>
-    Public Property AutoInsertList As IEnumerable
+    Public Property AutoInsertList As IEnumerable(Of Object)
         Get
-            Return CType(GetValue(AutoInsertListProperty), IEnumerable)
+            Return CType(GetValue(AutoInsertListProperty), IEnumerable(Of Object))
         End Get
 
-        Set(ByVal value As IEnumerable)
+        Set(ByVal value As IEnumerable(Of Object))
             SetValue(AutoInsertListProperty, value)
         End Set
     End Property
 
     Public Shared ReadOnly AutoInsertListProperty As DependencyProperty =
                            DependencyProperty.Register("AutoInsertList",
-                           GetType(IEnumerable), GetType(AutoInsertPopupControl), New PropertyMetadata(Nothing, AddressOf AutoInsertListProperty_Changed))
+                           GetType(IEnumerable(Of Object)), GetType(AutoInsertPopupControl), New PropertyMetadata(Nothing, AddressOf AutoInsertListProperty_Changed))
     Private Shared Sub AutoInsertListProperty_Changed(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If e.NewValue Is Nothing Then Exit Sub
         Dim autoInserCtl = DirectCast(d, AutoInsertPopupControl)
         If TryCast(e.NewValue, IEnumerable(Of IAutoInsertItem)) IsNot Nothing Then
             autoInserCtl.SetValue(VisibleItemsProperty, e.NewValue)
         Else
             If TryCast(e.NewValue, List(Of String)) Is Nothing Then
-                Throw New Exception("The collection must be an IAutoInsertItem-Collection or a collection of string")
+                Throw New Exception("The collection must be an IAutoInsertItem-Collection or a collection of string. Current Type: " & e.NewValue.ToString)
             End If
 
             Dim list = New List(Of IAutoInsertItem)
@@ -494,7 +497,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(Double.Parse("20")))
 
 
-
+    <Description("Bestimmt ob das Placement der Popup mit der Cursorposition der Textbox überschrieben werden soll oder gibt den Wert zurück"), Category("Popup-Options")>
     Public Property OverridePlacementWithCursorPosition As Boolean
         Get
             Return CBool(GetValue(OverridePlacementWithCursorPositionProperty))
@@ -558,6 +561,7 @@ Public Class AutoInsertPopupControl
                            New PropertyMetadata(False))
 
 
+    <Description("Gibt an wieviele Items an Suchergebnissen maximal in die Listbox geladen werden sollen oder gibt den Wert zurück"), Category("Popup-Options")>
     Public Property MaximumFilterResults As Integer
         Get
             Return CInt(GetValue(MaximumFilterResultsProperty))
@@ -572,24 +576,6 @@ Public Class AutoInsertPopupControl
                            DependencyProperty.Register("MaximumFilterResults",
                            GetType(Integer), GetType(AutoInsertPopupControl),
                            New PropertyMetadata(Integer.MaxValue))
-
-
-
-    <Description("Gibt zurück ob der Rahmen des Popups sichbar sein soll bzw. legt den Wert fest"), Category("Popup-Options")>
-    Public Property PopupBorderVisibility As Visibility
-        Get
-            Return CType(GetValue(PopupBorderVisibilityProperty), Visibility)
-        End Get
-
-        Set(ByVal value As Visibility)
-            SetValue(PopupBorderVisibilityProperty, value)
-        End Set
-    End Property
-
-    Public Shared ReadOnly PopupBorderVisibilityProperty As DependencyProperty =
-                           DependencyProperty.Register("PopupBorderVisibility",
-                           GetType(Visibility), GetType(AutoInsertPopupControl),
-                           New PropertyMetadata(Visibility.Visible))
 
 
 

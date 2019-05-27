@@ -107,24 +107,26 @@
                                     Content="{TemplateBinding Header}" 
                                     ContentTemplate="{TemplateBinding HeaderTemplate}"/>
 
-                                <ListBox x:Name="PART_ListBox" 
+                            <ListBox x:Name="PART_ListBox" 
                                          Grid.Row="1"
                                          ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=VisibleItems}" 
                                          HorizontalContentAlignment="Stretch"
                                          ItemTemplate="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=ListItemTemplate}"
                                          Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=Background}"
                                          IsSynchronizedWithCurrentItem="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                         ItemsPanel="{TemplateBinding ListBoxItemsPanelTemplate}">
+                                         ItemsPanel="{TemplateBinding ListBoxItemsPanelTemplate}"
+                                         BorderBrush="{TemplateBinding BorderBrush}" 
+                                         BorderThickness="{TemplateBinding BorderThickness}">
                                     <ListBox.Style>
                                         <Style TargetType="ListBox">
                                             <Setter Property="Visibility" Value="Visible"/>
                                             <Setter Property="BorderThickness" Value="0"/>
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=VisibleItems.Count}"
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=VisibleItems.Count}"
                                                          Value="0">
-                                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
                                         </Style>
                                     </ListBox.Style>
                                     <ListBox.InputBindings>
@@ -140,12 +142,7 @@
                                                   Grid.Row="2"
                                                   Content="{TemplateBinding Footer}" 
                                                   ContentTemplate="{TemplateBinding FooterTemplate}"/>
-                            <!--</StackPanel>-->
-                            <Border x:Name="PART_PopupBorder"
-                                    Grid.RowSpan="3"
-                                    BorderBrush="{TemplateBinding BorderBrush}" 
-                                    BorderThickness="{TemplateBinding BorderThickness}" 
-                                    Visibility="{TemplateBinding PopupBorderVisibility}"/>
+                            
                         </Grid>
                     </Popup>
                 </ControlTemplate>

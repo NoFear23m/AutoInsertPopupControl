@@ -11,19 +11,19 @@
             </ItemsPanelTemplate>
             <DataTemplate x:Key="DefaultListItemTemplate">
                 <ContentControl DataContext="{TemplateBinding Content}" Background="Transparent">
-                    <TextBlock Text="{Binding ViewContent}" Background="Transparent">
-                        <TextBlock.InputBindings>
+                    <Label Content="{Binding ViewContent}" Background="Transparent">
+                        <Label.InputBindings>
                             <MouseBinding MouseAction="LeftDoubleClick"
                                           Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=SelectItemCommand}"
                                           CommandParameter="{Binding ElementName=PART_ListBox, Path=SelectedItem}"/>
-                        </TextBlock.InputBindings>
-                    </TextBlock>
+                        </Label.InputBindings>
+                    </Label>
                 </ContentControl>
             </DataTemplate>
             <DataTemplate x:Key="HEADER_ControlTemplate">
-                <Label Content="{Binding}" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= Background}">
+                <Label Content="{Binding}" Background="Transparent">
                     <Label.Style>
-                        <Style TargetType="{x:Type Label}">
+                        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
                             <Setter Property="Visibility" Value="Visible"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding}" Value="{x:Null}">
@@ -35,9 +35,9 @@
                 </Label>
             </DataTemplate>
             <DataTemplate x:Key="FOOTER_ControlTemplate">
-                <Label Content="{Binding}" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= Background}">
+                <Label Content="{Binding}" Background="Transparent">
                     <Label.Style>
-                        <Style TargetType="{x:Type Label}">
+                        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
                             <Setter Property="Visibility" Value="Visible"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding}" Value="{x:Null}">
@@ -49,9 +49,10 @@
                 </Label>
             </DataTemplate>
             <DataTemplate x:Key="NOFILTERRESULTS_ControlTemplate">
-                <TextBlock Text="Keine Ergebnisse gefunden" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path= Background}">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
+                <Label Content="Keine Ergebnisse gefunden" 
+                       Background="Transparent">
+                    <Label.Style>
+                        <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
                             <Setter Property="Visibility" Value="Collapsed"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=VisibleItems.Count}"
@@ -60,8 +61,8 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </TextBlock.Style>
-                </TextBlock>
+                    </Label.Style>
+                </Label>
             </DataTemplate>
         </Style.Resources>
         <Setter Property="HeaderTemplate" Value="{DynamicResource HEADER_ControlTemplate}"/>
@@ -77,7 +78,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AutoInsertPopupControl}">
-                    <Popup x:Name="PART_Popup" 
+                    <Popup x:Name="PART_Popup"
                            PlacementTarget="{TemplateBinding TargetControl}" 
                            IsOpen="{TemplateBinding IsPopUpOpen}" 
                            Placement="{TemplateBinding Placement}"
@@ -101,11 +102,12 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <!--<StackPanel Background="{TemplateBinding Background}">-->
-                                <ContentPresenter 
+                                <ContentControl 
                                     Grid.Row="0"
                                     DockPanel.Dock="Top"  
                                     Content="{TemplateBinding Header}" 
-                                    ContentTemplate="{TemplateBinding HeaderTemplate}"/>
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=Background}"/>
 
                             <ListBox x:Name="PART_ListBox" 
                                          Grid.Row="1"
@@ -136,12 +138,14 @@
                                     </ListBox.InputBindings>
                                 </ListBox>
 
-                                <ContentPresenter Grid.Row="1" DockPanel.Dock="Top" ContentTemplate="{TemplateBinding NoFilterResultsContentTemplate}"/>
+                                <ContentControl Grid.Row="1" DockPanel.Dock="Top" ContentTemplate="{TemplateBinding NoFilterResultsContentTemplate}"
+                                                Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=Background}"/>
 
-                                <ContentPresenter DockPanel.Dock="Top"  
-                                                  Grid.Row="2"
-                                                  Content="{TemplateBinding Footer}" 
-                                                  ContentTemplate="{TemplateBinding FooterTemplate}"/>
+                                <ContentControl DockPanel.Dock="Top"  
+                                                Grid.Row="2" 
+                                                Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=Background}"
+                                                Content="{TemplateBinding Footer}" 
+                                                ContentTemplate="{TemplateBinding FooterTemplate}"/>
                             
                         </Grid>
                     </Popup>

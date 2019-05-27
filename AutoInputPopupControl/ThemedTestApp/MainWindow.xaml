@@ -1,0 +1,23 @@
+﻿<mah:MetroWindow x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ThemedTestApp"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:AutoInsertPopup="clr-namespace:AutoInsertPopup;assembly=AutoInsertPopup"
+                 mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <TextBlock TextWrapping="Wrap">
+                    <Run Text="&#x0a;Normaler Test" FontWeight="Bold"/>
+            </TextBlock>
+            <TextBox x:Name="txtTest1" Width="500" HorizontalAlignment="Left" Height="100" TextWrapping="WrapWithOverflow" 
+                         VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" AcceptsReturn="True"/>
+        </StackPanel>
+        <AutoInsertPopup:AutoInsertPopupControl x:Name="pop1" TargetControl="{Binding ElementName=txtTest1}" OpenOnTargetFocused="False" Header="Header" Footer="Footer"
+                                                AutoInsertList="{Binding TestList}" OpenPopupTriggerChar="#" ReplaceTriggerChar="True"
+                                                VerticalOffset="{Binding ElementName=txtTest1, Path=ActualHeight}" Grid.ColumnSpan="2" Width="{Binding ElementName=txtTest1, Path=ActualWidth}"/>
+    </Grid>
+</mah:MetroWindow>

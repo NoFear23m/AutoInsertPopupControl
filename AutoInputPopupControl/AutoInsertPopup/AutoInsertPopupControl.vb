@@ -406,7 +406,7 @@ Public Class AutoInsertPopupControl
                     If CBool(autoInsertControl.GetValue(ReplaceTriggerCharProperty)) = False Then
                         autoInsertControl.recordStartPosition += 1
                     End If
-                    ctl.Text = ctl.Text.Substring(0, autoInsertControl.recordStartPosition - 1) & DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString
+                    ctl.Text = ctl.Text.Substring(0, autoInsertControl.recordStartPosition - If(autoInsertControl.recordStartPosition = 0, 0, 1)) & DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString
                     ctl.CaretIndex = autoInsertControl.recordStartPosition + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
                 Else
                     Dim lastCaretIndex = ctl.CaretIndex

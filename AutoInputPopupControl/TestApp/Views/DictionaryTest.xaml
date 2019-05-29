@@ -37,7 +37,7 @@
         </DockPanel>
 
         <pop:AutoInsertPopupControl TargetControl="{Binding ElementName=txtTest1}" 
-                                                x:Name="pop2" AutoInsertList="{Binding T4List}" Popupanimation="None" FocusKey="Up" OpenPopupTriggerChar=" " ReplaceTriggerChar="False"
+                                                x:Name="pop1" AutoInsertList="{Binding T4List}" Popupanimation="None" FocusKey="Up" OpenPopupTriggerChar=" " ReplaceTriggerChar="False"
                                                 StaysOpen="False" BorderBrush="Black" BorderThickness="1" Width="{Binding ElementName=txtTest1, Path=ActualWidth}" Height="35"
                                                 IsPopUpOpen="{Binding ElementName=txtTest1, Path=IsFocused}" InsertFirstListItemWithTab="True" FilterStrategy="StartsWith" MaximumFilterResults="30"
                                     Placement="Top" VerticalOffset="0">

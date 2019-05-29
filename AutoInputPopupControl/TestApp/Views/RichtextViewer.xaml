@@ -12,7 +12,7 @@
         <Converter:ResourceConverter x:Key="ResourceConverter"/>
     </UserControl.Resources>
     <Grid>
-        <xctk:RichTextBox Text="{Binding ResourceName, ConverterParameter=NormalTests_XAML, Converter={StaticResource ResourceConverter}, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:RichtextViewer}}}"
+        <xctk:RichTextBox x:Name="rtb" Text="{Binding ResourceName, ConverterParameter=NormalTests_XAML, Converter={StaticResource ResourceConverter}, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:RichtextViewer}}}"
                           VerticalScrollBarVisibility="Auto">
             <xctk:RichTextBox.TextFormatter>
                 <xctk:RtfFormatter />

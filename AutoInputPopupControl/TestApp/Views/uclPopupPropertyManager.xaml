@@ -7,63 +7,72 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:converter="clr-namespace:TestApp.Converter"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="678" d:DesignWidth="809">
     <UserControl.Resources>
+        <converter:FilterStrategyToIndexConverter x:Key="FilterStrategyToIndexConverter"/>
+        <converter:StringToKeyConverter x:Key="StringToKeyConverter"/>
         <converter:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
         <converter:ShortToThicknessConverter x:Key="ShortToThicknessConverter"/>
-      
-            <Style TargetType="xctk:ShortUpDown">
-                <Setter Property="Margin" Value="2"/>
-            </Style>
-            <Style TargetType="xctk:ColorPicker">
-                <Setter Property="Margin" Value="2"/>
-            </Style>
-            <Style TargetType="CheckBox">
-                <Setter Property="Margin" Value="2"/>
+        <converter:PlacementModeToIndexConverter x:Key="PlacementModeToIndexConverter"/>
+        <converter:PopupAnimationToIndexConverter x:Key="PopupAnimationToIndexConverter"/>
+
+        <Style TargetType="{x:Type xctk:ShortUpDown}">
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style TargetType="{x:Type xctk:IntegerUpDown}">
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style TargetType="{x:Type xctk:ColorPicker}">
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Margin" Value="2"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Margin" Value="2"/>
+        </Style>
 
-      
+       
     </UserControl.Resources>
     <ScrollViewer>
         <StackPanel DataContext="{Binding  
                     RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:uclPopupPropertyManager}}}"
-                    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=False, Type={x:Type local:uclPopupPropertyManager}}">
-             <Expander Header="Aussehen" HorizontalAlignment="Stretch" IsExpanded="True">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                
-                <Label Content="BorderColor" Grid.Row="0"/>
-                <xctk:ColorPicker Grid.Column="1" Grid.Row="0" SelectedColor="{Binding TargetPopupControl.BorderBrush,Converter={StaticResource ColorToBrushConverter}}"/>
-
-                <Label Content="BorderThickness" Grid.Row="1"/>
-                <xctk:ShortUpDown Grid.Column="1" Grid.Row="1" Value="{Binding TargetPopupControl.BorderThickness, Converter={StaticResource ShortToThicknessConverter}}"/>
-
-                <Label Content="Background" Grid.Row="2"/>
-                <xctk:ColorPicker Grid.Column="1" Grid.Row="2" SelectedColor="{Binding TargetPopupControl.Background, Converter={StaticResource ColorToBrushConverter}}"/>
-            </Grid>
-            
-        </Expander>
-            <Expander Header="Generelles" HorizontalAlignment="Stretch" IsExpanded="True">
+                    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=False, Type={x:Type local:uclPopupPropertyManager}}"
+                    Background="AliceBlue">
+            <Expander Header="Aussehen" HorizontalAlignment="Stretch" IsExpanded="False">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"  SharedSizeGroup="G1"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="BorderColor" Grid.Row="0"/>
+                    <xctk:ColorPicker Grid.Column="1" Grid.Row="0" SelectedColor="{Binding TargetPopupControl.BorderBrush,Converter={StaticResource ColorToBrushConverter}}"/>
+
+                    <Label Content="BorderThickness" Grid.Row="1"/>
+                    <xctk:ShortUpDown Grid.Column="1" Grid.Row="1" Value="{Binding TargetPopupControl.BorderThickness, Converter={StaticResource ShortToThicknessConverter}}"/>
+
+                    <Label Content="Background" Grid.Row="2"/>
+                    <xctk:ColorPicker Grid.Column="1" Grid.Row="2" SelectedColor="{Binding TargetPopupControl.Background, Converter={StaticResource ColorToBrushConverter}}"/>
+                </Grid>
+
+            </Expander>
+            <Expander Header="Generelles" HorizontalAlignment="Stretch" IsExpanded="True">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -73,24 +82,136 @@
                     <Label Content="OpenOnTargetFocused" Grid.Row="0"/>
                     <CheckBox Grid.Column="1" Grid.Row="0" IsChecked="{Binding TargetPopupControl.OpenOnTargetFocused}"/>
 
-                    <Label Content="OpenPopupTriggerChar" Grid.Row="1"/>
-                    <CheckBox Grid.Column="1" Grid.Row="1" IsChecked="{Binding TargetPopupControl.OpenPopupTriggerChar}"/>
+                    <Label Content="IsPopUpOpen" Grid.Row="1"/>
+                    <CheckBox Grid.Column="1" Grid.Row="1" IsChecked="{Binding TargetPopupControl.IsPopUpOpen}"/>
 
-                    <Label Content="ReplaceTriggerChar" Grid.Row="2"/>
-                    <CheckBox Grid.Column="1" Grid.Row="2" IsChecked="{Binding TargetPopupControl.ReplaceTriggerChar}"/>
+                    <Label Content="OverridePlacementWithCursorPosition" Grid.Row="2"/>
+                    <CheckBox Grid.Column="1" Grid.Row="2" IsChecked="{Binding TargetPopupControl.OverridePlacementWithCursorPosition}"/>
 
-                    <Label Content="IsPopUpOpen" Grid.Row="3"/>
-                    <CheckBox Grid.Column="1" Grid.Row="3" IsChecked="{Binding TargetPopupControl.IsPopUpOpen}"/>
+                    <Label Content="StaysOpen" Grid.Row="3"/>
+                    <CheckBox Grid.Column="1" Grid.Row="3" IsChecked="{Binding TargetPopupControl.StaysOpen}"/>
+                </Grid>
 
-                    <Label Content="OverridePlacementWithCursorPosition" Grid.Row="4"/>
-                    <CheckBox Grid.Column="1" Grid.Row="4" IsChecked="{Binding TargetPopupControl.OverridePlacementWithCursorPosition}"/>
+            </Expander>
+            <Expander Header="Verhalten" HorizontalAlignment="Stretch" IsExpanded="False">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                    <Label Content="StaysOpen" Grid.Row="5"/>
-                    <CheckBox Grid.Column="1" Grid.Row="5" IsChecked="{Binding TargetPopupControl.StaysOpen}"/>
+                    <Label Content="OpenPopupTriggerChar" Grid.Row="0"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding TargetPopupControl.OpenPopupTriggerChar}"/>
+
+                    <Label Content="ReplaceTriggerChar" Grid.Row="1"/>
+                    <CheckBox Grid.Column="1" Grid.Row="1" IsChecked="{Binding TargetPopupControl.ReplaceTriggerChar}"/>
+
+                    <Label Content="InsertFirstListItemWithTab" Grid.Row="2"/>
+                    <CheckBox Grid.Column="1" Grid.Row="2" IsChecked="{Binding TargetPopupControl.InsertFirstListItemWithTab}"/>
+
+                    <Label Content="FocusKey" Grid.Row="3"/>
+                    <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding TargetPopupControl.FocusKey, Converter={StaticResource StringToKeyConverter}}"/>
+
+                    <Label Content="ClosePopupKey" Grid.Row="4"/>
+                    <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding AviableKeys}"
+                              SelectedItem="{Binding TargetPopupControl.ClosePopupKey, Converter={StaticResource StringToKeyConverter}}"/>
+
+                    <Label Content="FilterStrategy" Grid.Row="5"/>
+                    <ComboBox Grid.Column="1" Grid.Row="5" SelectedIndex="{Binding TargetPopupControl.FilterStrategy, Converter={StaticResource FilterStrategyToIndexConverter}}">
+                        <ComboBoxItem>Contains</ComboBoxItem>
+                        <ComboBoxItem>StartsWith</ComboBoxItem>
+                    </ComboBox>
+
+                    <Label Content="Placement" Grid.Row="6"/>
+                    <ComboBox Grid.Column="1" Grid.Row="6" SelectedIndex="{Binding TargetPopupControl.Placement, Converter={StaticResource PlacementModeToIndexConverter}}">
+                        <ComboBoxItem>Absolute</ComboBoxItem>
+                        <ComboBoxItem>Relative</ComboBoxItem>
+                        <ComboBoxItem>Bottom</ComboBoxItem>
+                        <ComboBoxItem>Center</ComboBoxItem>
+                        <ComboBoxItem>Right</ComboBoxItem>
+                        <ComboBoxItem>AbsolutePoint</ComboBoxItem>
+                        <ComboBoxItem>RelatviePoint</ComboBoxItem>
+                        <ComboBoxItem>Mouse</ComboBoxItem>
+                        <ComboBoxItem>MousePoint</ComboBoxItem>
+                        <ComboBoxItem>Left</ComboBoxItem>
+                        <ComboBoxItem>Top</ComboBoxItem>
+                        <ComboBoxItem>Custom</ComboBoxItem>
+                    </ComboBox>
+
+                    <Label Content="PlacementRectangle" Grid.Row="7"/>
+                    <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding TargetPopupControl.PlacementRectangle,UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <Label Content="HorizontalOffset" Grid.Row="8"/>
+                    <xctk:ShortUpDown Grid.Column="1" Grid.Row="8" Value="{Binding TargetPopupControl.HorizontalOffset,UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <Label Content="VerticalOffset" Grid.Row="9"/>
+                    <xctk:ShortUpDown Grid.Column="1" Grid.Row="9" Value="{Binding TargetPopupControl.VerticalOffset,UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <Label Content="OverridePlacementWithCursorPosition" Grid.Row="10"/>
+                    <CheckBox Grid.Column="1" Grid.Row="10" IsChecked="{Binding TargetPopupControl.OverridePlacementWithCursorPosition}"/>
+
+                    <Label Content="Popupanimation" Grid.Row="11"/>
+                    <ComboBox Grid.Column="1" Grid.Row="11" SelectedIndex="{Binding TargetPopupControl.Popupanimation, Converter={StaticResource PopupAnimationToIndexConverter}}">
+                        <ComboBoxItem>None</ComboBoxItem>
+                        <ComboBoxItem>Fade</ComboBoxItem>
+                        <ComboBoxItem>Slide</ComboBoxItem>
+                        <ComboBoxItem>Scroll</ComboBoxItem>
+                    </ComboBox>
+
+                    <Label Content="MaximumFilterResults" Grid.Row="12"/>
+                    <xctk:IntegerUpDown Grid.Column="1" Grid.Row="12" Value="{Binding TargetPopupControl.MaximumFilterResults}"/>
+
+
+                </Grid>
+
+            </Expander>
+            <Expander Header="Inhalt" HorizontalAlignment="Stretch" IsExpanded="False">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Header" Grid.Row="0"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding TargetPopupControl.Header}"/>
+
+                    <Label Content="Footer" Grid.Row="1"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding TargetPopupControl.Footer}"/>
+
+                    <Label Content="HeaderTemplate" Grid.Row="2"/>
+                    <Label Grid.Column="1" Grid.Row="2" Content="{Binding TargetPopupControl.HeaderTemplate}"/>
+
+                    <Label Content="FooterTemplate" Grid.Row="3"/>
+                    <Label Grid.Column="1" Grid.Row="3" Content="{Binding TargetPopupControl.FooterTemplate}"/>
+
+                    <Label Content="NoFilterResultsContentTemplate" Grid.Row="4"/>
+                    <Label Grid.Column="1" Grid.Row="4" Content="{Binding TargetPopupControl.NoFilterResultsContentTemplate}"/>
                 </Grid>
 
             </Expander>
         </StackPanel>
-       
+
     </ScrollViewer>
 </UserControl>

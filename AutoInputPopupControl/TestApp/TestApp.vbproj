@@ -86,31 +86,54 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\ColorToBrushConverter.vb" />
+    <Compile Include="Converter\PlacementModeToIndexConverter.vb" />
+    <Compile Include="Converter\FilterStrategyToIndexConverter.vb" />
+    <Compile Include="Converter\PopupAnimationToIndexConverter.vb" />
+    <Compile Include="Converter\ResourceConverter.vb" />
     <Compile Include="Converter\ShortToThicknessConverter.vb" />
-    <Compile Include="IntelliSenseTestwindow.xaml.vb">
-      <DependentUpon>IntelliSenseTestwindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Converter\StringToKeyConverter.vb" />
     <Compile Include="MainWindow.xaml.vb">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NormalTests.xaml.vb">
-      <DependentUpon>NormalTests.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PersonsTestControl.xaml.vb">
-      <DependentUpon>PersonsTestControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PersonsTestsWindow.xaml.vb">
-      <DependentUpon>PersonsTestsWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PersonsViewModel.vb" />
-    <Compile Include="PersonViewModel.vb" />
-    <Compile Include="TestSelektorWindow.xaml.vb">
-      <DependentUpon>TestSelektorWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Application.xaml.vb">
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\CustomHeaderTemplate\PersonsWithCustomHeaderViewModel.vb" />
+    <Compile Include="ViewModel\CustomItemTemplate\PersonItemTemplateViewModel.vb" />
+    <Compile Include="ViewModel\CustomItemTemplate\PersonViewModel.vb" />
+    <Compile Include="ViewModel\CustomPanelTemplate\CustomPanelTemplateAsCloudViewModel.vb" />
+    <Compile Include="ViewModel\DemoListViewModel.vb" />
+    <Compile Include="ViewModel\DemoViewModel.vb" />
+    <Compile Include="ViewModel\Dictionary\DictionaryTestViewModel.vb" />
+    <Compile Include="ViewModel\Normal\NormalTestExtendedViewModel.vb" />
+    <Compile Include="ViewModel\Normal\NormalTestViewModel.vb" />
+    <Compile Include="ViewModel\RelayCommand.vb" />
+    <Compile Include="ViewModel\ViewModelBase.vb" />
+    <Compile Include="Views\CustomHeaderTemplateTest.xaml.vb">
+      <DependentUpon>CustomHeaderTemplateTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomPanelTemplateWordCloud.xaml.vb">
+      <DependentUpon>CustomPanelTemplateWordCloud.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DictionaryTest.xaml.vb">
+      <DependentUpon>DictionaryTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NormaleTests.xaml.vb">
+      <DependentUpon>NormaleTests.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NormalTestExtended.xaml.vb">
+      <DependentUpon>NormalTestExtended.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PersonItemTemplateTest.xaml.vb">
+      <DependentUpon>PersonItemTemplateTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RichtextViewer.xaml.vb">
+      <DependentUpon>RichtextViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\uclDemoCollectionView.xaml.vb">
+      <DependentUpon>uclDemoCollectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\uclPopupPropertyManager.xaml.vb">
       <DependentUpon>uclPopupPropertyManager.xaml</DependentUpon>
@@ -118,27 +141,39 @@
     <Compile Include="Views\uclPropositionTest.xaml.vb">
       <DependentUpon>uclPropositionTest.xaml</DependentUpon>
     </Compile>
-    <Page Include="IntelliSenseTestwindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="NormalTests.xaml">
+    <Page Include="Views\CustomHeaderTemplateTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PersonsTestControl.xaml">
+    <Page Include="Views\CustomPanelTemplateWordCloud.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PersonsTestsWindow.xaml">
+    <Page Include="Views\DictionaryTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestSelektorWindow.xaml">
+    <Page Include="Views\NormaleTests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NormalTestExtended.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PersonItemTemplateTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RichtextViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\uclDemoCollectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,7 +224,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="My Project\Resources.resx">
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
     </EmbeddedResource>

@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,651 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CustomPanelTemplateWordCloud_XAML" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red163\green21\blue21;\red255\green0\blue0;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch &lt;}{\cf3\ltrch UserControl}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Class}{\cf2\ltrch ="CustomPanelTemplateWordCloud"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch ="http://schemas.microsoft.com/winfx/2006/xaml/presentation"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch x}{\cf2\ltrch ="http://schemas.microsoft.com/winfx/2006/xaml"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch mc}{\cf2\ltrch ="http://schemas.openxmlformats.org/markup-compatibility/2006"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch d}{\cf2\ltrch ="http://schemas.microsoft.com/expression/blend/2008"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch            }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch local}{\cf2\ltrch ="clr-namespace:TestApp"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch pop}{\cf2\ltrch ="clr-namespace:AutoInsertPopup;assembly=AutoInsertPopup"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch Converter}{\cf2\ltrch ="clr-namespace:TestApp.Converter"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  mc}{\cf2\ltrch :}{\cf4\ltrch Ignorable}{\cf2\ltrch ="d"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  d}{\cf2\ltrch :}{\cf4\ltrch DesignHeight}{\cf2\ltrch ="450"}{\cf4\ltrch  d}{\cf2\ltrch :}{\cf4\ltrch DesignWidth}{\cf2\ltrch ="800"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;}{\cf3\ltrch UserControl.Resources}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Converter}{\cf2\ltrch :}{\cf3\ltrch ResourceConverter}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Key}{\cf2\ltrch ="ResourceConverter"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Style}{\cf4\ltrch  TargetType}{\cf2\ltrch ="\{}{\cf3\ltrch x}{\cf2\ltrch :}{\cf3\ltrch Type}{\cf4\ltrch  TextBox}{\cf2\ltrch \}"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch Setter}{\cf4\ltrch  Property}{\cf2\ltrch ="Margin"}{\cf4\ltrch  Value}{\cf2\ltrch ="5"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch Style}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;/}{\cf3\ltrch UserControl.Resources}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;}{\cf3\ltrch Grid}{\cf4\ltrch  Margin}{\cf2\ltrch ="10"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="*"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="Auto"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch DockPanel}{\cf4\ltrch  LastChildFill}{\cf2\ltrch ="True"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TextBlock}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="Wrap"}{\cf4\ltrch  DockPanel.Dock}{\cf2\ltrch ="Top"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch Run}{\cf4\ltrch  Text}{\cf2\ltrch ="&amp;#xA;Test mit Wortlist welche mithilfe von einem eigenen PanelTemplate als WordCloud angezeigt wird"}{\cf4\ltrch  FontWeight}{\cf2\ltrch ="Bold"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;/}{\cf3\ltrch TextBlock}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TextBox}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Name}{\cf2\ltrch ="txtTest1"}{\cf4\ltrch  Height}{\cf2\ltrch ="100"}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="WrapWithOverflow"}{\cf4\ltrch  DockPanel.Dock}{\cf2\ltrch ="Top"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf4\ltrch  VerticalScrollBarVisibility}{\cf2\ltrch ="Auto"}{\cf4\ltrch  HorizontalScrollBarVisibility}{\cf2\ltrch ="Disabled"}{\cf4\ltrch  AcceptsReturn}{\cf2\ltrch ="True"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TabControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="CustomHeaderTemplateTest.xaml"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="PersonWithCustomHeader_XAML"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="PersonWithCustomHeaderViewModel.vb"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="PersonWithCustomHeaderViewModel"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="PersonViewModel.vb"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="PersonViewModel"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;/}{\cf3\ltrch TabControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch DockPanel}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Name}{\cf2\ltrch ="pop1"}{\cf4\ltrch  TargetControl}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =txtTest1\}"}{\cf4\ltrch  OpenOnTargetFocused}{\cf2\ltrch ="False"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                                }{\cf4\ltrch  AutoInsertList}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  WordList}{\cf2\ltrch \}"}{\cf4\ltrch  OpenPopupTriggerChar}{\cf2\ltrch ="@"}{\cf4\ltrch  ReplaceTriggerChar}{\cf2\ltrch ="True"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                                }{\cf4\ltrch  VerticalOffset}{\cf2\ltrch ="20"}{\cf4\ltrch  OverridePlacementWithCursorPosition}{\cf2\ltrch ="True"}{\cf4\ltrch  MaxWidth}{\cf2\ltrch ="800"}{\cf4\ltrch  MaxHeight}{\cf2\ltrch ="200"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl.ListBoxItemsPanelTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch ItemsPanelTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch WrapPanel}{\cf4\ltrch  IsItemsHost}{\cf2\ltrch ="True"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch ItemsPanelTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;/}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl.ListBoxItemsPanelTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl.ListItemTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch DataTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch TextBlock}{\cf4\ltrch  Text}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ViewContent}{\cf2\ltrch \}"}{\cf4\ltrch  FontSize}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ViewContent}{\cf2\ltrch .Size\}"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;}{\cf3\ltrch TextBlock.LayoutTransform}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch ScaleTransform}{\cf4\ltrch  ScaleX}{\cf2\ltrch ="5"}{\cf4\ltrch  ScaleY}{\cf2\ltrch ="5"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;/}{\cf3\ltrch TextBlock.LayoutTransform}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;/}{\cf3\ltrch TextBlock}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch DataTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;/}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl.ListItemTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch uclPopupPropertyManager}{\cf4\ltrch  Grid.Column}{\cf2\ltrch ="1"}{\cf4\ltrch  TargetPopupControl}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =pop1\}"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch &lt;/}{\cf3\ltrch UserControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
+  <data name="DictionaryTestViewModel" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red43\green145\blue175;\red163\green21\blue21;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch Namespace}{\ltrch  ViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Class}{\ltrch  }{\cf3\ltrch DictionaryTestViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Inherits}{\ltrch  ViewModelBase}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Sub}{\ltrch  }{\cf2\ltrch New}{\ltrch ()}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch Dim}{\ltrch  lines() }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch String}{\ltrch  = IO.File.ReadAllLines(My.Application.Info.DirectoryPath &amp; }{\cf4\ltrch "\\Data\\deutsch.txt"}{\ltrch )}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             T4List = }{\cf2\ltrch New}{\ltrch  List(}{\cf2\ltrch Of}{\ltrch  }{\cf2\ltrch String}{\ltrch )}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             T4List.AddRange(lines.Where(}{\cf2\ltrch Function}{\ltrch (o) o.Length &gt; 3).OrderBy(}{\cf2\ltrch Function}{\ltrch (x) x.Length))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Sub}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Property}{\ltrch  T4List }{\cf2\ltrch As}{\ltrch  List(}{\cf2\ltrch Of}{\ltrch  }{\cf2\ltrch String}{\ltrch )}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Class}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Namespace}\li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
+  <data name="DictionaryTest_XAML" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red163\green21\blue21;\red255\green0\blue0;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch &lt;}{\cf3\ltrch UserControl}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Class}{\cf2\ltrch ="DictionaryTest"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch ="http://schemas.microsoft.com/winfx/2006/xaml/presentation"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch x}{\cf2\ltrch ="http://schemas.microsoft.com/winfx/2006/xaml"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch mc}{\cf2\ltrch ="http://schemas.openxmlformats.org/markup-compatibility/2006"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch d}{\cf2\ltrch ="http://schemas.microsoft.com/expression/blend/2008"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch pop}{\cf2\ltrch ="clr-namespace:AutoInsertPopup;assembly=AutoInsertPopup"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch Converter}{\cf2\ltrch ="clr-namespace:TestApp.Converter"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch local}{\cf2\ltrch ="clr-namespace:TestApp"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  mc}{\cf2\ltrch :}{\cf4\ltrch Ignorable}{\cf2\ltrch ="d"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  d}{\cf2\ltrch :}{\cf4\ltrch DesignHeight}{\cf2\ltrch ="450"}{\cf4\ltrch  d}{\cf2\ltrch :}{\cf4\ltrch DesignWidth}{\cf2\ltrch ="800"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;}{\cf3\ltrch UserControl.Resources}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Converter}{\cf2\ltrch :}{\cf3\ltrch ResourceConverter}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Key}{\cf2\ltrch ="ResourceConverter"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Style}{\cf4\ltrch  TargetType}{\cf2\ltrch ="\{}{\cf3\ltrch x}{\cf2\ltrch :}{\cf3\ltrch Type}{\cf4\ltrch  TextBox}{\cf2\ltrch \}"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch Setter}{\cf4\ltrch  Property}{\cf2\ltrch ="Margin"}{\cf4\ltrch  Value}{\cf2\ltrch ="5"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch Style}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;/}{\cf3\ltrch UserControl.Resources}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;}{\cf3\ltrch Grid}{\cf4\ltrch  Margin}{\cf2\ltrch ="10"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="*"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="Auto"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch DockPanel}{\cf4\ltrch  LastChildFill}{\cf2\ltrch ="True"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TextBlock}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="Wrap"}{\cf4\ltrch  DockPanel.Dock}{\cf2\ltrch ="Top"&gt;&lt;}{\cf3\ltrch Run}{\cf4\ltrch  Text}{\cf2\ltrch ="&amp;#xA;Perfomancetest mit &gt; 188.000 Eintr\'e4gen eines W\'f6rtherbuchs wobei nur ein Teil an Ergebnissen angezeigt werden sollen"}{\cf4\ltrch  FontWeight}{\cf2\ltrch ="Bold"/&gt;&lt;/}{\cf3\ltrch TextBlock}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TextBox}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Name}{\cf2\ltrch ="txtTest1"}{\cf4\ltrch  Height}{\cf2\ltrch ="100"}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="WrapWithOverflow"}{\cf4\ltrch  DockPanel.Dock}{\cf2\ltrch ="Top"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf4\ltrch  VerticalScrollBarVisibility}{\cf2\ltrch ="Auto"}{\cf4\ltrch  HorizontalScrollBarVisibility}{\cf2\ltrch ="Disabled"}{\cf4\ltrch  AcceptsReturn}{\cf2\ltrch ="True"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TabControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="NormalTests.xaml"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="NormalTests_XAML"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="NormalTestViewModel.vb"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="NormalTestViewModel"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;/}{\cf3\ltrch TabControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch DockPanel}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl}{\cf4\ltrch  TargetControl}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =txtTest1\}"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                                }{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Name}{\cf2\ltrch ="pop2"}{\cf4\ltrch  AutoInsertList}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  T4List}{\cf2\ltrch \}"}{\cf4\ltrch  Popupanimation}{\cf2\ltrch ="None"}{\cf4\ltrch  FocusKey}{\cf2\ltrch ="Up"}{\cf4\ltrch  OpenPopupTriggerChar}{\cf2\ltrch =" "}{\cf4\ltrch  ReplaceTriggerChar}{\cf2\ltrch ="False"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                                }{\cf4\ltrch  StaysOpen}{\cf2\ltrch ="False"}{\cf4\ltrch  BorderBrush}{\cf2\ltrch ="Black"}{\cf4\ltrch  BorderThickness}{\cf2\ltrch ="1"}{\cf4\ltrch  Width}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =txtTest1,}{\cf4\ltrch  Path}{\cf2\ltrch =ActualWidth\}"}{\cf4\ltrch  Height}{\cf2\ltrch ="35"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                                }{\cf4\ltrch  IsPopUpOpen}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =txtTest1,}{\cf4\ltrch  Path}{\cf2\ltrch =IsFocused\}"}{\cf4\ltrch  InsertFirstListItemWithTab}{\cf2\ltrch ="True"}{\cf4\ltrch  FilterStrategy}{\cf2\ltrch ="StartsWith"}{\cf4\ltrch  MaximumFilterResults}{\cf2\ltrch ="30"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                    }{\cf4\ltrch  Placement}{\cf2\ltrch ="Top"}{\cf4\ltrch  VerticalOffset}{\cf2\ltrch ="0"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl.ListBoxItemsPanelTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch ItemsPanelTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch VirtualizingStackPanel}{\cf4\ltrch  Orientation}{\cf2\ltrch ="Horizontal"}{\cf4\ltrch  IsItemsHost}{\cf2\ltrch ="True"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch ItemsPanelTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;/}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl.ListBoxItemsPanelTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch uclPopupPropertyManager}{\cf4\ltrch  Grid.Column}{\cf2\ltrch ="1"}{\cf4\ltrch  TargetPopupControl}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =pop1\}"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch &lt;/}{\cf3\ltrch UserControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
+  <data name="NormalTestExtendedViewModel" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red43\green145\blue175;\red163\green21\blue21;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch Namespace}{\ltrch  ViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Class}{\ltrch  }{\cf3\ltrch NormalTestExtendedViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Inherits}{\ltrch  ViewModelBase}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Sub}{\ltrch  }{\cf2\ltrch New}{\ltrch ()}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             TestList = }{\cf2\ltrch New}{\ltrch  List(}{\cf2\ltrch Of}{\ltrch  AutoInsertPopup.AutoInsertItem) }{\cf2\ltrch From}{\ltrch  \{}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                        }{\cf2\ltrch New}{\ltrch  AutoInsertPopup.AutoInsertItem(}{\cf4\ltrch "Sehr Geehrter Herr "}{\ltrch , }{\cf4\ltrch "anrede"}{\ltrch ),}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                        }{\cf2\ltrch New}{\ltrch  AutoInsertPopup.AutoInsertItem(}{\cf4\ltrch "Sehr Geehrte Frau"}{\ltrch , }{\cf4\ltrch "anrede"}{\ltrch ),}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                        }{\cf2\ltrch New}{\ltrch  AutoInsertPopup.AutoInsertItem(}{\cf4\ltrch "Mit freundlichen Gr\'fc\'dfen"}{\ltrch , }{\cf4\ltrch "mfg"}{\ltrch ),}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                        }{\cf2\ltrch New}{\ltrch  AutoInsertPopup.AutoInsertItem(}{\cf4\ltrch "Leider ist das von Ihnen gew\'fcnschte Produdkt im Moment nicht verf\'fcgbar"}{\ltrch ),}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                        }{\cf2\ltrch New}{\ltrch  AutoInsertPopup.AutoInsertItem(}{\cf4\ltrch $"Patschka Sascha }{\ltrch \{Environment.NewLine\}}{\cf4\ltrch  Musterfirma }{\ltrch \{Environment.NewLine\}}{\cf4\ltrch  Musterstrasse 123"}{\ltrch , }{\cf4\ltrch "signatur"}{\ltrch ),}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                        }{\cf2\ltrch New}{\ltrch  AutoInsertPopup.AutoInsertItem(}{\cf4\ltrch "Vielen Dank f\'fcr Ihre werte Anfrage"}{\ltrch , }{\cf4\ltrch "anfrage"}{\ltrch )\}}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Sub}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Property}{\ltrch  TestList }{\cf2\ltrch As}{\ltrch  IEnumerable(}{\cf2\ltrch Of}{\ltrch  AutoInsertPopup.IAutoInsertItem)}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Class}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Namespace}\li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
+  <data name="NormalTestExtended_XAML" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red163\green21\blue21;\red255\green0\blue0;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch &lt;}{\cf3\ltrch UserControl}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Class}{\cf2\ltrch ="NormalTestExtended"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch ="http://schemas.microsoft.com/winfx/2006/xaml/presentation"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch x}{\cf2\ltrch ="http://schemas.microsoft.com/winfx/2006/xaml"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch mc}{\cf2\ltrch ="http://schemas.openxmlformats.org/markup-compatibility/2006"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch d}{\cf2\ltrch ="http://schemas.microsoft.com/expression/blend/2008"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch AutoInsertPopup}{\cf2\ltrch ="clr-namespace:AutoInsertPopup;assembly=AutoInsertPopup"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch Converter}{\cf2\ltrch ="clr-namespace:TestApp.Converter"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch local}{\cf2\ltrch ="clr-namespace:TestApp"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  mc}{\cf2\ltrch :}{\cf4\ltrch Ignorable}{\cf2\ltrch ="d"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  d}{\cf2\ltrch :}{\cf4\ltrch DesignHeight}{\cf2\ltrch ="450"}{\cf4\ltrch  d}{\cf2\ltrch :}{\cf4\ltrch DesignWidth}{\cf2\ltrch ="800"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;}{\cf3\ltrch UserControl.Resources}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Converter}{\cf2\ltrch :}{\cf3\ltrch ResourceConverter}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Key}{\cf2\ltrch ="ResourceConverter"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Style}{\cf4\ltrch  TargetType}{\cf2\ltrch ="\{}{\cf3\ltrch x}{\cf2\ltrch :}{\cf3\ltrch Type}{\cf4\ltrch  TextBox}{\cf2\ltrch \}"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch Setter}{\cf4\ltrch  Property}{\cf2\ltrch ="Margin"}{\cf4\ltrch  Value}{\cf2\ltrch ="5"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch Style}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;/}{\cf3\ltrch UserControl.Resources}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;}{\cf3\ltrch Grid}{\cf4\ltrch  Margin}{\cf2\ltrch ="10"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="*"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="Auto"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch DockPanel}{\cf4\ltrch  LastChildFill}{\cf2\ltrch ="True"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TextBlock}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="Wrap"}{\cf4\ltrch  DockPanel.Dock}{\cf2\ltrch ="Top"&gt;&lt;}{\cf3\ltrch Run}{\cf4\ltrch  Text}{\cf2\ltrch ="&amp;#xA;Normaler Test mit einer List(Of IAutoInsertItem)"}{\cf4\ltrch  FontWeight}{\cf2\ltrch ="Bold"/&gt;&lt;/}{\cf3\ltrch TextBlock}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TextBox}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Name}{\cf2\ltrch ="txtTest1"}{\cf4\ltrch  Height}{\cf2\ltrch ="100"}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="WrapWithOverflow"}{\cf4\ltrch  DockPanel.Dock}{\cf2\ltrch ="Top"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf4\ltrch  VerticalScrollBarVisibility}{\cf2\ltrch ="Auto"}{\cf4\ltrch  HorizontalScrollBarVisibility}{\cf2\ltrch ="Disabled"}{\cf4\ltrch  AcceptsReturn}{\cf2\ltrch ="True"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TabControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="NormalTests.xaml"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="NormalTests_XAML"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="NormalTestViewModel.vb"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="NormalTestViewModel"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;/}{\cf3\ltrch TabControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch DockPanel}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch AutoInsertPopup}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Name}{\cf2\ltrch ="pop1"}{\cf4\ltrch  TargetControl}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =txtTest1\}"}{\cf4\ltrch  OpenOnTargetFocused}{\cf2\ltrch ="True"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                                }{\cf4\ltrch  AutoInsertList}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  TestList}{\cf2\ltrch \}"}{\cf4\ltrch  OpenPopupTriggerChar}{\cf2\ltrch ="#"}{\cf4\ltrch  ReplaceTriggerChar}{\cf2\ltrch ="True"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                                }{\cf4\ltrch  VerticalOffset}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ActualHeight}{\cf2\ltrch ,}{\cf4\ltrch  ElementName}{\cf2\ltrch =txtTest1\}"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch uclPopupPropertyManager}{\cf4\ltrch  Grid.Column}{\cf2\ltrch ="1"}{\cf4\ltrch  TargetPopupControl}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =pop1\}"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch &lt;/}{\cf3\ltrch UserControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
+  <data name="NormalTests_XAML" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red163\green21\blue21;\red255\green0\blue0;\red0\green128\blue0;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch &lt;}{\cf3\ltrch Window}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch        }{\cf4\ltrch  xmlns}{\cf2\ltrch ="http://schemas.microsoft.com/winfx/2006/xaml/presentation"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch        }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch x}{\cf2\ltrch ="http://schemas.microsoft.com/winfx/2006/xaml"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch        }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch d}{\cf2\ltrch ="http://schemas.microsoft.com/expression/blend/2008"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch        }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch mc}{\cf2\ltrch ="http://schemas.openxmlformats.org/markup-compatibility/2006"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch        }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch local}{\cf2\ltrch ="clr-namespace:TestApp"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch        }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch pop}{\cf2\ltrch ="clr-namespace:AutoInsertPopup;assembly=AutoInsertPopup"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch        }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch Converter}{\cf2\ltrch ="clr-namespace:TestApp.Converter"}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Class}{\cf2\ltrch ="NormalTests"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch        }{\cf4\ltrch  mc}{\cf2\ltrch :}{\cf4\ltrch Ignorable}{\cf2\ltrch ="d"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch        }{\cf4\ltrch  Title}{\cf2\ltrch ="NormalTests"}{\cf4\ltrch  Height}{\cf2\ltrch ="264"}{\cf4\ltrch  Width}{\cf2\ltrch ="800"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;}{\cf3\ltrch Window.Resources}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Converter}{\cf2\ltrch :}{\cf3\ltrch ResourceConverter}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Key}{\cf2\ltrch ="ResourceConverter"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch        }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Style}{\cf4\ltrch  TargetType}{\cf2\ltrch ="\{}{\cf3\ltrch x}{\cf2\ltrch :}{\cf3\ltrch Type}{\cf4\ltrch  TextBox}{\cf2\ltrch \}"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch Setter}{\cf4\ltrch  Property}{\cf2\ltrch ="Margin"}{\cf4\ltrch  Value}{\cf2\ltrch ="5"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch Style}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;/}{\cf3\ltrch Window.Resources}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;}{\cf3\ltrch Grid}{\cf4\ltrch  Margin}{\cf2\ltrch ="10"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="*"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="Auto"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch StackPanel}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TextBlock}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="Wrap"&gt;&lt;}{\cf3\ltrch Run}{\cf4\ltrch  Text}{\cf2\ltrch ="&amp;#xA;Normaler Test"}{\cf4\ltrch  FontWeight}{\cf2\ltrch ="Bold"/&gt;&lt;/}{\cf3\ltrch TextBlock}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf5\ltrch &lt;!--Die Textbox um die es in dem Demo geht--&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TextBox}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Name}{\cf2\ltrch ="txtTest1"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf4\ltrch  Height}{\cf2\ltrch ="100"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="WrapWithOverflow"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf4\ltrch  VerticalScrollBarVisibility}{\cf2\ltrch ="Auto"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf4\ltrch  HorizontalScrollBarVisibility}{\cf2\ltrch ="Disabled"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf4\ltrch  AcceptsReturn}{\cf2\ltrch ="True"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TabControl}{\cf2\ltrch &gt;}{\cf5\ltrch &lt;!--Die TabControls mit den Codepassagen--&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="NormalTests.xaml"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="NormalTests_XAML"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="NormalTests.vb"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="NormalTests_vb"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;/}{\cf3\ltrch TabControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch StackPanel}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf5\ltrch &lt;!--Das PopupControl--&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch            }{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Name}{\cf2\ltrch ="pop1"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch            }{\cf4\ltrch  TargetControl}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =txtTest1\}"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch            }{\cf4\ltrch  OpenOnTargetFocused}{\cf2\ltrch ="True"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch            }{\cf4\ltrch  AutoInsertList}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  TestList}{\cf2\ltrch \}"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch            }{\cf4\ltrch  OpenPopupTriggerChar}{\cf2\ltrch ="#"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch            }{\cf4\ltrch  ReplaceTriggerChar}{\cf2\ltrch ="True"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch            }{\cf4\ltrch  VerticalOffset}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ActualHeight}{\cf2\ltrch ,}{\cf4\ltrch  ElementName}{\cf2\ltrch =txtTest1\}"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch uclPopupPropertyManager}{\cf4\ltrch  Grid.Column}{\cf2\ltrch ="1"}{\cf4\ltrch  TargetPopupControl}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =pop1\}"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch &lt;/}{\cf3\ltrch Window}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
+  <data name="NormalTestViewModel" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red43\green145\blue175;\red163\green21\blue21;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch Namespace}{\ltrch  ViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Class}{\ltrch  }{\cf3\ltrch NormalTestViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Inherits}{\ltrch  ViewModelBase}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Sub}{\ltrch  }{\cf2\ltrch New}{\ltrch ()}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             TestList = }{\cf2\ltrch New}{\ltrch  List(}{\cf2\ltrch Of}{\ltrch  }{\cf2\ltrch String}{\ltrch ) }{\cf2\ltrch From}{\ltrch  \{}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf4\ltrch "Sehr Geehrter Herr"}{\ltrch ,}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf4\ltrch "Sehr Geehrte Frau"}{\ltrch ,}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf4\ltrch "Mit freundlichen Gr\'fc\'dfen"}{\ltrch ,}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf4\ltrch "Leider ist das von Ihnen gew\'fcnschte Produkt im Moment nicht verf\'fcgbar"}{\ltrch ,}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf4\ltrch "Wir danken Ihnen f\'fcr Ihre gute 5 Sterne Bewertung und hoffen Sie bald wieder bei uns begr\'fc\'dfen zu d\'fcrfen"}{\ltrch ,}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf4\ltrch "Es tut uns leid das Sie mit dem von uns zugesandtem Produkt nicht zufrienden sind."}{\ltrch ,}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf4\ltrch "Gerne tauschen wir das PRodukt gegen ein gleichwertiges anderes Produkt aus."}{\ltrch ,}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf4\ltrch "Die Sendungsnummer lautet: "}{\ltrch ,}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf4\ltrch $"Patschka Sascha }{\ltrch \{Environment.NewLine\}}{\cf4\ltrch  Musterfirma }{\ltrch \{Environment.NewLine\}}{\cf4\ltrch  Musterstrasse 123"}{\ltrch , }{\cf4\ltrch "Vielen Dank f\'fcr Ihre werte Anfrage"}{\ltrch \}}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Sub}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Property}{\ltrch  TestList }{\cf2\ltrch As}{\ltrch  List(}{\cf2\ltrch Of}{\ltrch  }{\cf2\ltrch String}{\ltrch )}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Class}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Namespace}\li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
+  <data name="PersonItemTemplateTest_XAML" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red163\green21\blue21;\red255\green0\blue0;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch &lt;}{\cf3\ltrch UserControl}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Class}{\cf2\ltrch ="PersonItemTemplateTest"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch ="http://schemas.microsoft.com/winfx/2006/xaml/presentation"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch x}{\cf2\ltrch ="http://schemas.microsoft.com/winfx/2006/xaml"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch mc}{\cf2\ltrch ="http://schemas.openxmlformats.org/markup-compatibility/2006"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch d}{\cf2\ltrch ="http://schemas.microsoft.com/expression/blend/2008"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch local}{\cf2\ltrch ="clr-namespace:TestApp"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch pop}{\cf2\ltrch ="clr-namespace:AutoInsertPopup;assembly=AutoInsertPopup"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch Converter}{\cf2\ltrch ="clr-namespace:TestApp.Converter"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  mc}{\cf2\ltrch :}{\cf4\ltrch Ignorable}{\cf2\ltrch ="d"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  d}{\cf2\ltrch :}{\cf4\ltrch DesignHeight}{\cf2\ltrch ="450"}{\cf4\ltrch  d}{\cf2\ltrch :}{\cf4\ltrch DesignWidth}{\cf2\ltrch ="800"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;}{\cf3\ltrch UserControl.Resources}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Converter}{\cf2\ltrch :}{\cf3\ltrch ResourceConverter}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Key}{\cf2\ltrch ="ResourceConverter"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Style}{\cf4\ltrch  TargetType}{\cf2\ltrch ="\{}{\cf3\ltrch x}{\cf2\ltrch :}{\cf3\ltrch Type}{\cf4\ltrch  TextBox}{\cf2\ltrch \}"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch Setter}{\cf4\ltrch  Property}{\cf2\ltrch ="Margin"}{\cf4\ltrch  Value}{\cf2\ltrch ="5"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch Style}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;/}{\cf3\ltrch UserControl.Resources}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;}{\cf3\ltrch Grid}{\cf4\ltrch  Margin}{\cf2\ltrch ="10"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="*"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="Auto"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch DockPanel}{\cf4\ltrch  LastChildFill}{\cf2\ltrch ="True"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TextBlock}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="Wrap"}{\cf4\ltrch  DockPanel.Dock}{\cf2\ltrch ="Top"&gt;&lt;}{\cf3\ltrch Run}{\cf4\ltrch  Text}{\cf2\ltrch ="&amp;#xA;Test mit einer Liste von Personen mittels ListItemTemplate"}{\cf4\ltrch  FontWeight}{\cf2\ltrch ="Bold"/&gt;&lt;/}{\cf3\ltrch TextBlock}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TextBox}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Name}{\cf2\ltrch ="txtTest1"}{\cf4\ltrch  Height}{\cf2\ltrch ="100"}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="WrapWithOverflow"}{\cf4\ltrch  DockPanel.Dock}{\cf2\ltrch ="Top"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf4\ltrch  VerticalScrollBarVisibility}{\cf2\ltrch ="Auto"}{\cf4\ltrch  HorizontalScrollBarVisibility}{\cf2\ltrch ="Disabled"}{\cf4\ltrch  AcceptsReturn}{\cf2\ltrch ="True"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TabControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="NormalTestExtended.xaml"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="NormalTestExtended_XAML"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="NormalTestExtendedViewModel.vb"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="NormalTestExtendedViewModel"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;/}{\cf3\ltrch TabControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch DockPanel}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Name}{\cf2\ltrch ="pop1"}{\cf4\ltrch  TargetControl}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =txtTest1\}"}{\cf4\ltrch  OpenOnTargetFocused}{\cf2\ltrch ="False"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                                }{\cf4\ltrch  AutoInsertList}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  Persons}{\cf2\ltrch \}"}{\cf4\ltrch  OpenPopupTriggerChar}{\cf2\ltrch ="@"}{\cf4\ltrch  ReplaceTriggerChar}{\cf2\ltrch ="False"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                                }{\cf4\ltrch  VerticalOffset}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ActualHeight}{\cf2\ltrch ,}{\cf4\ltrch  ElementName}{\cf2\ltrch =txtTest1\}"}{\cf4\ltrch  OverridePlacementWithCursorPosition}{\cf2\ltrch ="True"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl.ListItemTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch DataTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch Grid}{\cf4\ltrch  DataContext}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ViewContent}{\cf2\ltrch \}"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="60"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="*"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;}{\cf3\ltrch Grid.RowDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch RowDefinition}{\cf4\ltrch  Height}{\cf2\ltrch ="Auto"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch RowDefinition}{\cf4\ltrch  Height}{\cf2\ltrch ="Auto"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid.RowDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;}{\cf3\ltrch Border}{\cf4\ltrch  Grid.RowSpan}{\cf2\ltrch ="2"}{\cf4\ltrch  Height}{\cf2\ltrch ="50"}{\cf4\ltrch  Width}{\cf2\ltrch ="50"}{\cf4\ltrch  CornerRadius}{\cf2\ltrch ="10"}{\cf4\ltrch  BorderThickness}{\cf2\ltrch ="1"}{\cf4\ltrch  BorderBrush}{\cf2\ltrch ="Black"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch Image}{\cf4\ltrch  Source}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  PersonImage}{\cf2\ltrch \}" /&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;/}{\cf3\ltrch Border}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;}{\cf3\ltrch TextBlock}{\cf4\ltrch  Grid.Column}{\cf2\ltrch ="1"}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="WrapWithOverflow"}{\cf4\ltrch  FontWeight}{\cf2\ltrch ="Bold"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch Run}{\cf4\ltrch  Text}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  FirstName}{\cf2\ltrch ,}{\cf4\ltrch FallbackValue}{\cf2\ltrch =Vorname\}"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch Run}{\cf4\ltrch  Text}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  LastName}{\cf2\ltrch ,}{\cf4\ltrch FallbackValue}{\cf2\ltrch =Nachname\}"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;/}{\cf3\ltrch TextBlock}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;}{\cf3\ltrch TextBlock}{\cf4\ltrch  Grid.Row}{\cf2\ltrch ="1"}{\cf4\ltrch  Grid.Column}{\cf2\ltrch ="1"}{\cf4\ltrch  Text}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  Mailaddress}{\cf2\ltrch \}"}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="WrapWithOverflow"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch DataTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;/}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl.ListItemTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch uclPopupPropertyManager}{\cf4\ltrch  Grid.Column}{\cf2\ltrch ="1"}{\cf4\ltrch  TargetPopupControl}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =pop1\}"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch &lt;/}{\cf3\ltrch UserControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
+  <data name="PersonItemTemplateViewModel" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red43\green145\blue175;\red163\green21\blue21;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch Imports}{\ltrch  System.Collections.ObjectModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch Namespace}{\ltrch  ViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Class}{\ltrch  }{\cf3\ltrch PersonItemTemplateViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Inherits}{\ltrch  ViewModelBase}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Sub}{\ltrch  }{\cf2\ltrch New}{\ltrch ()}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             Persons = }{\cf2\ltrch New}{\ltrch  ObservableCollection(}{\cf2\ltrch Of}{\ltrch  AutoInsertPopup.IAutoInsertItem)}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             Persons.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertPopup.AutoInsertItem(}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch New}{\ltrch  PersonViewModel(}{\cf4\ltrch "Bill"}{\ltrch , }{\cf4\ltrch "Gates"}{\ltrch , }{\cf4\ltrch "bill@microsoft.com"}{\ltrch ,}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                             }{\cf4\ltrch "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Bill_Gates_July_2014.jpg/220px-Bill_Gates_July_2014.jpg"}{\ltrch )))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             Persons.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertPopup.AutoInsertItem(}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch New}{\ltrch  PersonViewModel(}{\cf4\ltrch "Steve"}{\ltrch , }{\cf4\ltrch "Jobs"}{\ltrch , }{\cf4\ltrch "jobs@apple.com"}{\ltrch ,}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                             }{\cf4\ltrch "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Steve_Jobs_Headshot_2010-CROP2.jpg/170px-Steve_Jobs_Headshot_2010-CROP2.jpg"}{\ltrch )))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Sub}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Private}{\ltrch  _persons }{\cf2\ltrch As}{\ltrch  ObservableCollection(}{\cf2\ltrch Of}{\ltrch  AutoInsertPopup.IAutoInsertItem)}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Property}{\ltrch  Persons }{\cf2\ltrch As}{\ltrch  ObservableCollection(}{\cf2\ltrch Of}{\ltrch  AutoInsertPopup.IAutoInsertItem)}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch Get}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch Return}{\ltrch  _persons}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Get}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch Set}{\ltrch (}{\cf2\ltrch ByVal}{\ltrch  value }{\cf2\ltrch As}{\ltrch  ObservableCollection(}{\cf2\ltrch Of}{\ltrch  AutoInsertPopup.IAutoInsertItem))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 _persons = value}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 RaisePropertyChanged()}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Set}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Property}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Class}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Namespace}\li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
+  <data name="PersonsWithCustomHeaderViewModel" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red43\green145\blue175;\red163\green21\blue21;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch Imports}{\ltrch  AutoInsertPopup}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch Namespace}{\ltrch  ViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Class}{\ltrch  }{\cf3\ltrch CustomPanelTemplateAsCloudViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Inherits}{\ltrch  ViewModelBase}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Sub}{\ltrch  }{\cf2\ltrch New}{\ltrch ()}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList = }{\cf2\ltrch New}{\ltrch  List(}{\cf2\ltrch Of}{\ltrch  IAutoInsertItem)}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "XAML"}{\ltrch , .Size = 10\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "WPF"}{\ltrch , .Size = 10\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "Visual Basic"}{\ltrch , .Size = 9\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "C#"}{\ltrch , .Size = 9\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "Templates"}{\ltrch , .Size = 8\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "Controls"}{\ltrch , .Size = 8\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "ControlTemplate"}{\ltrch , .Size = 6\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "DataTemplate"}{\ltrch , .Size = 6\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "ResourceDictionary"}{\ltrch , .Size = 4\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "UserControl"}{\ltrch , .Size = 4\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "Code"}{\ltrch , .Size = 8\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "Developer"}{\ltrch , .Size = 6\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "Build"}{\ltrch , .Size = 3\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "Debug"}{\ltrch , .Size = 4\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "Debugging"}{\ltrch , .Size = 1\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "Visual Studio"}{\ltrch , .Size = 5\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "IDE"}{\ltrch , .Size = 1\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "UWP"}{\ltrch , .Size = 3\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "Xamarin"}{\ltrch , .Size = 2\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             WordList.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertItem(}{\cf2\ltrch New}{\ltrch  WordCloudItem() }{\cf2\ltrch With}{\ltrch  \{.Caption = }{\cf4\ltrch "WinForms"}{\ltrch , .Size = 1\}))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Sub}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Private}{\ltrch  _wordList }{\cf2\ltrch As}{\ltrch  List(}{\cf2\ltrch Of}{\ltrch  IAutoInsertItem)}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Property}{\ltrch  WordList }{\cf2\ltrch As}{\ltrch  List(}{\cf2\ltrch Of}{\ltrch  IAutoInsertItem)}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch Get}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch Return}{\ltrch  _wordList}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Get}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch Set}{\ltrch (}{\cf2\ltrch ByVal}{\ltrch  value }{\cf2\ltrch As}{\ltrch  List(}{\cf2\ltrch Of}{\ltrch  IAutoInsertItem))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 _wordList = value}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 RaisePropertyChanged()}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Set}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Property}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Class}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Namespace}\li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
+  <data name="PersonViewModel" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red43\green145\blue175;\red163\green21\blue21;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch Namespace}{\ltrch  ViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Class}{\ltrch  }{\cf3\ltrch PersonViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Inherits}{\ltrch  ViewModelBase}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Sub}{\ltrch  }{\cf2\ltrch New}{\ltrch ()}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Sub}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Sub}{\ltrch  }{\cf2\ltrch New}{\ltrch (fName }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch String}{\ltrch , lName }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch String}{\ltrch , mail }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch String}{\ltrch , image }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch String}{\ltrch )}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             FirstName = fName : LastName = lName : Mailaddress = mail : PersonImage = image}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Sub}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Property}{\ltrch  FirstName }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch String}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Property}{\ltrch  LastName }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch String}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Property}{\ltrch  Mailaddress }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch String}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Property}{\ltrch  PersonImage }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch String}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch ReadOnly}{\ltrch  }{\cf2\ltrch Property}{\ltrch  FullName }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch String}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch Get}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch Return}{\ltrch  }{\cf4\ltrch $"}{\ltrch \{FirstName\}}{\cf4\ltrch  }{\ltrch \{LastName\}}{\cf4\ltrch "}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Get}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Property}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Overrides}{\ltrch  }{\cf2\ltrch Function}{\ltrch  ToString() }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch String}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch Return}{\ltrch  FullName}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Function}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Class}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Namespace}\li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
+  <data name="PersonWithCustomHeaderViewModel" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red43\green145\blue175;\red163\green21\blue21;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch Imports}{\ltrch  System.Collections.ObjectModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch Namespace}{\ltrch  ViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Class}{\ltrch  }{\cf3\ltrch PersonsWithCustomHeaderViewModel}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Inherits}{\ltrch  ViewModelBase}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Sub}{\ltrch  }{\cf2\ltrch New}{\ltrch ()}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             Persons = }{\cf2\ltrch New}{\ltrch  ObservableCollection(}{\cf2\ltrch Of}{\ltrch  AutoInsertPopup.IAutoInsertItem)}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             Persons.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertPopup.AutoInsertItem(}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch New}{\ltrch  PersonViewModel(}{\cf4\ltrch "Bill"}{\ltrch , }{\cf4\ltrch "Gates"}{\ltrch , }{\cf4\ltrch "bill@microsoft.com"}{\ltrch ,}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                             }{\cf4\ltrch "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Bill_Gates_July_2014.jpg/220px-Bill_Gates_July_2014.jpg"}{\ltrch )))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             Persons.Add(}{\cf2\ltrch New}{\ltrch  AutoInsertPopup.AutoInsertItem(}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch New}{\ltrch  PersonViewModel(}{\cf4\ltrch "Steve"}{\ltrch , }{\cf4\ltrch "Jobs"}{\ltrch , }{\cf4\ltrch "jobs@apple.com"}{\ltrch ,}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                             }{\cf4\ltrch "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Steve_Jobs_Headshot_2010-CROP2.jpg/170px-Steve_Jobs_Headshot_2010-CROP2.jpg"}{\ltrch )))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Sub}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Private}{\ltrch  _persons }{\cf2\ltrch As}{\ltrch  ObservableCollection(}{\cf2\ltrch Of}{\ltrch  AutoInsertPopup.IAutoInsertItem)}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Property}{\ltrch  Persons }{\cf2\ltrch As}{\ltrch  ObservableCollection(}{\cf2\ltrch Of}{\ltrch  AutoInsertPopup.IAutoInsertItem)}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch Get}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch Return}{\ltrch  _persons}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Get}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch Set}{\ltrch (}{\cf2\ltrch ByVal}{\ltrch  value }{\cf2\ltrch As}{\ltrch  ObservableCollection(}{\cf2\ltrch Of}{\ltrch  AutoInsertPopup.IAutoInsertItem))}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 _persons = value}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 RaisePropertyChanged()}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Set}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Property}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Class}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Namespace}\li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
+  <data name="PersonWithCustomHeader_XAML" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red163\green21\blue21;\red255\green0\blue0;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch &lt;}{\cf3\ltrch UserControl}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Class}{\cf2\ltrch ="CustomHeaderTemplateTest"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch ="http://schemas.microsoft.com/winfx/2006/xaml/presentation"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch x}{\cf2\ltrch ="http://schemas.microsoft.com/winfx/2006/xaml"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch mc}{\cf2\ltrch ="http://schemas.openxmlformats.org/markup-compatibility/2006"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch d}{\cf2\ltrch ="http://schemas.microsoft.com/expression/blend/2008"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch local}{\cf2\ltrch ="clr-namespace:TestApp"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch pop}{\cf2\ltrch ="clr-namespace:AutoInsertPopup;assembly=AutoInsertPopup"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  xmlns}{\cf2\ltrch :}{\cf4\ltrch Converter}{\cf2\ltrch ="clr-namespace:TestApp.Converter"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  mc}{\cf2\ltrch :}{\cf4\ltrch Ignorable}{\cf2\ltrch ="d"}{\ltrch  }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf4\ltrch  d}{\cf2\ltrch :}{\cf4\ltrch DesignHeight}{\cf2\ltrch ="450"}{\cf4\ltrch  d}{\cf2\ltrch :}{\cf4\ltrch DesignWidth}{\cf2\ltrch ="800"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;}{\cf3\ltrch UserControl.Resources}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Converter}{\cf2\ltrch :}{\cf3\ltrch ResourceConverter}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Key}{\cf2\ltrch ="ResourceConverter"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Style}{\cf4\ltrch  TargetType}{\cf2\ltrch ="\{}{\cf3\ltrch x}{\cf2\ltrch :}{\cf3\ltrch Type}{\cf4\ltrch  TextBox}{\cf2\ltrch \}"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch Setter}{\cf4\ltrch  Property}{\cf2\ltrch ="Margin"}{\cf4\ltrch  Value}{\cf2\ltrch ="5"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch Style}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;/}{\cf3\ltrch UserControl.Resources}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;}{\cf3\ltrch Grid}{\cf4\ltrch  Margin}{\cf2\ltrch ="10"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="*"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="Auto"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch DockPanel}{\cf4\ltrch  LastChildFill}{\cf2\ltrch ="True"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TextBlock}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="Wrap"}{\cf4\ltrch  DockPanel.Dock}{\cf2\ltrch ="Top"&gt;&lt;}{\cf3\ltrch Run}{\cf4\ltrch  Text}{\cf2\ltrch ="&amp;#xA;Test mit einer Liste von Personen mittels ListItemTemplate"}{\cf4\ltrch  FontWeight}{\cf2\ltrch ="Bold"/&gt;&lt;/}{\cf3\ltrch TextBlock}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TextBox}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Name}{\cf2\ltrch ="txtTest1"}{\cf4\ltrch  Height}{\cf2\ltrch ="100"}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="WrapWithOverflow"}{\cf4\ltrch  DockPanel.Dock}{\cf2\ltrch ="Top"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf4\ltrch  VerticalScrollBarVisibility}{\cf2\ltrch ="Auto"}{\cf4\ltrch  HorizontalScrollBarVisibility}{\cf2\ltrch ="Disabled"}{\cf4\ltrch  AcceptsReturn}{\cf2\ltrch ="True"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch TabControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="PersonItemTemplateTest.xaml"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="PersonItemTemplateTest_XAML"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="PersonItemTemplateViewModel.vb"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="PersonItemTemplateViewModel"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch TabItem}{\cf4\ltrch  Header}{\cf2\ltrch ="PersonViewModel.vb"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch RichtextViewer}{\cf4\ltrch  ResourceName}{\cf2\ltrch ="PersonViewModel"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch TabItem}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;/}{\cf3\ltrch TabControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch DockPanel}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl}{\cf4\ltrch  x}{\cf2\ltrch :}{\cf4\ltrch Name}{\cf2\ltrch ="pop1"}{\cf4\ltrch  TargetControl}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =txtTest1\}"}{\cf4\ltrch  OpenOnTargetFocused}{\cf2\ltrch ="False"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                                }{\cf4\ltrch  AutoInsertList}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  Persons}{\cf2\ltrch \}"}{\cf4\ltrch  OpenPopupTriggerChar}{\cf2\ltrch ="@"}{\cf4\ltrch  ReplaceTriggerChar}{\cf2\ltrch ="False"}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                                }{\cf4\ltrch  VerticalOffset}{\cf2\ltrch ="20"}{\cf4\ltrch  OverridePlacementWithCursorPosition}{\cf2\ltrch ="True"}{\cf4\ltrch  Header}{\cf2\ltrch ="Bitte w\'e4hlen eine Person"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl.HeaderTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch DataTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch Border}{\cf4\ltrch  Background}{\cf2\ltrch ="Azure"}{\cf4\ltrch  BorderBrush}{\cf2\ltrch ="Black"}{\cf4\ltrch  BorderThickness}{\cf2\ltrch ="1"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;}{\cf3\ltrch StackPanel}{\cf4\ltrch  Orientation}{\cf2\ltrch ="Horizontal"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch Viewbox}{\cf4\ltrch  Height}{\cf2\ltrch ="16"}{\cf4\ltrch  Width}{\cf2\ltrch ="16"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                 }{\cf2\ltrch &lt;}{\cf3\ltrch Canvas}{\cf4\ltrch  Width}{\cf2\ltrch ="24"}{\cf4\ltrch  Height}{\cf2\ltrch ="24"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                     }{\cf2\ltrch &lt;}{\cf3\ltrch Path}{\cf4\ltrch  Data}{\cf2\ltrch ="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"}{\cf4\ltrch  Fill}{\cf2\ltrch ="Black" /&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                                 }{\cf2\ltrch &lt;/}{\cf3\ltrch Canvas}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;/}{\cf3\ltrch Viewbox}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch Label}{\cf4\ltrch  FontWeight}{\cf2\ltrch ="Bold"}{\cf4\ltrch  Content}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf2\ltrch \}"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;/}{\cf3\ltrch StackPanel}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;/}{\cf3\ltrch Border}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch DataTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;/}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl.HeaderTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl.ListItemTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;}{\cf3\ltrch DataTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;}{\cf3\ltrch Grid}{\cf4\ltrch  DataContext}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ViewContent}{\cf2\ltrch \}"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="60"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch ColumnDefinition}{\cf4\ltrch  Width}{\cf2\ltrch ="*"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid.ColumnDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;}{\cf3\ltrch Grid.RowDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch RowDefinition}{\cf4\ltrch  Height}{\cf2\ltrch ="Auto"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch RowDefinition}{\cf4\ltrch  Height}{\cf2\ltrch ="Auto"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid.RowDefinitions}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;}{\cf3\ltrch Border}{\cf4\ltrch  Grid.RowSpan}{\cf2\ltrch ="2"}{\cf4\ltrch  Height}{\cf2\ltrch ="50"}{\cf4\ltrch  Width}{\cf2\ltrch ="50"}{\cf4\ltrch  CornerRadius}{\cf2\ltrch ="10"}{\cf4\ltrch  BorderThickness}{\cf2\ltrch ="1"}{\cf4\ltrch  BorderBrush}{\cf2\ltrch ="Black"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch Image}{\cf4\ltrch  Source}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  PersonImage}{\cf2\ltrch \}" /&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;/}{\cf3\ltrch Border}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;}{\cf3\ltrch TextBlock}{\cf4\ltrch  Grid.Column}{\cf2\ltrch ="1"}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="WrapWithOverflow"}{\cf4\ltrch  FontWeight}{\cf2\ltrch ="Bold"&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch Run}{\cf4\ltrch  Text}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  FirstName}{\cf2\ltrch ,}{\cf4\ltrch FallbackValue}{\cf2\ltrch =Vorname\}"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                             }{\cf2\ltrch &lt;}{\cf3\ltrch Run}{\cf4\ltrch  Text}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  LastName}{\cf2\ltrch ,}{\cf4\ltrch FallbackValue}{\cf2\ltrch =Nachname\}"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;/}{\cf3\ltrch TextBlock}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                         }{\cf2\ltrch &lt;}{\cf3\ltrch TextBlock}{\cf4\ltrch  Grid.Row}{\cf2\ltrch ="1"}{\cf4\ltrch  Grid.Column}{\cf2\ltrch ="1"}{\cf4\ltrch  Text}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  Mailaddress}{\cf2\ltrch \}"}{\cf4\ltrch  TextWrapping}{\cf2\ltrch ="WrapWithOverflow"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                     }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch                 }{\cf2\ltrch &lt;/}{\cf3\ltrch DataTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch &lt;/}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl.ListItemTemplate}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;/}{\cf3\ltrch pop}{\cf2\ltrch :}{\cf3\ltrch AutoInsertPopupControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch &lt;}{\cf3\ltrch local}{\cf2\ltrch :}{\cf3\ltrch uclPopupPropertyManager}{\cf4\ltrch  Grid.Column}{\cf2\ltrch ="1"}{\cf4\ltrch  TargetPopupControl}{\cf2\ltrch ="\{}{\cf3\ltrch Binding}{\cf4\ltrch  ElementName}{\cf2\ltrch =pop1\}"/&gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch     }{\cf2\ltrch &lt;/}{\cf3\ltrch Grid}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch &lt;/}{\cf3\ltrch UserControl}{\cf2\ltrch &gt;}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
+  <data name="WordCloudItem" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}{\f3\fcharset0 Consolas;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue255;\red43\green145\blue175;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs19\f3\cf0 \cf0\ql{\f3 {\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Class}{\ltrch  }{\cf3\ltrch WordCloudItem}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Property}{\ltrch  Caption }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch String}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Property}{\ltrch  Size }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch Integer}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 \li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch Public}{\ltrch  }{\cf2\ltrch Overrides}{\ltrch  }{\cf2\ltrch Function}{\ltrch  ToString() }{\cf2\ltrch As}{\ltrch  }{\cf2\ltrch String}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch             }{\cf2\ltrch Return}{\ltrch  Caption}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\ltrch         }{\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Function}\li0\ri0\sa0\sb0\fi0\ql\par}
+{\f3 {\cf2\ltrch End}{\ltrch  }{\cf2\ltrch Class}\li0\ri0\sa0\sb0\fi0\ql\par}
+}
+}</value>
+  </data>
 </root>

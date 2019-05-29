@@ -21,7 +21,7 @@
                 </ContentControl>
             </DataTemplate>
             <DataTemplate x:Key="HEADER_ControlTemplate">
-                <Label Content="{Binding}" Background="Transparent">
+                <Label Content="{Binding}" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=Background}">
                     <Label.Style>
                         <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
                             <Setter Property="Visibility" Value="Visible"/>
@@ -35,7 +35,7 @@
                 </Label>
             </DataTemplate>
             <DataTemplate x:Key="FOOTER_ControlTemplate">
-                <Label Content="{Binding}" Background="Transparent">
+                <Label Content="{Binding}" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=Background}">
                     <Label.Style>
                         <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
                             <Setter Property="Visibility" Value="Visible"/>
@@ -49,8 +49,7 @@
                 </Label>
             </DataTemplate>
             <DataTemplate x:Key="NOFILTERRESULTS_ControlTemplate">
-                <Label Content="Keine Ergebnisse gefunden" 
-                       Background="Transparent">
+                <Label Content="Keine Ergebnisse gefunden" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AutoInsertPopupControl}}, Path=Background}">
                     <Label.Style>
                         <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
                             <Setter Property="Visibility" Value="Collapsed"/>

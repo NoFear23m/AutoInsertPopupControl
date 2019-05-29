@@ -1,5 +1,13 @@
 ﻿Public Class uclPopupPropertyManager
 
+    Public Sub New()
+
+        ' Dieser Aufruf ist für den Designer erforderlich.
+        InitializeComponent()
+
+        ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
+        AviableKeys = [Enum].GetNames(GetType(Key)).ToList
+    End Sub
 
 
     Public Property TargetPopupControl As AutoInsertPopup.AutoInsertPopupControl
@@ -18,6 +26,7 @@
                            New PropertyMetadata(Nothing))
 
 
+    Public Property AviableKeys As List(Of String)
 
 
 End Class

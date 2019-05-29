@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="uclDemoCollectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestApp"
+             xmlns:viewmodel="clr-namespace:TestApp.ViewModel"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type viewmodel:DemoListViewModel}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="220"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        
+        <WrapPanel Orientation="Horizontal" Grid.Row="1">
+            <Label Content="Filter"/>
+            <TextBox Text="{Binding FilterString,UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+        </WrapPanel>
+        <ListBox ItemsSource="{Binding AviableDemosView}" Grid.Row="2" SelectedItem="{Binding SelectedDemo}" ItemTemplate="{StaticResource DemoListItemTemplate}"
+                 HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+
+        <Label FontWeight="Bold" Content="{Binding SelectedDemo.DemoTitle}" FontSize="18" Grid.Column="1" Grid.Row="1"/>
+        <ContentControl Content="{Binding SelectedDemo.DemoContent}" Grid.Row="2" Grid.Column="1"/>
+    </Grid>
+</UserControl>

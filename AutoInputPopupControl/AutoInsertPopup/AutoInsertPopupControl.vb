@@ -96,7 +96,7 @@ Public Class AutoInsertPopupControl
             lb.ChooseContentCommand_Execute(DirectCast(lb.GetValue(VisibleItemsProperty), IEnumerable(Of IAutoInsertItem)).FirstOrDefault)
             e.Handled = True
         End If
-        If CBool(lb.GetValue(IsPopUpOpenProperty)) AndAlso CBool(lb.GetValue(OverridePlacementWithCursorPositionProperty)) Then
+        If CBool(lb.GetValue(OverridePlacementWithCursorPositionProperty)) Then
             SetRectangle(lb)
         End If
     End Sub
@@ -113,6 +113,8 @@ Public Class AutoInsertPopupControl
         Dim lastChar As Char = CChar(DirectCast(sender, TextBox).Text.Substring(DirectCast(sender, TextBox).CaretIndex - 1, 1))
         If lb.GetValue(OpenPopupTriggerCharProperty).ToString().Contains(lastChar) Then
             lb.SetValue(IsPopUpOpenProperty, True)
+            lb.currentFilterString = ""
+            lb.recordStartPosition = DirectCast(sender, TextBox).CaretIndex
             'Debug.WriteLine("Set recoding to True")
         End If
         If lb.IsRecording Then
@@ -313,6 +315,7 @@ Public Class AutoInsertPopupControl
         If CBool(e.NewValue) Then
             autoInserCtl.IsRecording = True
             If autoInserCtl.TargetControl IsNot Nothing Then autoInserCtl.recordStartPosition = DirectCast(autoInserCtl.TargetControl, TextBox).CaretIndex
+            autoInserCtl.currentFilterString = ""
         Else
             autoInserCtl.IsRecording = False
             autoInserCtl.recordStartPosition = 0
@@ -400,6 +403,9 @@ Public Class AutoInsertPopupControl
                 ctl.CaretIndex = autoInsertControl.recordStartPosition + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
             Else
                 If autoInsertControl.IsRecording Then
+                    If CBool(autoInsertControl.GetValue(ReplaceTriggerCharProperty)) = False Then
+                        autoInsertControl.recordStartPosition += 1
+                    End If
                     ctl.Text = ctl.Text.Substring(0, autoInsertControl.recordStartPosition - 1) & DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString
                     ctl.CaretIndex = autoInsertControl.recordStartPosition + DirectCast(e.NewValue, IAutoInsertItem).TextBoxInsertString.Length
                 Else
@@ -760,6 +766,6 @@ Public Class AutoInsertPopupControl
 End Class
 
 Public Enum FilterMethod
-    Contains
-    StartsWith
+    Contains = 0
+    StartsWith = 1
 End Enum

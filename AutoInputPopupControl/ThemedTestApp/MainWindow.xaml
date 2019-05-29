@@ -18,6 +18,9 @@
         </StackPanel>
         <AutoInsertPopup:AutoInsertPopupControl x:Name="pop1" TargetControl="{Binding ElementName=txtTest1}" OpenOnTargetFocused="False" Header="Header" Footer="Footer"
                                                 AutoInsertList="{Binding TestList}" OpenPopupTriggerChar="#" ReplaceTriggerChar="True"
-                                                VerticalOffset="{Binding ElementName=txtTest1, Path=ActualHeight}" Grid.ColumnSpan="2" Width="{Binding ElementName=txtTest1, Path=ActualWidth}"/>
+                                                VerticalOffset="{Binding ElementName=txtTest1, Path=ActualHeight}" Grid.ColumnSpan="2" Width="{Binding ElementName=txtTest1, Path=ActualWidth}"
+                                                Background="{Binding ElementName=txtTest1,Path=Background}">
+          
+        </AutoInsertPopup:AutoInsertPopupControl>
     </Grid>
 </mah:MetroWindow>
